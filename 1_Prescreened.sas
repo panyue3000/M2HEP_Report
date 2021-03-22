@@ -8,6 +8,8 @@
 /*Of those randomized, # assigned to on-site vs. off-site group; # who completed 3mo follow-ups; # lost to follow-up; # who withdrew (per pt or study clinician request)*/
 /*Of those who screened ineligible, summary of reasons for ineligibility*/
 
+libname m2hep 'C:\Users\panyue\Box\M2HepPrEP\Report\SAS Data Export';
+
 data redcap;
 set redcap;
 if record_id not in ('TEST ID-00a', 'TESTONLY001');
@@ -26,12 +28,12 @@ set redcap(where=(redcap_event_name='visit_baseline__ra_arm_1'));
 run;
 
 data r1_3m;
-set fu(where=(redcap_event_name='3m_arm_1'));
+set redcap(where=(redcap_event_name='3m_arm_1'));
 keep record_id rand_arm dem_visit_3m;
 run;
 
 data r1_6m;
-set fu(where=(redcap_event_name='6m_arm_1'));
+set redcap(where=(redcap_event_name='6m_arm_1'));
 keep record_id rand_arm dem_visit_3m;
 run;
 
@@ -166,4 +168,8 @@ keylabel COLPCTN='%' ;
 table (all sdem_elig ec_pc_yes ec_all_2 rand_ele rand_arm FU3m_status FU6m_status)*(N colpctn)
 ,(redcap_data_access_group all)
 ;
+run;
+
+data m2hep.R2_fustatus_032021;
+set R2_fustatus;
 run;
