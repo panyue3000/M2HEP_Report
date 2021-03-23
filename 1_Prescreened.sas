@@ -2,7 +2,7 @@
 
 /*Request from Gaby and Lauren, 03/17/2021 */
 
-/*Total # pre-screened and of those, # eligible; ineligible – */
+/*Total # pre-screened and of those, # eligible; ineligible ?*/
 /*Total # screened and of those, # eligible; ineligible; in progress*/
 /*Of those who screened eligible, # randomized; ( # pending randomization*/
 /*Of those randomized, # assigned to on-site vs. off-site group; # who completed 3mo follow-ups; # lost to follow-up; # who withdrew (per pt or study clinician request)*/
@@ -15,8 +15,6 @@ set redcap;
 if record_id not in ('TEST ID-00a', 'TESTONLY001');
 if record_id in ('2073-2') then sdem_elig=1;
 
-/*For id=19 which has randomization arm but no rand date, and no fu*/
-if rand_date = . then rand_arm=.; 
 run;
 
 data r1;
