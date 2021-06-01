@@ -12,7 +12,7 @@ libname m2hep 'C:\Users\panyue\Box\M2HepPrEP\Report\SAS Data Export';
 libname redcap 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export';
 
 data redcap;
-set redcap.redcap_2021_05_19_2158;
+set redcap;
 if record_id not in ('0000-testid', '0000-testid2');
 /*if record_id in ('2073-2') then sdem_elig=1;*/
 
