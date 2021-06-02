@@ -1,5 +1,45 @@
 
+<<<<<<< HEAD:1_1 Prescreened.sas
 /*R2 HAVE ALL SCREENING DATA*/
+=======
+
+/*Request from Gaby and Lauren, 03/17/2021 */
+
+/*Total # pre-screened and of those, # eligible; ineligible ?*/
+/*Total # screened and of those, # eligible; ineligible; in progress*/
+/*Of those who screened eligible, # randomized; ( # pending randomization*/
+/*Of those randomized, # assigned to on-site vs. off-site group; # who completed 3mo follow-ups; # lost to follow-up; # who withdrew (per pt or study clinician request)*/
+/*Of those who screened ineligible, summary of reasons for ineligibility*/
+
+libname m2hep 'C:\Users\panyue\Box\M2HepPrEP\Report\SAS Data Export';
+libname redcap 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export';
+
+data redcap;
+set redcap.redcap_2021_05_19_2158;
+if record_id not in ('0000-testid', '0000-testid2');
+/*if record_id in ('2073-2') then sdem_elig=1;*/
+
+run;
+
+data r1;
+set redcap(where=(redcap_event_name='visit_1__screening_arm_1'));
+run;
+
+data r1_base;
+set redcap(where=(redcap_event_name='visit_baseline__ra_arm_1'));
+run;
+
+data r1_3m;
+set redcap(where=(redcap_event_name='3m_arm_1'));
+keep record_id rand_arm dem_visit_3m;
+run;
+
+data r1_6m;
+set redcap(where=(redcap_event_name='6m_arm_1'));
+keep record_id rand_arm dem_visit_3m;
+run;
+
+>>>>>>> main:1_Prescreened.sas
 
 PROC SQL;
    CREATE TABLE R2 AS 
