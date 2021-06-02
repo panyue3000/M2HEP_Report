@@ -35,11 +35,11 @@ run;
 
 data r1_3m;
 set redcap(where=(redcap_event_name='3m_arm_1'));
-keep record_id rand_arm dem_visit_3m;
+/*keep record_id rand_arm dem_visit_3m;*/
 run;
 
 data r1_6m;
 set redcap(where=(redcap_event_name='6m_arm_1'));
-keep record_id rand_arm dem_visit_3m;
+/*keep record_id rand_arm dem_visit_3m;*/
 run;
 
