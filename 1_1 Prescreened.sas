@@ -21,6 +21,7 @@ PROC SQL;
 		  t1.scr_c_hcv_res,
 		  t1.insti,
 		  T1.sdem_int_evr,
+		  t1.vir_rna2,
 
 
 		  t2.rand_date, 
