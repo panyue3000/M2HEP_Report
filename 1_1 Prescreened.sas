@@ -43,15 +43,26 @@ PROC SQL;
 		  t2.dem_hltins,
 
 		  t3.dem_visit_3m as FUDATE_3m,
-/*		  t3.fu3m_status,*/
 		  t4.dem_visit_3m as FUDATE_6m,
-/*		  t4.fu6m_status,*/
+		  t6.dem_visit_3m as FUDATE_9m,
+		  t7.dem_visit_3m as FUDATE_12m,
+		  t8.dem_visit_3m as FUDATE_15m,
+		  t9.dem_visit_3m as FUDATE_18m,
+		  t10.dem_visit_3m as FUDATE_21m,
+		  t11.dem_visit_3m as FUDATE_24m,
+
 		  t5.scf_reasonend
       FROM WORK.R1 t1 left join r1_base t2 on 
 		  t1.record_id=t2.record_id left join r1_3m t3 on 
 		  t1.record_id=t3.record_id left join r1_6m t4 on 
 		  t1.record_id=t4.record_id left join r1_end_study t5 on 
-		  t1.record_id=t5.record_id
+		  t1.record_id=t5.record_id left join r1_9m t6 on 
+		  t1.record_id=t6.record_id left join r1_12m t7 on 
+		  t1.record_id=t7.record_id left join r1_15m t8 on 
+		  t1.record_id=t8.record_id left join r1_18m t9 on 
+		  t1.record_id=t9.record_id left join r1_21m t10 on 
+		  t1.record_id=t10.record_id left join r1_24m t11 on 
+		  t1.record_id=t11.record_id 
 	  order by redcap_data_access_group, rand_ele, record_id
 ;
 QUIT;

@@ -19,6 +19,11 @@ if record_id not in ('0000-testid', '0000-testid2');
 /*if record_id in ('2073-2') then sdem_elig=1;*/
 run;
 
+proc freq data=redcap;
+tables redcap_event_name;
+format redcap_event_name; /*to remove format*/
+run;
+
 data r1;
 set redcap(where=(redcap_event_name='visit_1__screening_arm_1'));
 run;
@@ -38,8 +43,25 @@ set redcap(where=(redcap_event_name='3m_arm_1'));
 /*keep record_id rand_arm dem_visit_3m;*/
 run;
 
-data r1_6m;
-set redcap(where=(redcap_event_name='6m_arm_1'));
+
+
+
+%macro FU(VAR1, var2);
+data r1_&VAR1.;
+set redcap(where=(redcap_event_name=&var2.));
 /*keep record_id rand_arm dem_visit_3m;*/
 run;
+%mend;
+
+%FU(3m,'3m_arm_1');
+%FU(6m,'6m_arm_1');
+%FU(9m,'9m_arm_1');
+%FU(12m,'12m_arm_1');
+%FU(15m,'15m_arm_1');
+%FU(18m,'18m_arm_1');
+%FU(21m,'21m_arm_1');
+%FU(24m,'24m_arm_1');
+%FU(27m,'27m_arm_1');
+%FU(30m,'30m_arm_1');
+
 
