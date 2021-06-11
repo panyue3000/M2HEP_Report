@@ -246,14 +246,23 @@ FU12m_status
 FU3m_status_calc 
 FU6m_status_calc 
 FU9m_status_calc 
-FU12m_status_calc;
+FU12m_status_calc
+FU15m_status_calc
+FU18m_status_calc
+FU21m_status_calc
+;
 
 keylabel COLPCTN='%' ;
 table (all rand_arm 
 FU3m_status_calc 
 FU6m_status_calc 
 FU9m_status_calc 
-FU12m_status_calc)*(N)
+FU12m_status_calc
+FU15m_status_calc
+FU18m_status_calc
+FU21m_status_calc
+
+)*(N)
 ,(redcap_data_access_group all)
 ;
 run;
