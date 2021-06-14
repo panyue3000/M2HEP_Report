@@ -69,7 +69,8 @@ CLASS REDCAP_DATA_ACCESS_GROUP
 	sdem_prp_cu
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
-	scr_c_hcv_res
+	
+	vir_rapid
 	vir_rna2
 
 ;
@@ -89,7 +90,8 @@ TABLE (
 	sdem_prp_cu
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
-	scr_c_hcv_res
+	
+	vir_rapid
 	vir_rna2
 
     ALL)*(N /*COLPCTN*/)
@@ -100,7 +102,7 @@ RUN;
 
 
 
-/**********************************************FOR ALL-PRESCREENED*/
+/**********************************************FOR randomized only*/
 TITLE "FOR RANDOMIZED PTS";
 PROC TABULATE DATA=R2_BL(WHERE= (RAND_ARM NE .))  MISSING;
 /*BY REDCAP_DATA_ACCESS_GROUP;*/
@@ -125,7 +127,8 @@ CLASS REDCAP_DATA_ACCESS_GROUP
 	sdem_prp_cu
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
-	scr_c_hcv_res
+	
+    vir_rapid
 	vir_rna2
 
 ;
@@ -147,7 +150,7 @@ TABLE (
 	sdem_prp_cu
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
-	scr_c_hcv_res
+	vir_rapid
 	vir_rna2
 
     ALL)*(N /*COLPCTN*/)
