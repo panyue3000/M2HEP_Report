@@ -1,20 +1,20 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2021-06-10_2218.csv';
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2021-11-02_2139.csv';
 
 
 OPTIONS nofmterr;
 
 proc format;
-	value $redcap_event_name_ visit_1__screening_arm_1='Visit 1 - Screening phase 1' visit_2__screening_arm_1='Visit 2 - Screening phase 2' 
-		visit_baseline__ra_arm_1='Visit Baseline & Randomization' '3m_arm_1'='3m' 
+	value $redcap_event_name_ 'visit_1__screening_arm_1'='Visit 1 - Screening phase 1' 'visit_2__screening_arm_1'='Visit 2 - Screening phase 2' 
+		'visit_baseline__ra_arm_1'='Visit Baseline & Randomization' '3m_arm_1'='3m' 
 		'6m_arm_1'='6m' '9m_arm_1'='9m' 
 		'12m_arm_1'='12m' '15m_arm_1'='15m' 
-		'18m_arm_1'='18m' as_needed_arm_1='As Needed';
-	value $redcap_repeat_instrument_ screening='Screening' screening_specific_collection='Screening specific collection' 
-		vital_signs='Vital Signs' end_of_medication='End Of Medication' 
-		adverse_event_form='Adverse Event Form' serious_adverse_event_form='Serious Adverse Event Form' 
-		missed_visit_form='Missed Visit Form' treatment_initiation='Treatment Initiation';
-	value $redcap_data_access_group_ miami_site='Miami_site' montreal_site='Montreal_site';
+		'18m_arm_1'='18m' 'as_needed_arm_1'='As Needed';
+	value $redcap_repeat_instrument_ 'screening'='Screening' 'screening_specific_collection'='Screening specific collection' 
+		'vital_signs'='Vital Signs' 'end_of_medication'='End Of Medication' 
+		'adverse_event_form'='Adverse Event Form' 'serious_adverse_event_form'='Serious Adverse Event Form' 
+		'missed_visit_form'='Missed Visit Form' 'treatment_initiation'='Treatment Initiation';
+	value $redcap_data_access_group_ 'miami_site'='Miami_site' 'montreal_site'='Montreal_site';
 	value languages_ 1='English' 2='Espanol' 
 		3='French';
 	value languages_complete_ 0='Incomplete' 1='Unverified' 
@@ -175,9 +175,9 @@ proc format;
 	value shlt_l_ 0='Never' 1='Occasionally' 
 		2='Sometimes' 3='Often' 
 		4='Always';
-	value shlt_f_ 0='Not at all' 1='A little bit' 
-		2='Somewhat' 3='Quite a bit' 
-		4='Extremely';
+	value shlt_f_ 0='Not at all' 1='Not very confident' 
+		2='Confident' 3='Very confident' 
+		4='Extremely confident';
 	value sdem_dis_hcv_ 0='No' 1='Yes' 
 		2='Don''t know' 3='Choose not to answer';
 	value sdem_dis_hiv_ 0='No' 1='Yes' 
@@ -260,6 +260,48 @@ proc format;
 	value vir_ng_rec_ 0='Detected' 1='Not Detected' 
 		2='NA';
 	value baseline_specific_co_v_1_ 0='Incomplete' 1='Unverified' 
+		2='Complete';
+	value ur_test_bas_3m_ 0='No' 1='Yes' 
+		2='Not applicable';
+	value result_upt_bas_3m_ 1='Negative' 2='Positive';
+	value dbs_bas_3m_ 1='Yes' 0='No';
+	value ct_bas_3m___1_ 0='Unchecked' 1='Checked';
+	value ct_bas_3m___2_ 0='Unchecked' 1='Checked';
+	value ct_bas_3m___3_ 0='Unchecked' 1='Checked';
+	value ct_bas_3m___4_ 0='Unchecked' 1='Checked';
+	value ng_test_bas_3m___1_ 0='Unchecked' 1='Checked';
+	value ng_test_bas_3m___2_ 0='Unchecked' 1='Checked';
+	value ng_test_bas_3m___3_ 0='Unchecked' 1='Checked';
+	value ng_test_bas_3m___4_ 0='Unchecked' 1='Checked';
+	value vir_ct_oral_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ct_uro_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ct_rec_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ng_oral_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ng_uro_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ng_rec_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ng_other_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value vir_ct_other_3m_ 0='Detected' 1='Not Detected' 
+		2='NA';
+	value syphilis_3m_ 0='Reactive' 1='Non-reactive';
+	value hcv_status_3m_ 0='HCV Ab non-reactive' 1='HCV Ab reactive, RNA positive' 
+		2='HCV Ab reactive, RNA negative';
+	value hcv_ant_3m_ 0='Oraquick Rapid HCV Antibody Test' 1='HCV Ab blood Test' 
+		2='Test not performed';
+	value hcv_ant_res_3m_ 0='Reactive' 1='Non-reactive';
+	value hcv_rna_quan_12wkp_3m_ 0='No' 1='Yes' 
+		2='Test not performed';
+	value hiv_ab_3m_ 0='INSTI HIV-1/HIV-2 Antibody Rapid Test' 1='HIV-1/HIV-2 Antibody Bood Test' 
+		2='Test not performed';
+	value hbv_sur_ant_3m_ 0='Reactive' 1='Non-reactive' 
+		2='Test not performed';
+	value fu_specific_collecti_v_2_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value idu_cnty_ 0='Canada' 1='United States';
 	value dem_gender_ 0='Man' 1='Woman' 
@@ -1135,40 +1177,40 @@ proc format;
 	value srb_1m_m_ 1='Yes' 0='No';
 	value srb_1m_mc_pv_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_po_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_pa_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npv_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npo_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npa_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_cv_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_co_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_ca_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mcv_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mco_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mca_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_m_hiv_ 0='No' 1='Yes' 
 		2='Don''t know';
 	value srb_1m_mc_hiv_ 0='Never' 1='Rarely' 
@@ -1297,7 +1339,7 @@ proc format;
 	value rphcv_11_ 0='Extremely' 1='Very much' 
 		2='Moderately' 3='Slightly' 
 		4='Not at all';
-	value relationship_with_ph_v_3_ 0='Incomplete' 1='Unverified' 
+	value relationship_with_ph_v_4_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value ec_yrs_ 0='No' 1='Yes';
 	value ec_hivneg_ 0='No' 1='Yes';
@@ -1319,7 +1361,7 @@ proc format;
 	value rc_base_ 0='No' 1='Yes';
 	value ec_pc_yes_ 1='Yes' 0='No';
 	value ec_all_2_ 1='Yes' 0='No';
-	value randomization_checkl_v_4_ 0='Incomplete' 1='Unverified' 
+	value randomization_checkl_v_5_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value rand_ele_ 1='Yes' 0='No';
 	value rand_arm_ 0='On-site integrated care with adherence counseling' 1='Off-site patient referral to specialized care with patient navigation';
@@ -1724,40 +1766,40 @@ proc format;
 	value srb_1m_f_3m_ 1='Yes' 0='No';
 	value srb_1m_fc_pv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_po_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_pa_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_npv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_npo_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_npa_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_cv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_co_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_ca_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_mcv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_mco_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_fc_mca_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_f_hiv_3m_ 0='No' 1='Yes' 
 		2='Don''t know';
 	value srb_1m_fc_hiv_3m_ 0='Never' 1='Rarely' 
@@ -1787,40 +1829,40 @@ proc format;
 	value srb_1m_m_3m_ 1='Yes' 0='No';
 	value srb_1m_mc_pv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_po_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_pa_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npo_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_npa_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_cv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_co_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_ca_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mcv_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mco_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_mc_mca_3m_ 0='Never' 1='Rarely' 
 		2='Some of the time' 3='Very often' 
-		4='Always';
+		4='Always' 9999='Not Applicable';
 	value srb_1m_m_hiv_3m_ 0='No' 1='Yes' 
 		2='Don''t know';
 	value srb_1m_mc_hiv_3m_ 0='Never' 1='Rarely' 
@@ -1993,11 +2035,13 @@ proc format;
 	value cce_4_3m_ 0='Cannot do at all' 1='Probably cannot do' 
 		2='Moderately certain can do' 3='Probably can do' 
 		4='Certain can do';
-	value followup_3m_eis_cpe__v_6_ 0='Incomplete' 1='Unverified' 
+	value followup_3m_eis_cpe__v_7_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
-	value adh2_arm_ 0='On-site integrated care' 1='Off-site referrals';
+	value prep_prescribe_ 0='No' 1='Yes';
 	value adh_prep_ 0='No' 1='Yes';
-	value adh2_prepchange_ 0='No' 1='Yes';
+	value stop_prep_ 0='No' 1='Yes';
+	value prep_last4week_ 0='No' 1='Yes';
+	value prep_now_ 0='No' 1='Yes';
 	value adh2_noncompliance___1_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___2_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___3_ 0='Unchecked' 1='Checked';
@@ -2015,7 +2059,7 @@ proc format;
 	value adh2_noncompliance___15_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___16_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___17_ 0='Unchecked' 1='Checked';
-	value adh2_noncompliance___18_ 0='Unchecked' 1='Checked';
+	value adh2_prepchange_ 0='No' 1='Yes';
 	value adh_hcv_ 0='No' 1='Yes';
 	value adh4_hcvchange_ 0='No' 1='Yes';
 	value adh4_noncompliance___1_ 0='Unchecked' 1='Checked';
@@ -2035,7 +2079,6 @@ proc format;
 	value adh4_noncompliance___15_ 0='Unchecked' 1='Checked';
 	value adh4_noncompliance___16_ 0='Unchecked' 1='Checked';
 	value adh4_noncompliance___17_ 0='Unchecked' 1='Checked';
-	value adh4_noncompliance___18_ 0='Unchecked' 1='Checked';
 	value followup_3m_adh2_4_complete_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value idu_cnty_6m_ 0='Canada' 1='United States';
@@ -2087,35 +2130,17 @@ proc format;
 		2='Choose not to answer';
 	value odu_6m_tim_acdt_6m_ 0='No' 1='Yes' 
 		2='Choose not to answer';
-	value aiv_kid_evr_pa_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_adt_evr_pa_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_adt_evr_pa_sp_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
 	value aiv_6m_pa_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
 	value aiv_6m_pa_sp_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_kid_evr_sex_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_adt_evr_sex_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_evr_sex_sp_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
 	value aiv_6m_sex_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
 	value aiv_6m_sex_sp_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
-	value aiv_evr_sp_vio_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
 	value aiv_6m_sp_vio_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
-	value aiv_evr_sp_brc_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
 	value aiv_6m_sp_brc_6m_ 0='No' 1='Yes' 
-		2='Refuse to answer';
-	value aiv_evr_sp_ctl_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
 	value aiv_6m_sp_ctl_6m_ 0='No' 1='Yes' 
 		2='Refuse to answer';
@@ -2247,7 +2272,7 @@ proc format;
 	value pns_10_ 0='Strongly Disagree' 1='Disagree' 
 		2='Slightly Disagree' 3='Slightly Agree' 
 		4='Agree' 5='Strongly Agree';
-	value intervention_satisfa_v_7_ 0='Incomplete' 1='Unverified' 
+	value intervention_satisfa_v_8_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value scf_reasonend_ 0='Completed study' 1='Participant withdrew consent' 
 		2='Participant became pregnant during participation' 3='In the Principal Investigator''s opinion, it was not in the participant''s best interest to continue:' 
@@ -2342,6 +2367,8 @@ proc format;
 	value smi_prep_action___7_ 0='Unchecked' 1='Checked';
 	value smi_hcv_ 0='Antibody negative, RNA negative' 2='Antibody positive, RNA negative' 
 		3='Antibody positive, RNA positive';
+	value smi_hcv_baseline_ 0='Antibody negative, RNA negative' 2='Antibody positive, RNA negative' 
+		3='Antibody positive, RNA positive';
 	value smi_hcvmed_ 0='Epclusa' 1='Other HCV medication' 
 		2='Not prescribed';
 	value hcv_disp_ 0='Dispensed, not yet started' 1='Dispensed and started';
@@ -2421,7 +2448,7 @@ proc format;
 	value sae_action_hcv___7_ 0='Unchecked' 1='Checked';
 	value sae_ongoing_ 1='Yes' 0='No';
 	value sae_ongoing_rmh_ 1='Yes' 0='No';
-	value serious_adverse_even_v_8_ 0='Incomplete' 1='Unverified' 
+	value serious_adverse_even_v_9_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value rmv_ 1='Vacation' 2='Incarceration' 
 		3='Hospitalization' 4='No-show (unable to reschedule)' 
@@ -2429,8 +2456,12 @@ proc format;
 		7='Death' 8='Other';
 	value missed_visit_form_complete_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
-	value medi_pres_ 1='Truvada' 2='Epclusa' 
-		3='Other';
+	value medi_pres___1_ 0='Unchecked' 1='Checked';
+	value medi_pres___2_ 0='Unchecked' 1='Checked';
+	value medi_pres___3_ 0='Unchecked' 1='Checked';
+	value medi_dispense___1_ 0='Unchecked' 1='Checked';
+	value medi_dispense___2_ 0='Unchecked' 1='Checked';
+	value medi_dispense___3_ 0='Unchecked' 1='Checked';
 	value treatment_initiation_complete_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 
@@ -2673,6 +2704,45 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat vir_ng_uro best32. ;
 	informat vir_ng_rec best32. ;
 	informat baseline_specific_co_v_1 best32. ;
+	informat date_of_specimen_3m yymmdd10. ;
+	informat ur_test_bas_3m best32. ;
+	informat result_upt_bas_3m best32. ;
+	informat dbs_bas_3m best32. ;
+	informat ct_bas_3m___1 best32. ;
+	informat ct_bas_3m___2 best32. ;
+	informat ct_bas_3m___3 best32. ;
+	informat ct_bas_3m___4 best32. ;
+	informat ct_other_3m $500. ;
+	informat ng_test_bas_3m___1 best32. ;
+	informat ng_test_bas_3m___2 best32. ;
+	informat ng_test_bas_3m___3 best32. ;
+	informat ng_test_bas_3m___4 best32. ;
+	informat chlamydia_other_2 $500. ;
+	informat vir_ct_oral_3m best32. ;
+	informat vir_ct_uro_3m best32. ;
+	informat vir_ct_rec_3m best32. ;
+	informat vir_ng_oral_3m best32. ;
+	informat vir_ng_uro_3m best32. ;
+	informat vir_ng_rec_3m best32. ;
+	informat vir_ng_other_3m best32. ;
+	informat vir_ct_other_3m best32. ;
+	informat syphilis_3m best32. ;
+	informat hcv_status_3m best32. ;
+	informat hcv_ant_3m best32. ;
+	informat hcv_ant_res_3m best32. ;
+	informat hcv_notest_reason_3m $500. ;
+	informat hcv_rna_quan_3m $500. ;
+	informat hcv_geno_3m $500. ;
+	informat hcv_rna_quan_12wkp_3m best32. ;
+	informat hcv_rna_quan_12wkp_3m_q best32. ;
+	informat hcv_rna_quan_12wkp_why_3m $500. ;
+	informat hiv_ab_3m best32. ;
+	informat hiv_noanti_rea_3m $500. ;
+	informat hbv_sur_ant_3m best32. ;
+	informat hbv_nop_rea_3m $500. ;
+	informat serum_creatinine_3m $500. ;
+	informat comments_3m $5000. ;
+	informat fu_specific_collecti_v_2 best32. ;
 	informat baseline_timestamp $500. ;
 	informat dem_visit yymmdd10. ;
 	informat idu_cnty best32. ;
@@ -3506,7 +3576,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat cce_3 best32. ;
 	informat cce_4 best32. ;
 	informat baseline_complete best32. ;
-	informat relationship_with_ph_v_2 $500. ;
+	informat relationship_with_ph_v_3 $500. ;
 	informat rphcv1 best32. ;
 	informat rphcv2 best32. ;
 	informat rphcv3 best32. ;
@@ -3518,7 +3588,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat rphcv_9 best32. ;
 	informat rphcv_10 best32. ;
 	informat rphcv_11 best32. ;
-	informat relationship_with_ph_v_3 best32. ;
+	informat relationship_with_ph_v_4 best32. ;
 	informat ec_yrs best32. ;
 	informat ec_hivneg best32. ;
 	informat ec_inj6 best32. ;
@@ -3542,7 +3612,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat ec_all_2 best32. ;
 	informat ec_sign $500. ;
 	informat ec_comments $5000. ;
-	informat randomization_checkl_v_4 best32. ;
+	informat randomization_checkl_v_5 best32. ;
 	informat rand_ele best32. ;
 	informat rand_date yymmdd10. ;
 	informat rand_arm best32. ;
@@ -4183,7 +4253,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat bsi_3m_17 best32. ;
 	informat bsi_3m_18 best32. ;
 	informat followup_3m_complete best32. ;
-	informat followup_3m_eis_cpe__v_5 $500. ;
+	informat followup_3m_eis_cpe__v_6 $500. ;
 	informat eis_status_3m best32. ;
 	informat eis_1_3m best32. ;
 	informat eis_2_3m best32. ;
@@ -4215,15 +4285,16 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat cce_2_3m best32. ;
 	informat cce_3_3m best32. ;
 	informat cce_4_3m best32. ;
-	informat followup_3m_eis_cpe__v_6 best32. ;
+	informat followup_3m_eis_cpe__v_7 best32. ;
 	informat followup_3m_adh2_4_timestamp $500. ;
 	informat adh2_visitdate yymmdd10. ;
-	informat adh2_arm best32. ;
+	informat prep_prescribe best32. ;
 	informat adh_prep best32. ;
-	informat adh2_prepchange best32. ;
-	informat adh2_changprepspec $500. ;
-	informat adh2_newprepdateprescr yymmdd10. ;
-	informat adh2_newprepdateingest yymmdd10. ;
+	informat stop_prep best32. ;
+	informat prep_last4week best32. ;
+	informat prep_now best32. ;
+	informat prep_misspercent best32. ;
+	informat prep_missdose best32. ;
 	informat adh2_noncompliance___1 best32. ;
 	informat adh2_noncompliance___2 best32. ;
 	informat adh2_noncompliance___3 best32. ;
@@ -4241,10 +4312,11 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat adh2_noncompliance___15 best32. ;
 	informat adh2_noncompliance___16 best32. ;
 	informat adh2_noncompliance___17 best32. ;
-	informat adh2_noncompliance___18 best32. ;
 	informat adh2_noncomplyspec $500. ;
-	informat adh2_nopillslastpresc $500. ;
-	informat adh2_nopillsleft $500. ;
+	informat adh2_prepchange best32. ;
+	informat adh2_changprepspec $500. ;
+	informat adh2_newprepdateprescr yymmdd10. ;
+	informat adh2_newprepdateingest yymmdd10. ;
 	informat adh_hcv best32. ;
 	informat adh4_hcvchange best32. ;
 	informat adh4_changhcvspec $500. ;
@@ -4267,7 +4339,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat adh4_noncompliance___15 best32. ;
 	informat adh4_noncompliance___16 best32. ;
 	informat adh4_noncompliance___17 best32. ;
-	informat adh4_noncompliance___18 best32. ;
 	informat adh4_noncomplyspec $500. ;
 	informat adh4_nopillslastpresc $500. ;
 	informat adh4_nopillsleft $500. ;
@@ -4301,21 +4372,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat odu_6m_frq_acdt_6m best32. ;
 	informat odu_6m_tim_6m yymmdd10. ;
 	informat odu_6m_tim_acdt_6m best32. ;
-	informat aiv_kid_evr_pa_6m best32. ;
-	informat aiv_adt_evr_pa_6m best32. ;
-	informat aiv_adt_evr_pa_sp_6m best32. ;
 	informat aiv_6m_pa_6m best32. ;
 	informat aiv_6m_pa_sp_6m best32. ;
-	informat aiv_kid_evr_sex_6m best32. ;
-	informat aiv_adt_evr_sex_6m best32. ;
-	informat aiv_evr_sex_sp_6m best32. ;
 	informat aiv_6m_sex_6m best32. ;
 	informat aiv_6m_sex_sp_6m best32. ;
-	informat aiv_evr_sp_vio_6m best32. ;
 	informat aiv_6m_sp_vio_6m best32. ;
-	informat aiv_evr_sp_brc_6m best32. ;
 	informat aiv_6m_sp_brc_6m best32. ;
-	informat aiv_evr_sp_ctl_6m best32. ;
 	informat aiv_6m_sp_ctl_6m best32. ;
 	informat act_1_6m best32. ;
 	informat act_2_6m best32. ;
@@ -4362,7 +4424,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat pns_8 best32. ;
 	informat pns_9 best32. ;
 	informat pns_10 best32. ;
-	informat intervention_satisfa_v_7 best32. ;
+	informat intervention_satisfa_v_8 best32. ;
 	informat scf_lastvisit yymmdd10. ;
 	informat scf_reasonend best32. ;
 	informat scf_reason_ltf $500. ;
@@ -4448,7 +4510,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat ae_treatment___4 best32. ;
 	informat ae_treatment___5 best32. ;
 	informat ae_other $500. ;
-	informat ae_treatment2 $500. ;
+	informat ae_treatment2 $5000. ;
 	informat ae_outcome best32. ;
 	informat ae_status yymmdd10. ;
 	informat smi_txarm best32. ;
@@ -4466,6 +4528,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat smi_prep_action___6 best32. ;
 	informat smi_prep_action___7 best32. ;
 	informat smi_hcv best32. ;
+	informat smi_hcv_baseline best32. ;
 	informat smi_hcvmed best32. ;
 	informat smi_specify $500. ;
 	informat hcv_disp best32. ;
@@ -4561,16 +4624,25 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_ongoing_rmh best32. ;
 	informat sae_event_narrative $5000. ;
 	informat sae_initial $500. ;
-	informat serious_adverse_even_v_8 best32. ;
+	informat serious_adverse_even_v_9 best32. ;
 	informat date_visit yymmdd10. ;
 	informat rmv best32. ;
 	informat com $5000. ;
 	informat missed_visit_form_complete best32. ;
-	informat visit_init yymmdd10. ;
-	informat medi_pres best32. ;
+	informat medi_pres___1 best32. ;
+	informat medi_pres___2 best32. ;
+	informat medi_pres___3 best32. ;
 	informat medi_pres_ot $500. ;
 	informat pres_dose $500. ;
-	informat time_dose time5. ;
+	informat date_truvada yymmdd10. ;
+	informat date_epclusa yymmdd10. ;
+	informat date_other yymmdd10. ;
+	informat medi_dispense___1 best32. ;
+	informat medi_dispense___2 best32. ;
+	informat medi_dispense___3 best32. ;
+	informat date_truvada_disp yymmdd10. ;
+	informat date_epclusa_dis yymmdd10. ;
+	informat date_other_disp yymmdd10. ;
 	informat com_dose $5000. ;
 	informat treatment_initiation_complete best32. ;
 
@@ -4808,6 +4880,45 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format vir_ng_uro best12. ;
 	format vir_ng_rec best12. ;
 	format baseline_specific_co_v_1 best12. ;
+	format date_of_specimen_3m yymmdd10. ;
+	format ur_test_bas_3m best12. ;
+	format result_upt_bas_3m best12. ;
+	format dbs_bas_3m best12. ;
+	format ct_bas_3m___1 best12. ;
+	format ct_bas_3m___2 best12. ;
+	format ct_bas_3m___3 best12. ;
+	format ct_bas_3m___4 best12. ;
+	format ct_other_3m $500. ;
+	format ng_test_bas_3m___1 best12. ;
+	format ng_test_bas_3m___2 best12. ;
+	format ng_test_bas_3m___3 best12. ;
+	format ng_test_bas_3m___4 best12. ;
+	format chlamydia_other_2 $500. ;
+	format vir_ct_oral_3m best12. ;
+	format vir_ct_uro_3m best12. ;
+	format vir_ct_rec_3m best12. ;
+	format vir_ng_oral_3m best12. ;
+	format vir_ng_uro_3m best12. ;
+	format vir_ng_rec_3m best12. ;
+	format vir_ng_other_3m best12. ;
+	format vir_ct_other_3m best12. ;
+	format syphilis_3m best12. ;
+	format hcv_status_3m best12. ;
+	format hcv_ant_3m best12. ;
+	format hcv_ant_res_3m best12. ;
+	format hcv_notest_reason_3m $500. ;
+	format hcv_rna_quan_3m $500. ;
+	format hcv_geno_3m $500. ;
+	format hcv_rna_quan_12wkp_3m best12. ;
+	format hcv_rna_quan_12wkp_3m_q best12. ;
+	format hcv_rna_quan_12wkp_why_3m $500. ;
+	format hiv_ab_3m best12. ;
+	format hiv_noanti_rea_3m $500. ;
+	format hbv_sur_ant_3m best12. ;
+	format hbv_nop_rea_3m $500. ;
+	format serum_creatinine_3m $500. ;
+	format comments_3m $5000. ;
+	format fu_specific_collecti_v_2 best12. ;
 	format baseline_timestamp $500. ;
 	format dem_visit yymmdd10. ;
 	format idu_cnty best12. ;
@@ -5641,7 +5752,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format cce_3 best12. ;
 	format cce_4 best12. ;
 	format baseline_complete best12. ;
-	format relationship_with_ph_v_2 $500. ;
+	format relationship_with_ph_v_3 $500. ;
 	format rphcv1 best12. ;
 	format rphcv2 best12. ;
 	format rphcv3 best12. ;
@@ -5653,7 +5764,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format rphcv_9 best12. ;
 	format rphcv_10 best12. ;
 	format rphcv_11 best12. ;
-	format relationship_with_ph_v_3 best12. ;
+	format relationship_with_ph_v_4 best12. ;
 	format ec_yrs best12. ;
 	format ec_hivneg best12. ;
 	format ec_inj6 best12. ;
@@ -5677,7 +5788,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format ec_all_2 best12. ;
 	format ec_sign $500. ;
 	format ec_comments $5000. ;
-	format randomization_checkl_v_4 best12. ;
+	format randomization_checkl_v_5 best12. ;
 	format rand_ele best12. ;
 	format rand_date yymmdd10. ;
 	format rand_arm best12. ;
@@ -6318,7 +6429,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format bsi_3m_17 best12. ;
 	format bsi_3m_18 best12. ;
 	format followup_3m_complete best12. ;
-	format followup_3m_eis_cpe__v_5 $500. ;
+	format followup_3m_eis_cpe__v_6 $500. ;
 	format eis_status_3m best12. ;
 	format eis_1_3m best12. ;
 	format eis_2_3m best12. ;
@@ -6350,15 +6461,16 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format cce_2_3m best12. ;
 	format cce_3_3m best12. ;
 	format cce_4_3m best12. ;
-	format followup_3m_eis_cpe__v_6 best12. ;
+	format followup_3m_eis_cpe__v_7 best12. ;
 	format followup_3m_adh2_4_timestamp $500. ;
 	format adh2_visitdate yymmdd10. ;
-	format adh2_arm best12. ;
+	format prep_prescribe best12. ;
 	format adh_prep best12. ;
-	format adh2_prepchange best12. ;
-	format adh2_changprepspec $500. ;
-	format adh2_newprepdateprescr yymmdd10. ;
-	format adh2_newprepdateingest yymmdd10. ;
+	format stop_prep best12. ;
+	format prep_last4week best12. ;
+	format prep_now best12. ;
+	format prep_misspercent best12. ;
+	format prep_missdose best12. ;
 	format adh2_noncompliance___1 best12. ;
 	format adh2_noncompliance___2 best12. ;
 	format adh2_noncompliance___3 best12. ;
@@ -6376,10 +6488,11 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format adh2_noncompliance___15 best12. ;
 	format adh2_noncompliance___16 best12. ;
 	format adh2_noncompliance___17 best12. ;
-	format adh2_noncompliance___18 best12. ;
 	format adh2_noncomplyspec $500. ;
-	format adh2_nopillslastpresc $500. ;
-	format adh2_nopillsleft $500. ;
+	format adh2_prepchange best12. ;
+	format adh2_changprepspec $500. ;
+	format adh2_newprepdateprescr yymmdd10. ;
+	format adh2_newprepdateingest yymmdd10. ;
 	format adh_hcv best12. ;
 	format adh4_hcvchange best12. ;
 	format adh4_changhcvspec $500. ;
@@ -6402,7 +6515,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format adh4_noncompliance___15 best12. ;
 	format adh4_noncompliance___16 best12. ;
 	format adh4_noncompliance___17 best12. ;
-	format adh4_noncompliance___18 best12. ;
 	format adh4_noncomplyspec $500. ;
 	format adh4_nopillslastpresc $500. ;
 	format adh4_nopillsleft $500. ;
@@ -6436,21 +6548,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format odu_6m_frq_acdt_6m best12. ;
 	format odu_6m_tim_6m yymmdd10. ;
 	format odu_6m_tim_acdt_6m best12. ;
-	format aiv_kid_evr_pa_6m best12. ;
-	format aiv_adt_evr_pa_6m best12. ;
-	format aiv_adt_evr_pa_sp_6m best12. ;
 	format aiv_6m_pa_6m best12. ;
 	format aiv_6m_pa_sp_6m best12. ;
-	format aiv_kid_evr_sex_6m best12. ;
-	format aiv_adt_evr_sex_6m best12. ;
-	format aiv_evr_sex_sp_6m best12. ;
 	format aiv_6m_sex_6m best12. ;
 	format aiv_6m_sex_sp_6m best12. ;
-	format aiv_evr_sp_vio_6m best12. ;
 	format aiv_6m_sp_vio_6m best12. ;
-	format aiv_evr_sp_brc_6m best12. ;
 	format aiv_6m_sp_brc_6m best12. ;
-	format aiv_evr_sp_ctl_6m best12. ;
 	format aiv_6m_sp_ctl_6m best12. ;
 	format act_1_6m best12. ;
 	format act_2_6m best12. ;
@@ -6497,7 +6600,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format pns_8 best12. ;
 	format pns_9 best12. ;
 	format pns_10 best12. ;
-	format intervention_satisfa_v_7 best12. ;
+	format intervention_satisfa_v_8 best12. ;
 	format scf_lastvisit yymmdd10. ;
 	format scf_reasonend best12. ;
 	format scf_reason_ltf $500. ;
@@ -6583,7 +6686,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format ae_treatment___4 best12. ;
 	format ae_treatment___5 best12. ;
 	format ae_other $500. ;
-	format ae_treatment2 $500. ;
+	format ae_treatment2 $5000. ;
 	format ae_outcome best12. ;
 	format ae_status yymmdd10. ;
 	format smi_txarm best12. ;
@@ -6601,6 +6704,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format smi_prep_action___6 best12. ;
 	format smi_prep_action___7 best12. ;
 	format smi_hcv best12. ;
+	format smi_hcv_baseline best12. ;
 	format smi_hcvmed best12. ;
 	format smi_specify $500. ;
 	format hcv_disp best12. ;
@@ -6696,16 +6800,25 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_ongoing_rmh best12. ;
 	format sae_event_narrative $5000. ;
 	format sae_initial $500. ;
-	format serious_adverse_even_v_8 best12. ;
+	format serious_adverse_even_v_9 best12. ;
 	format date_visit yymmdd10. ;
 	format rmv best12. ;
 	format com $5000. ;
 	format missed_visit_form_complete best12. ;
-	format visit_init yymmdd10. ;
-	format medi_pres best12. ;
+	format medi_pres___1 best12. ;
+	format medi_pres___2 best12. ;
+	format medi_pres___3 best12. ;
 	format medi_pres_ot $500. ;
 	format pres_dose $500. ;
-	format time_dose time5. ;
+	format date_truvada yymmdd10. ;
+	format date_epclusa yymmdd10. ;
+	format date_other yymmdd10. ;
+	format medi_dispense___1 best12. ;
+	format medi_dispense___2 best12. ;
+	format medi_dispense___3 best12. ;
+	format date_truvada_disp yymmdd10. ;
+	format date_epclusa_dis yymmdd10. ;
+	format date_other_disp yymmdd10. ;
 	format com_dose $5000. ;
 	format treatment_initiation_complete best12. ;
 
@@ -6944,6 +7057,45 @@ input
 	vir_ng_uro
 	vir_ng_rec
 	baseline_specific_co_v_1
+	date_of_specimen_3m
+	ur_test_bas_3m
+	result_upt_bas_3m
+	dbs_bas_3m
+	ct_bas_3m___1
+	ct_bas_3m___2
+	ct_bas_3m___3
+	ct_bas_3m___4
+	ct_other_3m $
+	ng_test_bas_3m___1
+	ng_test_bas_3m___2
+	ng_test_bas_3m___3
+	ng_test_bas_3m___4
+	chlamydia_other_2 $
+	vir_ct_oral_3m
+	vir_ct_uro_3m
+	vir_ct_rec_3m
+	vir_ng_oral_3m
+	vir_ng_uro_3m
+	vir_ng_rec_3m
+	vir_ng_other_3m
+	vir_ct_other_3m
+	syphilis_3m
+	hcv_status_3m
+	hcv_ant_3m
+	hcv_ant_res_3m
+	hcv_notest_reason_3m $
+	hcv_rna_quan_3m $
+	hcv_geno_3m $
+	hcv_rna_quan_12wkp_3m
+	hcv_rna_quan_12wkp_3m_q
+	hcv_rna_quan_12wkp_why_3m $
+	hiv_ab_3m
+	hiv_noanti_rea_3m $
+	hbv_sur_ant_3m
+	hbv_nop_rea_3m $
+	serum_creatinine_3m $
+	comments_3m $
+	fu_specific_collecti_v_2
 	baseline_timestamp $
 	dem_visit
 	idu_cnty
@@ -7777,7 +7929,7 @@ input
 	cce_3
 	cce_4
 	baseline_complete
-	relationship_with_ph_v_2 $
+	relationship_with_ph_v_3 $
 	rphcv1
 	rphcv2
 	rphcv3
@@ -7789,7 +7941,7 @@ input
 	rphcv_9
 	rphcv_10
 	rphcv_11
-	relationship_with_ph_v_3
+	relationship_with_ph_v_4
 	ec_yrs
 	ec_hivneg
 	ec_inj6
@@ -7813,7 +7965,7 @@ input
 	ec_all_2
 	ec_sign $
 	ec_comments $
-	randomization_checkl_v_4
+	randomization_checkl_v_5
 	rand_ele
 	rand_date
 	rand_arm
@@ -8454,7 +8606,7 @@ input
 	bsi_3m_17
 	bsi_3m_18
 	followup_3m_complete
-	followup_3m_eis_cpe__v_5 $
+	followup_3m_eis_cpe__v_6 $
 	eis_status_3m
 	eis_1_3m
 	eis_2_3m
@@ -8486,15 +8638,16 @@ input
 	cce_2_3m
 	cce_3_3m
 	cce_4_3m
-	followup_3m_eis_cpe__v_6
+	followup_3m_eis_cpe__v_7
 	followup_3m_adh2_4_timestamp $
 	adh2_visitdate
-	adh2_arm
+	prep_prescribe
 	adh_prep
-	adh2_prepchange
-	adh2_changprepspec $
-	adh2_newprepdateprescr
-	adh2_newprepdateingest
+	stop_prep
+	prep_last4week
+	prep_now
+	prep_misspercent
+	prep_missdose
 	adh2_noncompliance___1
 	adh2_noncompliance___2
 	adh2_noncompliance___3
@@ -8512,10 +8665,11 @@ input
 	adh2_noncompliance___15
 	adh2_noncompliance___16
 	adh2_noncompliance___17
-	adh2_noncompliance___18
 	adh2_noncomplyspec $
-	adh2_nopillslastpresc $
-	adh2_nopillsleft $
+	adh2_prepchange
+	adh2_changprepspec $
+	adh2_newprepdateprescr
+	adh2_newprepdateingest
 	adh_hcv
 	adh4_hcvchange
 	adh4_changhcvspec $
@@ -8538,7 +8692,6 @@ input
 	adh4_noncompliance___15
 	adh4_noncompliance___16
 	adh4_noncompliance___17
-	adh4_noncompliance___18
 	adh4_noncomplyspec $
 	adh4_nopillslastpresc $
 	adh4_nopillsleft $
@@ -8572,21 +8725,12 @@ input
 	odu_6m_frq_acdt_6m
 	odu_6m_tim_6m
 	odu_6m_tim_acdt_6m
-	aiv_kid_evr_pa_6m
-	aiv_adt_evr_pa_6m
-	aiv_adt_evr_pa_sp_6m
 	aiv_6m_pa_6m
 	aiv_6m_pa_sp_6m
-	aiv_kid_evr_sex_6m
-	aiv_adt_evr_sex_6m
-	aiv_evr_sex_sp_6m
 	aiv_6m_sex_6m
 	aiv_6m_sex_sp_6m
-	aiv_evr_sp_vio_6m
 	aiv_6m_sp_vio_6m
-	aiv_evr_sp_brc_6m
 	aiv_6m_sp_brc_6m
-	aiv_evr_sp_ctl_6m
 	aiv_6m_sp_ctl_6m
 	act_1_6m
 	act_2_6m
@@ -8633,7 +8777,7 @@ input
 	pns_8
 	pns_9
 	pns_10
-	intervention_satisfa_v_7
+	intervention_satisfa_v_8
 	scf_lastvisit
 	scf_reasonend
 	scf_reason_ltf $
@@ -8737,6 +8881,7 @@ input
 	smi_prep_action___6
 	smi_prep_action___7
 	smi_hcv
+	smi_hcv_baseline
 	smi_hcvmed
 	smi_specify $
 	hcv_disp
@@ -8832,16 +8977,25 @@ input
 	sae_ongoing_rmh
 	sae_event_narrative $
 	sae_initial $
-	serious_adverse_even_v_8
+	serious_adverse_even_v_9
 	date_visit
 	rmv
 	com $
 	missed_visit_form_complete
-	visit_init
-	medi_pres
+	medi_pres___1
+	medi_pres___2
+	medi_pres___3
 	medi_pres_ot $
 	pres_dose $
-	time_dose
+	date_truvada
+	date_epclusa
+	date_other
+	medi_dispense___1
+	medi_dispense___2
+	medi_dispense___3
+	date_truvada_disp
+	date_epclusa_dis
+	date_other_disp
 	com_dose $
 	treatment_initiation_complete
 ;
@@ -9050,7 +9204,7 @@ data redcap;
 	label vt_cir_in='';
 	label vt_cir_cm='';
 	label vital_signs_complete='Complete?';
-	label ec_fem_0_ps='(i) post-menopausal (12 months of spontaneous amenorrhea and 45 years of age)';
+	label ec_fem_0_ps='(i) post-menopausal (12 months of spontaneous amenorrhea and ≥45 years of age)';
 	label ec_fem_1_ps='(ii) documented surgically sterilized (i.e., tubal ligation, hysterectomy, or bilateral oophorectomy)';
 	label ec_fem_2_ps='(i) has a negative pregnancy test at screening (pregnancy test result [screening__phase_1_arm_1][preg_result])';
 	label ec_fem_3_ps='(ii) agrees to use an acceptable method of birth control throughout study; (patient reports [screening__phase_1_arm_1][sdem_prg_ct18])';
@@ -9086,6 +9240,45 @@ data redcap;
 	label vir_ng_uro='Neisseria gonorrhoeae NG (urogential)';
 	label vir_ng_rec='Neisseria gonorrhoeae NG (rectal)';
 	label baseline_specific_co_v_1='Complete?';
+	label date_of_specimen_3m='Date of specimen collection';
+	label ur_test_bas_3m='Urine pregnancy test';
+	label result_upt_bas_3m='Result';
+	label dbs_bas_3m='Dried blood spot';
+	label ct_bas_3m___1='Chlamydia Trachomatis (choice=Urogenital test)';
+	label ct_bas_3m___2='Chlamydia Trachomatis (choice=Oral test)';
+	label ct_bas_3m___3='Chlamydia Trachomatis (choice=Rectal test)';
+	label ct_bas_3m___4='Chlamydia Trachomatis (choice=Other test)';
+	label ct_other_3m='Please specify ';
+	label ng_test_bas_3m___1='Neisseria Gonorrahea (choice=Urogenital test)';
+	label ng_test_bas_3m___2='Neisseria Gonorrahea (choice=Oral test)';
+	label ng_test_bas_3m___3='Neisseria Gonorrahea (choice=Rectal test)';
+	label ng_test_bas_3m___4='Neisseria Gonorrahea (choice=Other test)';
+	label chlamydia_other_2='Please Specify';
+	label vir_ct_oral_3m='Chlamydia trachomatis CT (oral)';
+	label vir_ct_uro_3m='Chlamydia trachomatis CT (urogenital)';
+	label vir_ct_rec_3m='Chlamydia trachomatis CT (rectal)';
+	label vir_ng_oral_3m='Neisseria gonorrhoeae NG (oral)';
+	label vir_ng_uro_3m='Neisseria gonorrhoeae NG (urogential)';
+	label vir_ng_rec_3m='Neisseria gonorrhoeae NG (rectal)';
+	label vir_ng_other_3m='Neisseria gonorrhoeae NG (Other)';
+	label vir_ct_other_3m='Chlamydia trachomatis CT (Other)';
+	label syphilis_3m='RPR (DX) w/refl tite and confirmatory testing';
+	label hcv_status_3m='Participant HCV Status  ';
+	label hcv_ant_3m='HCV Antibody Test Performed ';
+	label hcv_ant_res_3m='HCV Antibody Result ';
+	label hcv_notest_reason_3m='Reason HCV Ab Test not performed';
+	label hcv_rna_quan_3m='HCV RNA Quantitative Result:';
+	label hcv_geno_3m='HCV Genotype:';
+	label hcv_rna_quan_12wkp_3m='HCV RNA Quantitative Test- 12 weeks post treatment initiation';
+	label hcv_rna_quan_12wkp_3m_q='HCV RNA Quantitative Test Result - 12 weeks post treatment initiation';
+	label hcv_rna_quan_12wkp_why_3m='Reason why test not performed ';
+	label hiv_ab_3m='HIV Ab Test Performed';
+	label hiv_noanti_rea_3m='Reason HIV-1/HIV-2 Antibody not performed';
+	label hbv_sur_ant_3m='Hepatitis B Surface Antigen ';
+	label hbv_nop_rea_3m='Reason Hepatitis B Test not performed';
+	label serum_creatinine_3m='Serum Creatinine Result (mg/dL)';
+	label comments_3m='Comments or observations';
+	label fu_specific_collecti_v_2='Complete?';
 	label baseline_timestamp='Survey Timestamp';
 	label dem_visit='Visit Date';
 	label idu_cnty='FOR THE INTERVIEWER: Is the participant accessing services in Canada or the United States? ';
@@ -9097,7 +9290,7 @@ data redcap;
 	label dem_gender_id_ot='Other: Please specify';
 	label dem_residence='Where is your country of residence?';
 	label dem_race_hisp='Are you of Hispanic, Latin, or Spanish origins? ';
-	label dem_aborig='Do you identify as an Aboriginal person that is First Nations (North American Indian), Metis, or Inuk (Inuit)?';
+	label dem_aborig='Do you identify as being part of the First Nations, Metis, or Inuk (Inuit)?';
 	label dem_indian1='Are you a Status Indian (Registered or Treaty Indian) as defined by the Indian Act of Canada? ';
 	label dem_indian2='Are you a member of a First Nation/Indian Band? ';
 	label dem_indian3='Please specify what First Nation/Indian Band you are a member of:';
@@ -9919,7 +10112,7 @@ data redcap;
 	label cce_3='Remember to take your pills for HCV treatment, every day, for the next 30 days?';
 	label cce_4='Keep all your HCV doctor visits without missing an appointment?';
 	label baseline_complete='Complete?';
-	label relationship_with_ph_v_2='Survey Timestamp';
+	label relationship_with_ph_v_3='Survey Timestamp';
 	label rphcv1='I can tell my health care provider anything, even things that I might not tell anyone else';
 	label rphcv2='My health care provider cares more about holding down costs than about what is needed for my health';
 	label rphcv3='My health care provider cares as much as I do about my health';
@@ -9931,7 +10124,7 @@ data redcap;
 	label rphcv_9='How often do you trust your insurance will cover the care and tests your provider feels you need?  ';
 	label rphcv_10=' Do you plan to recommend your health care provider to others? ';
 	label rphcv_11='All things considered, how much do you trust your health insurance?  ';
-	label relationship_with_ph_v_3='Complete?';
+	label relationship_with_ph_v_4='Complete?';
 	label ec_yrs='Between 18 and 64 years old (patient reported age at screening was [screening__phase_1_arm_1][sdem_age])';
 	label ec_hivneg='HIV negative  (patient reported most recent HIV status was [screening__phase_1_arm_1][sdem_hiv_rtst_r] and HIV rapid test was [screening__phase_1_arm_1][insti])';
 	label ec_inj6='Reports injecting non-prescription drugs in the last 6-months (patient reported [screening__phase_1_arm_1][vcp_inject_6mo] )';
@@ -9955,7 +10148,7 @@ data redcap;
 	label ec_all_2='Did the participant meet the eligibility requirements for this study? ';
 	label ec_sign='I have reviewed the randomization requirements for this participant in their entirety and acknowledge that this participant meets all criteria to continue to randomization. (please leave comments below in the additional comments for the reasons for ineligibility)';
 	label ec_comments='Additional notes:';
-	label randomization_checkl_v_4='Complete?';
+	label randomization_checkl_v_5='Complete?';
 	label rand_ele='It appears that all inclusion criteria have been met and no exclusion criteria have been met. Confirm that the patient is eligible for the trial and that written informed consent has occurred. ';
 	label rand_date='Date of Randomization (yyyy-mm-dd)';
 	label rand_arm='Randomization assignment';
@@ -10596,7 +10789,7 @@ data redcap;
 	label bsi_3m_17='Thoughts of ending your life:';
 	label bsi_3m_18='Feeling fearful:';
 	label followup_3m_complete='Complete?';
-	label followup_3m_eis_cpe__v_5='Survey Timestamp';
+	label followup_3m_eis_cpe__v_6='Survey Timestamp';
 	label eis_status_3m='FOR THE INTERVIEWER What is the participant''s HCV status  ';
 	label eis_1_3m='My employer/co-workers have discriminated against me. ';
 	label eis_2_3m='Some people act as though I am less competent than usual.';
@@ -10628,62 +10821,63 @@ data redcap;
 	label cce_2_3m='Take your pills for HCV treatment, every day, even when feeling very tired or depressed?';
 	label cce_3_3m='Remember to take your pills for HCV treatment, every day, for the next 30 days?';
 	label cce_4_3m='Keep all your HCV doctor visits without missing an appointment?';
-	label followup_3m_eis_cpe__v_6='Complete?';
+	label followup_3m_eis_cpe__v_7='Complete?';
 	label followup_3m_adh2_4_timestamp='Survey Timestamp';
 	label adh2_visitdate='Visit Date';
-	label adh2_arm='Randomization Arm Assignment';
-	label adh_prep='Does the participant started PrEP medication';
+	label prep_prescribe='Have you received a prescription for PrEP Medication since your last M2 study visit?';
+	label adh_prep='Have you started taking PrEP since your last M2 study visit?';
+	label stop_prep='Have you stopped taking PrEP since your last M2 study visit?';
+	label prep_last4week='Have you taken PrEP medications in the past 4 weeks?  ';
+	label prep_now='Are you currently taking PrEP medications?  ';
+	label prep_misspercent='Provide your best guess about what percentage of your prescribed PrEP medications you have taken in the past 4 weeks:   Examples:  0% means you have taken none of your PrEP medication in the past 4 weeks, 50% means you have taken half of your PrEP medication in the past 4 weeks, and 100% means you have taken every single dose of your PrEP medication in the past 4 weeks. ';
+	label prep_missdose='How many doses/pills of your PrEP medications did you miss in the past 7 days? ';
+	label adh2_noncompliance___1='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I experienced physical side effects)';
+	label adh2_noncompliance___2='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
+	label adh2_noncompliance___3='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing pain)';
+	label adh2_noncompliance___4='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I think medication is not the best treatment)';
+	label adh2_noncompliance___5='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I believe I am cured)';
+	label adh2_noncompliance___6='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I have misconceptions about what the medication will or will not do)';
+	label adh2_noncompliance___7='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I forgot to take medication)';
+	label adh2_noncompliance___8='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I did not have access to medication (e.g. went on vacation and left medication at home))';
+	label adh2_noncompliance___9='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I ran out of medication)';
+	label adh2_noncompliance___10='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I misunderstood dosing instructions)';
+	label adh2_noncompliance___11='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I felt I did not need the full prescribed dose)';
+	label adh2_noncompliance___12='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing withdrawal symptoms)';
+	label adh2_noncompliance___13='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was impatient waiting for the medication to work)';
+	label adh2_noncompliance___14='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I lost the medication)';
+	label adh2_noncompliance___15='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I reported that medication was stolen)';
+	label adh2_noncompliance___16='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
+	label adh2_noncompliance___17='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
+	label adh2_noncomplyspec='If other please specify';
 	label adh2_prepchange='Was there a change from the assigned PrEP to an alternative PrEP since last study visit?';
 	label adh2_changprepspec='If yes please specify';
 	label adh2_newprepdateprescr='Date alternative PrEP was first prescribed';
 	label adh2_newprepdateingest='Date alternative PrEP was first ingested';
-	label adh2_noncompliance___1='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Experienced physical side effects)';
-	label adh2_noncompliance___2='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
-	label adh2_noncompliance___3='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was experiencing pain)';
-	label adh2_noncompliance___4='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Thinks medication is not the best treatment for addiction)';
-	label adh2_noncompliance___5='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Believes s/he is cured)';
-	label adh2_noncompliance___6='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Has misconceptions about what the medication will or will not do)';
-	label adh2_noncompliance___7='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Forgot to take medication)';
-	label adh2_noncompliance___8='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Did not have access to medication (e.g. went on vacation and left medication at home))';
-	label adh2_noncompliance___9='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Ran out of medication)';
-	label adh2_noncompliance___10='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Misunderstood dosing instructions)';
-	label adh2_noncompliance___11='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Felt she/he did not need the full prescribed dose)';
-	label adh2_noncompliance___12='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was experiencing withdrawal symptoms)';
-	label adh2_noncompliance___13='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Increased pill-taking to make up for skipped doses and ultimately took more than prescribed)';
-	label adh2_noncompliance___14='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was impatient waiting for the medication to work)';
-	label adh2_noncompliance___15='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Lost medication)';
-	label adh2_noncompliance___16='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Reported that medication was stolen)';
-	label adh2_noncompliance___17='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
-	label adh2_noncompliance___18='6.	If participant did not comply with assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
-	label adh2_noncomplyspec='If other please specify';
-	label adh2_nopillslastpresc='How many pills did the participant receive on his/her last prescription? ';
-	label adh2_nopillsleft='How many pills does the participant have left in the package?';
-	label adh_hcv='Does the participant started HCVmedication';
+	label adh_hcv='Have you started taking HCV medication';
 	label adh4_hcvchange='Was there a change from the assigned HCV medication to an alternative HCV medication since last study visit?';
 	label adh4_changhcvspec='If yea please specify';
 	label adh4_newhcvdateprescr='Date alternative HCV medication was first prescribed';
 	label adh4_newhcvdateingest='Date alternative HCV medication was first ingested';
-	label adh4_noncompliance___1='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Experienced physical side effects)';
-	label adh4_noncompliance___2='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
-	label adh4_noncompliance___3='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was experiencing pain)';
-	label adh4_noncompliance___4='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Thinks medication is not the best treatment for addiction)';
-	label adh4_noncompliance___5='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Believes s/he is cured)';
-	label adh4_noncompliance___6='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Has misconceptions about what the medication will or will not do)';
-	label adh4_noncompliance___7='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Forgot to take medication)';
-	label adh4_noncompliance___8='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Did not have access to medication (e.g. went on vacation and left medication at home))';
-	label adh4_noncompliance___9='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Ran out of medication)';
-	label adh4_noncompliance___10='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Misunderstood dosing instructions)';
-	label adh4_noncompliance___11='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Felt she/he did not need the full prescribed dose)';
-	label adh4_noncompliance___12='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was experiencing withdrawal symptoms)';
-	label adh4_noncompliance___13='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Increased pill-taking to make up for skipped doses and ultimately took more than prescribed)';
-	label adh4_noncompliance___14='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Was impatient waiting for the medication to work)';
-	label adh4_noncompliance___15='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Lost medication)';
-	label adh4_noncompliance___16='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Reported that medication was stolen)';
-	label adh4_noncompliance___17='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
-	label adh4_noncompliance___18='6.	If participant did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
+	label adh4_noncompliance___1='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I experienced physical side effects)';
+	label adh4_noncompliance___2='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
+	label adh4_noncompliance___3='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing pain)';
+	label adh4_noncompliance___4='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I think medication is not the best treatment)';
+	label adh4_noncompliance___5='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I believe I am cured)';
+	label adh4_noncompliance___6='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I have misconceptions about what the medication will or will not do)';
+	label adh4_noncompliance___7='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I forgot to take medication)';
+	label adh4_noncompliance___8='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I did not have access to medication (e.g. went on vacation and left medication at home))';
+	label adh4_noncompliance___9='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I ran out of medication)';
+	label adh4_noncompliance___10='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I misunderstood dosing instructions)';
+	label adh4_noncompliance___11='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I felt I did not need the full prescribed dose)';
+	label adh4_noncompliance___12='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing withdrawal symptoms)';
+	label adh4_noncompliance___13='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was impatient waiting for the medication to work)';
+	label adh4_noncompliance___14='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I lost the medication)';
+	label adh4_noncompliance___15='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I reported that medication was stolen)';
+	label adh4_noncompliance___16='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
+	label adh4_noncompliance___17='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
 	label adh4_noncomplyspec='If other please specify';
-	label adh4_nopillslastpresc='How many pills did the participant receive on his/her last prescription? ';
-	label adh4_nopillsleft='How many pills does the participant have left in the package?';
+	label adh4_nopillslastpresc='How many pills did you receive on your last prescription? ';
+	label adh4_nopillsleft='How many pills do you have left in the package?';
 	label followup_3m_adh2_4_complete='Complete?';
 	label followup_6m_timestamp='Survey Timestamp';
 	label idu_cnty_6m='FOR THE INTERVIEWER: Is the participant accessing services in Canada or the United States? ';
@@ -10703,32 +10897,23 @@ data redcap;
 	label dst_2_6m='Do you use more than one drug at a time? ';
 	label dst_3_6m='Are you always able to stop using drugs when you want to? ';
 	label dst_4_6m='Have you had blackouts or flashbacks as a result of drug use?';
-	label dst_5_6m='Do you ever feel bad or guilty about your drug use? ';
-	label dst_6_6m='Does your spouse/partner or parents ever complain about your involvement with drugs?';
+	label dst_5_6m='Do you ever feel bad or guilty about your drug use in the past 6 months? ';
+	label dst_6_6m='Does your spouse/partner or parents ever complain about your involvement with drugs in the past 6 months?';
 	label dst_7_6m='Have you neglected your family because of your use of drugs?';
 	label dst_8_6m='Have you engaged in illegal activities in order to obtain drugs?';
-	label dst_9_6m='Have you ever experienced withdrawal symptoms (felt sick) when you stopped taking drugs?';
+	label dst_9_6m='Have you ever experienced withdrawal symptoms (felt sick) when you stopped taking drugs in the past 6 months?';
 	label dst_10_6m='Have you had medical problems as a result of your drug use (e.g., memory loss, hepatitis, convulsions, bleeding, etc.)?';
 	label odu_6m_6m='In the past six months, have you had one or more overdoses? (choose one) ';
 	label odu_6m_frq_6m='How many overdoses have you had in the past six months? ';
 	label odu_6m_frq_acdt_6m='How many overdoses were accidental?';
 	label odu_6m_tim_6m='When was the last time you had an overdose?  (year/month/day)';
 	label odu_6m_tim_acdt_6m='Was this overdose accidental?';
-	label aiv_kid_evr_pa_6m='As a child, were you ever beaten, physically attacked, or physically abused?';
-	label aiv_adt_evr_pa_6m='As an adult, have you ever been beaten, physically attacked, or physically abused?';
-	label aiv_adt_evr_pa_sp_6m='Were you ever in a relationship where a sexual partner did this to you?';
 	label aiv_6m_pa_6m='Have you been beaten, physically attacked, or physically abused in the past six months?';
 	label aiv_6m_pa_sp_6m='Were you in a relationship where a sexual partner did this to you in the past six months? ';
-	label aiv_kid_evr_sex_6m='As a child, were you ever sexually attacked, raped, or sexually abused?';
-	label aiv_adt_evr_sex_6m='As an adult, have you ever been sexually attacked, raped, or sexually abused?';
-	label aiv_evr_sex_sp_6m='Were you ever in a relationship where a sexual partner did this to you?';
 	label aiv_6m_sex_6m='Have you been sexually attacked, raped, or sexually abused in the past six months?';
 	label aiv_6m_sex_sp_6m='Were you in a relationship where a sexual partner did this to you in the past six months? ';
-	label aiv_evr_sp_vio_6m='Have you ever been in a relationship where a sexual partner threatened you with violence?';
 	label aiv_6m_sp_vio_6m='Have you ever been in a relationship where a sexual partner threatened you with violence in the past six months? ';
-	label aiv_evr_sp_brc_6m='Have you ever been in a relationship where a sexual partner threw, broke, or punched things?';
 	label aiv_6m_sp_brc_6m='Have you ever been in a relationship where a sexual partner threw, broke, or punched things in the past six months? ';
-	label aiv_evr_sp_ctl_6m='Have you ever been in a relationship where you felt controlled by a sexual partner?';
 	label aiv_6m_sp_ctl_6m='Have you been in a relationship where you felt controlled by a sexual partner in the past six months?';
 	label act_1_6m='If I needed hospital care, I can get admitted without trouble.';
 	label act_2_6m='It is hard for me to get medical care in an emergency.';
@@ -10775,7 +10960,7 @@ data redcap;
 	label pns_8='(Ask only if the participant is HCV+). My patient navigator really knows how to work with the HCV health care system.';
 	label pns_9='My patient navigator repeatedly offered me help with my substance use treatment needs.';
 	label pns_10='My patient navigator really knows how to work with the substance use treatment system.';
-	label intervention_satisfa_v_7='Complete?';
+	label intervention_satisfa_v_8='Complete?';
 	label scf_lastvisit='Date of last study visit ';
 	label scf_reasonend='Primary reason for ending participation in the study:';
 	label scf_reason_ltf='Reason (if known):';
@@ -10878,7 +11063,8 @@ data redcap;
 	label smi_prep_action___5='Action taken regarding PrEP medication (choice=Drug discontinued permanently)';
 	label smi_prep_action___6='Action taken regarding PrEP medication (choice=Unknown)';
 	label smi_prep_action___7='Action taken regarding PrEP medication (choice=Not applicable)';
-	label smi_hcv='HCV Status';
+	label smi_hcv='HCV Status at the time of the Adverse Event Report Date';
+	label smi_hcv_baseline='HCV Status at baseline';
 	label smi_hcvmed='Prescribed HCV medication';
 	label smi_specify='Please specify:';
 	label hcv_disp='HCV Medication:';
@@ -10974,16 +11160,25 @@ data redcap;
 	label sae_ongoing_rmh='Ongoing? ';
 	label sae_event_narrative='Event Description/Case Narrative: Description of the clinical presentation/course of the event(s), dates, times, treatment, and any other assessments which help explain the event.';
 	label sae_initial='Collected by :';
-	label serious_adverse_even_v_8='Complete?';
+	label serious_adverse_even_v_9='Complete?';
 	label date_visit='Scheduled visit date';
 	label rmv='Reason for missed visit';
 	label com='Comments';
 	label missed_visit_form_complete='Complete?';
-	label visit_init='   Visit date     ';
-	label medi_pres='Medication Prescribed:';
+	label medi_pres___1='Medication Prescribed: (choice=Truvada)';
+	label medi_pres___2='Medication Prescribed: (choice=Epclusa)';
+	label medi_pres___3='Medication Prescribed: (choice=Other)';
 	label medi_pres_ot='if other, specify:';
 	label pres_dose='Prescribed quantity';
-	label time_dose='Time of observed first ingestion';
+	label date_truvada='Date of the medication Truvada prescribed';
+	label date_epclusa='Date of the medication Epclusa prescribed';
+	label date_other='Date of the [medi_pres_ot] medication prescribed';
+	label medi_dispense___1='Medication dispensed: (choice=Truvada)';
+	label medi_dispense___2='Medication dispensed: (choice=Epclusa)';
+	label medi_dispense___3='Medication dispensed: (choice=Other)';
+	label date_truvada_disp='Date of the medication Truvada Dispensed';
+	label date_epclusa_dis='Date of the medication Epclusa Dispensed';
+	label date_other_disp='Date of the other medication dispensed';
 	label com_dose='Comments';
 	label treatment_initiation_complete='Complete?';
 	format redcap_event_name redcap_event_name_.;
@@ -11149,6 +11344,33 @@ data redcap;
 	format vir_ng_uro vir_ng_uro_.;
 	format vir_ng_rec vir_ng_rec_.;
 	format baseline_specific_co_v_1 baseline_specific_co_v_1_.;
+	format ur_test_bas_3m ur_test_bas_3m_.;
+	format result_upt_bas_3m result_upt_bas_3m_.;
+	format dbs_bas_3m dbs_bas_3m_.;
+	format ct_bas_3m___1 ct_bas_3m___1_.;
+	format ct_bas_3m___2 ct_bas_3m___2_.;
+	format ct_bas_3m___3 ct_bas_3m___3_.;
+	format ct_bas_3m___4 ct_bas_3m___4_.;
+	format ng_test_bas_3m___1 ng_test_bas_3m___1_.;
+	format ng_test_bas_3m___2 ng_test_bas_3m___2_.;
+	format ng_test_bas_3m___3 ng_test_bas_3m___3_.;
+	format ng_test_bas_3m___4 ng_test_bas_3m___4_.;
+	format vir_ct_oral_3m vir_ct_oral_3m_.;
+	format vir_ct_uro_3m vir_ct_uro_3m_.;
+	format vir_ct_rec_3m vir_ct_rec_3m_.;
+	format vir_ng_oral_3m vir_ng_oral_3m_.;
+	format vir_ng_uro_3m vir_ng_uro_3m_.;
+	format vir_ng_rec_3m vir_ng_rec_3m_.;
+	format vir_ng_other_3m vir_ng_other_3m_.;
+	format vir_ct_other_3m vir_ct_other_3m_.;
+	format syphilis_3m syphilis_3m_.;
+	format hcv_status_3m hcv_status_3m_.;
+	format hcv_ant_3m hcv_ant_3m_.;
+	format hcv_ant_res_3m hcv_ant_res_3m_.;
+	format hcv_rna_quan_12wkp_3m hcv_rna_quan_12wkp_3m_.;
+	format hiv_ab_3m hiv_ab_3m_.;
+	format hbv_sur_ant_3m hbv_sur_ant_3m_.;
+	format fu_specific_collecti_v_2 fu_specific_collecti_v_2_.;
 	format idu_cnty idu_cnty_.;
 	format dem_gender dem_gender_.;
 	format dem_gender_t dem_gender_t_.;
@@ -11721,7 +11943,7 @@ data redcap;
 	format rphcv_9 rphcv_9_.;
 	format rphcv_10 rphcv_10_.;
 	format rphcv_11 rphcv_11_.;
-	format relationship_with_ph_v_3 relationship_with_ph_v_3_.;
+	format relationship_with_ph_v_4 relationship_with_ph_v_4_.;
 	format ec_yrs ec_yrs_.;
 	format ec_hivneg ec_hivneg_.;
 	format ec_inj6 ec_inj6_.;
@@ -11742,7 +11964,7 @@ data redcap;
 	format rc_base rc_base_.;
 	format ec_pc_yes ec_pc_yes_.;
 	format ec_all_2 ec_all_2_.;
-	format randomization_checkl_v_4 randomization_checkl_v_4_.;
+	format randomization_checkl_v_5 randomization_checkl_v_5_.;
 	format rand_ele rand_ele_.;
 	format rand_arm rand_arm_.;
 	format rand_reason rand_reason_.;
@@ -12148,10 +12370,12 @@ data redcap;
 	format cce_2_3m cce_2_3m_.;
 	format cce_3_3m cce_3_3m_.;
 	format cce_4_3m cce_4_3m_.;
-	format followup_3m_eis_cpe__v_6 followup_3m_eis_cpe__v_6_.;
-	format adh2_arm adh2_arm_.;
+	format followup_3m_eis_cpe__v_7 followup_3m_eis_cpe__v_7_.;
+	format prep_prescribe prep_prescribe_.;
 	format adh_prep adh_prep_.;
-	format adh2_prepchange adh2_prepchange_.;
+	format stop_prep stop_prep_.;
+	format prep_last4week prep_last4week_.;
+	format prep_now prep_now_.;
 	format adh2_noncompliance___1 adh2_noncompliance___1_.;
 	format adh2_noncompliance___2 adh2_noncompliance___2_.;
 	format adh2_noncompliance___3 adh2_noncompliance___3_.;
@@ -12169,7 +12393,7 @@ data redcap;
 	format adh2_noncompliance___15 adh2_noncompliance___15_.;
 	format adh2_noncompliance___16 adh2_noncompliance___16_.;
 	format adh2_noncompliance___17 adh2_noncompliance___17_.;
-	format adh2_noncompliance___18 adh2_noncompliance___18_.;
+	format adh2_prepchange adh2_prepchange_.;
 	format adh_hcv adh_hcv_.;
 	format adh4_hcvchange adh4_hcvchange_.;
 	format adh4_noncompliance___1 adh4_noncompliance___1_.;
@@ -12189,7 +12413,6 @@ data redcap;
 	format adh4_noncompliance___15 adh4_noncompliance___15_.;
 	format adh4_noncompliance___16 adh4_noncompliance___16_.;
 	format adh4_noncompliance___17 adh4_noncompliance___17_.;
-	format adh4_noncompliance___18 adh4_noncompliance___18_.;
 	format followup_3m_adh2_4_complete followup_3m_adh2_4_complete_.;
 	format idu_cnty_6m idu_cnty_6m_.;
 	format auc_1_6m auc_1_6m_.;
@@ -12216,21 +12439,12 @@ data redcap;
 	format dst_10_6m dst_10_6m_.;
 	format odu_6m_6m odu_6m_6m_.;
 	format odu_6m_tim_acdt_6m odu_6m_tim_acdt_6m_.;
-	format aiv_kid_evr_pa_6m aiv_kid_evr_pa_6m_.;
-	format aiv_adt_evr_pa_6m aiv_adt_evr_pa_6m_.;
-	format aiv_adt_evr_pa_sp_6m aiv_adt_evr_pa_sp_6m_.;
 	format aiv_6m_pa_6m aiv_6m_pa_6m_.;
 	format aiv_6m_pa_sp_6m aiv_6m_pa_sp_6m_.;
-	format aiv_kid_evr_sex_6m aiv_kid_evr_sex_6m_.;
-	format aiv_adt_evr_sex_6m aiv_adt_evr_sex_6m_.;
-	format aiv_evr_sex_sp_6m aiv_evr_sex_sp_6m_.;
 	format aiv_6m_sex_6m aiv_6m_sex_6m_.;
 	format aiv_6m_sex_sp_6m aiv_6m_sex_sp_6m_.;
-	format aiv_evr_sp_vio_6m aiv_evr_sp_vio_6m_.;
 	format aiv_6m_sp_vio_6m aiv_6m_sp_vio_6m_.;
-	format aiv_evr_sp_brc_6m aiv_evr_sp_brc_6m_.;
 	format aiv_6m_sp_brc_6m aiv_6m_sp_brc_6m_.;
-	format aiv_evr_sp_ctl_6m aiv_evr_sp_ctl_6m_.;
 	format aiv_6m_sp_ctl_6m aiv_6m_sp_ctl_6m_.;
 	format act_1_6m act_1_6m_.;
 	format act_2_6m act_2_6m_.;
@@ -12275,7 +12489,7 @@ data redcap;
 	format pns_8 pns_8_.;
 	format pns_9 pns_9_.;
 	format pns_10 pns_10_.;
-	format intervention_satisfa_v_7 intervention_satisfa_v_7_.;
+	format intervention_satisfa_v_8 intervention_satisfa_v_8_.;
 	format scf_reasonend scf_reasonend_.;
 	format end_of_study_form_complete end_of_study_form_complete_.;
 	format eom_whatmed___0 eom_whatmed___0_.;
@@ -12356,6 +12570,7 @@ data redcap;
 	format smi_prep_action___6 smi_prep_action___6_.;
 	format smi_prep_action___7 smi_prep_action___7_.;
 	format smi_hcv smi_hcv_.;
+	format smi_hcv_baseline smi_hcv_baseline_.;
 	format smi_hcvmed smi_hcvmed_.;
 	format hcv_disp hcv_disp_.;
 	format smi_action___0 smi_action___0_.;
@@ -12417,10 +12632,15 @@ data redcap;
 	format sae_action_hcv___7 sae_action_hcv___7_.;
 	format sae_ongoing sae_ongoing_.;
 	format sae_ongoing_rmh sae_ongoing_rmh_.;
-	format serious_adverse_even_v_8 serious_adverse_even_v_8_.;
+	format serious_adverse_even_v_9 serious_adverse_even_v_9_.;
 	format rmv rmv_.;
 	format missed_visit_form_complete missed_visit_form_complete_.;
-	format medi_pres medi_pres_.;
+	format medi_pres___1 medi_pres___1_.;
+	format medi_pres___2 medi_pres___2_.;
+	format medi_pres___3 medi_pres___3_.;
+	format medi_dispense___1 medi_dispense___1_.;
+	format medi_dispense___2 medi_dispense___2_.;
+	format medi_dispense___3 medi_dispense___3_.;
 	format treatment_initiation_complete treatment_initiation_complete_.;
 run;
 
