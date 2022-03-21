@@ -38,6 +38,7 @@ PROC SQL;
 		t1.sdem_hcv	,
 		t1.sdem_hcv_fail	,
 		t1.sdem_wil_fol	,
+		t1.sdem_oat,
 		  t2.rand_date, 
           t2.ec_pc_yes, 
           t2.ec_all_2, 
@@ -137,7 +138,7 @@ run;
 
 
 proc freq data=r2;
-tables redcap_data_access_group*(sdem_elig ec_pc_yes ec_all_2 rand_ele rand_arm);
+tables redcap_data_access_group*(sdem_elig ec_pc_yes ec_all_2 rand_ele rand_arm sdem_oat);
 run;
 
 

@@ -211,3 +211,66 @@ TABLE (DEM_ABORIG
 ;
 RUN;
 
+
+
+/*From: Gooden, Lauren K. <lkg2129@cumc.columbia.edu> */
+/*Sent: Thursday, March 17, 2022 1:58 PM*/
+/*To: Pan, Yue <panyue@med.miami.edu>*/
+/*Subject: [EXTERNAL] M2 -- seeking specific demog for randomized pts in Miami*/
+/**/
+/*CAUTION: This email originated from outside the organization. DO NOT CLICK ON LINKS or OPEN ATTACHMENTS unless you know and trust the sender.*/
+/**/
+/*Hi Pan:  I have to report pts’ demographics in the following way with the IRB renewal.*/
+/*Using our sample of randomized pts in Miami, would you be able to send these % to me by next Mon or Tues?*/
+/**/
+/*Thank you,*/
+/**/
+/*L*/
+
+PROC FREQ DATA=R2_BL;
+TABLES SDEM_SEX SDEM_AGE dem_race sdem_lang_mia_2 dem_race_hisp;
+RUN;
+
+PROC FORMAT;
+	value sdem_lang_mia_2_ 0='American Indian or Alaska' 1='Native Aboriginal Canadian' 
+		2='Asian' 3='Black or African American' 
+		4='Native Hawaiian or Pacific Islander' 5='White/Caucasian' 
+		6='Non-specific';
+    value dem_race_hisp_ 0='No' 1='Yes' .='Non-specific';
+
+RUN;
+
+DATA R2_BL_MIAMI;
+SET R2_BL(WHERE= (RAND_ARM NE . ));
+
+LENGTH AGE_CAT $20;
+IF .<SDEM_AGE <8 THEN AGE_CAT = '0-7';
+ELSE IF 8<=SDEM_AGE <18 THEN AGE_CAT = '8-17';
+ELSE IF 18<=SDEM_AGE <=65 THEN AGE_CAT = '18-65';
+ELSE IF 65<SDEM_AGE THEN AGE_CAT = '>65';
+ELSE AGE_CAT = 'NON-SPECIFIC';
+
+FORMAT sdem_lang_mia_2 sdem_lang_mia_2_.
+	   dem_race_hisp  dem_race_hisp_.;
+
+RUN;
+
+PROC TABULATE DATA=R2_BL_MIAMI  MISSING;
+BY REDCAP_DATA_ACCESS_GROUP;
+CLASS REDCAP_DATA_ACCESS_GROUP 
+      SDEM_SEX AGE_CAT dem_race sdem_lang_mia_2 dem_race_hisp;
+KEYLABEL COLPCTN='%' ;
+TABLE  (SDEM_SEX AGE_CAT sdem_lang_mia_2 dem_race_hisp)*(N /*COLPCTN*/)
+,(REDCAP_DATA_ACCESS_GROUP)
+;
+RUN;
+
+PROC TABULATE DATA=R2_BL_MIAMI  MISSING;
+BY REDCAP_DATA_ACCESS_GROUP;
+CLASS REDCAP_DATA_ACCESS_GROUP 
+      SDEM_SEX AGE_CAT dem_race sdem_lang_mia_2 dem_race_hisp;
+KEYLABEL COLPCTN='%' ;
+TABLE  (SDEM_SEX AGE_CAT sdem_lang_mia_2 dem_race_hisp)*(COLPCTN)
+,(REDCAP_DATA_ACCESS_GROUP)
+;
+RUN;

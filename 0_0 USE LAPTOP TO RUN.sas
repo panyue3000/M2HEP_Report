@@ -1,6 +1,5 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2021-11-02_2139.csv';
-
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-03-14_1236.csv';
 
 OPTIONS nofmterr;
 
@@ -114,7 +113,7 @@ proc format;
 	value shkq_12_ 0='False' 1='True' 
 		2='Don''t know';
 	value preg_result_ 1='Negative' 2='Positive';
-	value scr_c_hcv_res_ 1='Reactive' 2='Non-reactive';
+	value scr_c_hcv_res_retired_ 1='Reactive' 2='Non-reactive';
 	value insti_ 1='Reactive' 2='Non-reactive';
 	value sdem_slep6m_ 0='Homeless' 1='In a shelter' 
 		2='Transitional' 3='Permanent single-room occupancy hotel' 
@@ -203,6 +202,7 @@ proc format;
 		3='Positive';
 	value vir_rna2_ 1='Indeterminate' 2='Negative' 
 		3='Positive';
+	value scr_c_hcv_res_ 1='Reactive' 2='Non-reactive';
 	value vir_hbs_ 1='Indeterminate' 2='Negative' 
 		3='Positive';
 	value vir_hbc_ 1='Indeterminate' 2='Negative' 
@@ -2564,7 +2564,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat shkq_11 best32. ;
 	informat shkq_12 best32. ;
 	informat preg_result best32. ;
-	informat scr_c_hcv_res best32. ;
+	informat scr_c_hcv_res_retired best32. ;
 	informat insti best32. ;
 	informat sdem_slep6m best32. ;
 	informat sdem_slep6m_ot $500. ;
@@ -2615,6 +2615,9 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat vir_rna2 best32. ;
 	informat vir_rna2_val $500. ;
 	informat vir_hcvgen $500. ;
+	informat scr_c_hcv_res best32. ;
+	informat vir_rna2_val_new best32. ;
+	informat vir_hcvgen_new $500. ;
 	informat vir_pan_cd $500. ;
 	informat vir_pan_cl $500. ;
 	informat vir_pan_k $500. ;
@@ -4740,7 +4743,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format shkq_11 best12. ;
 	format shkq_12 best12. ;
 	format preg_result best12. ;
-	format scr_c_hcv_res best12. ;
+	format scr_c_hcv_res_retired best12. ;
 	format insti best12. ;
 	format sdem_slep6m best12. ;
 	format sdem_slep6m_ot $500. ;
@@ -4791,6 +4794,9 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format vir_rna2 best12. ;
 	format vir_rna2_val $500. ;
 	format vir_hcvgen $500. ;
+	format scr_c_hcv_res best12. ;
+	format vir_rna2_val_new best12. ;
+	format vir_hcvgen_new $500. ;
 	format vir_pan_cd $500. ;
 	format vir_pan_cl $500. ;
 	format vir_pan_k $500. ;
@@ -6917,7 +6923,7 @@ input
 	shkq_11
 	shkq_12
 	preg_result
-	scr_c_hcv_res
+	scr_c_hcv_res_retired
 	insti
 	sdem_slep6m
 	sdem_slep6m_ot $
@@ -6968,6 +6974,9 @@ input
 	vir_rna2
 	vir_rna2_val $
 	vir_hcvgen $
+	scr_c_hcv_res
+	vir_rna2_val_new
+	vir_hcvgen_new $
 	vir_pan_cd $
 	vir_pan_cl $
 	vir_pan_k $
@@ -9100,7 +9109,7 @@ data redcap;
 	label shkq_11='People can live with HCV for many years without knowing that they have been infected with the virus';
 	label shkq_12='There is some risk that HCV can be given to someone by snorting cocaine with shared straws, rolled money, etc.';
 	label preg_result='Rapid pregnancy test result ';
-	label scr_c_hcv_res='Rapid HCV Test - OraQuick result ';
+	label scr_c_hcv_res_retired='Rapid HCV Test - OraQuick result ';
 	label insti='Rapid HIV Test - INSTI result ';
 	label sdem_slep6m='During the past six months, where did you live or sleep most of the time? ';
 	label sdem_slep6m_ot='Other, please specify ';
@@ -9151,6 +9160,9 @@ data redcap;
 	label vir_rna2='HCV RNA';
 	label vir_rna2_val='value:';
 	label vir_hcvgen='HCV genotype value:';
+	label scr_c_hcv_res='HCV RNA (new) ';
+	label vir_rna2_val_new='HCV RNA value:';
+	label vir_hcvgen_new='HCV genotype value:';
 	label vir_pan_cd='Carbon Dioxide (CO2)';
 	label vir_pan_cl='Chloride (Cl)';
 	label vir_pan_k='Potassium (K)';
@@ -9269,8 +9281,8 @@ data redcap;
 	label hcv_notest_reason_3m='Reason HCV Ab Test not performed';
 	label hcv_rna_quan_3m='HCV RNA Quantitative Result:';
 	label hcv_geno_3m='HCV Genotype:';
-	label hcv_rna_quan_12wkp_3m='HCV RNA Quantitative Test- 12 weeks post treatment initiation';
-	label hcv_rna_quan_12wkp_3m_q='HCV RNA Quantitative Test Result - 12 weeks post treatment initiation';
+	label hcv_rna_quan_12wkp_3m='HCV RNA Quantitative Test';
+	label hcv_rna_quan_12wkp_3m_q='HCV RNA Quantitative Test Result ';
 	label hcv_rna_quan_12wkp_why_3m='Reason why test not performed ';
 	label hiv_ab_3m='HIV Ab Test Performed';
 	label hiv_noanti_rea_3m='Reason HIV-1/HIV-2 Antibody not performed';
@@ -10855,7 +10867,7 @@ data redcap;
 	label adh2_newprepdateingest='Date alternative PrEP was first ingested';
 	label adh_hcv='Have you started taking HCV medication';
 	label adh4_hcvchange='Was there a change from the assigned HCV medication to an alternative HCV medication since last study visit?';
-	label adh4_changhcvspec='If yea please specify';
+	label adh4_changhcvspec='If yes please specify';
 	label adh4_newhcvdateprescr='Date alternative HCV medication was first prescribed';
 	label adh4_newhcvdateingest='Date alternative HCV medication was first ingested';
 	label adh4_noncompliance___1='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I experienced physical side effects)';
@@ -11098,7 +11110,7 @@ data redcap;
 	label sae_discharge_date='Hospital discharge date';
 	label sae_severity='Severity';
 	label sae_expect='Expectedness';
-	label sae_related='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy? (Please note any relationship other than unrelated is considered related for reporting purposes).';
+	label sae_related='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy? ';
 	label sae_rationale='Please provide investigator rationale.';
 	label sae_outcome='Outcome/consequences of Adverse Event';
 	label sae_resolution='Resolution date ';
@@ -11131,7 +11143,7 @@ data redcap;
 	label sae_action___7='Action taken regarding PrEP medication (choice=Not applicable)';
 	label sae_prep_abate='Did event abate after PrEP medication discontinuation or delay?';
 	label sae_prep_reappear='Did event reappear after PrEP medication restarted?';
-	label sae_hcv='HCV Status';
+	label sae_hcv='HCV Status at baseline';
 	label sae_hcvmed='Prescribed HCV medication';
 	label sae_specify='Please specify:';
 	label hcv_med_disp='HCV Medication:';
@@ -11258,7 +11270,7 @@ data redcap;
 	format shkq_11 shkq_11_.;
 	format shkq_12 shkq_12_.;
 	format preg_result preg_result_.;
-	format scr_c_hcv_res scr_c_hcv_res_.;
+	format scr_c_hcv_res_retired scr_c_hcv_res_retired_.;
 	format insti insti_.;
 	format sdem_slep6m sdem_slep6m_.;
 	format sdem_live6m_hls sdem_live6m_hls_.;
@@ -11300,6 +11312,7 @@ data redcap;
 	format vir_insti vir_insti_.;
 	format vir_rapid vir_rapid_.;
 	format vir_rna2 vir_rna2_.;
+	format scr_c_hcv_res scr_c_hcv_res_.;
 	format vir_hbs vir_hbs_.;
 	format vir_hbc vir_hbc_.;
 	format vir_a vir_a_.;

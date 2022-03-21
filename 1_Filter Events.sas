@@ -1,5 +1,8 @@
 
 
+
+
+
 /*Request from Gaby and Lauren, 03/17/2021 */
 
 /*Total # pre-screened and of those, # eligible; ineligible ?*/
@@ -12,10 +15,40 @@ LIBNAME M2HEP 'C:\USERS\PANYUE\BOX\M2HEPPREP\REPORT\SAS DATA EXPORT';
 LIBNAME REDCAP 'C:\USERS\PANYUE\BOX\M2HEPPREP\REPORT\REDCAP DATA EXPORT';
 
 
+
+
+/************************importing through API to redcap and making main enrollment files********************/
+/*%let path = C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export;*/
+/** leave these alone;*/
+/*options noxwait;*/
+/*x "del &path.\data.csv";*/
+/*x "del &path.\status.txt";*/
+/*filename dataFile "&path.\data.csv"; */
+/*filename theStat "&path.\status.txt";*/
+/** add your token on the line below;*/
+/*%let mytoken =0331D6425BAAF90431D5DCFE41BF0CBE;*/
+/*proc http*/
+/*              in= "%NRStr(content=record&type=flat&format=csv&token=)&mytoken"*/
+/*             out= dataFile*/
+/*             headerout = theStat*/
+/*              url ="https://redcap.med.miami.edu/api/"*/
+/*              method="post";*/
+/*run; */
+/**/
+/*PROC IMPORT OUT= WORK.mydata */
+/*            DATAFILE= "C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\data.csv" */
+/*            DBMS=CSV REPLACE;*/
+/*     GETNAMES=YES;*/
+/*     DATAROW=2; */
+/*RUN;*/
+
+
+
+
 /*delete test id*/
-data redcap;
+data redcap1;
 set redcap;
-if record_id not in ('0000-testid', '0000-testid2');
+if record_id not in ('0000-testid', '0000-testid2', '0000-testid3');
 /*if record_id in ('2073-2') then sdem_elig=1;*/
 run;
 
@@ -25,21 +58,21 @@ format redcap_event_name; /*to remove format*/
 run;
 
 data r1;
-set redcap(where=(redcap_event_name='visit_1__screening_arm_1'));
+set redcap1(where=(redcap_event_name='visit_1__screening_arm_1'));
 run;
 
 /*filter reason for ending participants*/
 data r1_end_study;
-set redcap(where=(redcap_event_name='as_needed_arm_1' and scf_reasonend > 0));
+set redcap1(where=(redcap_event_name='as_needed_arm_1' and scf_reasonend > 0));
 keep record_id redcap_event_name scf_reasonend;
 run;
 
 data r1_base;
-set redcap(where=(redcap_event_name='visit_baseline__ra_arm_1'));
+set redcap1(where=(redcap_event_name='visit_baseline__ra_arm_1'));
 run;
 
 data r1_3m;
-set redcap(where=(redcap_event_name='3m_arm_1'));
+set redcap1(where=(redcap_event_name='3m_arm_1'));
 /*keep record_id rand_arm dem_visit_3m;*/
 run;
 
@@ -48,7 +81,7 @@ run;
 
 %macro FU(VAR1, var2);
 data r1_&VAR1.;
-set redcap(where=(redcap_event_name=&var2.));
+set redcap1(where=(redcap_event_name=&var2.));
 /*keep record_id rand_arm dem_visit_3m;*/
 run;
 %mend;
