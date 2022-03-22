@@ -52,6 +52,7 @@ if record_id not in ('0000-testid', '0000-testid2', '0000-testid3');
 /*if record_id in ('2073-2') then sdem_elig=1;*/
 run;
 
+
 proc freq data=redcap;
 tables redcap_event_name;
 format redcap_event_name; /*to remove format*/
@@ -61,11 +62,16 @@ data r1;
 set redcap1(where=(redcap_event_name='visit_1__screening_arm_1'));
 run;
 
+proc freq data=redcap1;
+tables redcap_data_access_group*sdem_oat;
+run;
+
 /*filter reason for ending participants*/
 data r1_end_study;
 set redcap1(where=(redcap_event_name='as_needed_arm_1' and scf_reasonend > 0));
 keep record_id redcap_event_name scf_reasonend;
 run;
+
 
 data r1_base;
 set redcap1(where=(redcap_event_name='visit_baseline__ra_arm_1'));

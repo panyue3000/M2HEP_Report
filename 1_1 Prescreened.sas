@@ -136,12 +136,36 @@ set r2;
 keep record_id redcap_data_access_group sdem_elig ec_pc_yes ec_all_2 rand_ele rand_arm;
 run;
 
-
-proc freq data=r2;
-tables redcap_data_access_group*(sdem_elig ec_pc_yes ec_all_2 rand_ele rand_arm sdem_oat);
+proc sort data=r2;
+by redcap_data_access_group
+sdem_oat
+;
 run;
 
 
+
+/*Report for both site*/
+
+/*all: total pre-screened*/
+
+TITLE "FOR RANDOMIZED PTS";
+PROC TABULATE DATA=R2
+                MISSING;
+BY REDCAP_DATA_ACCESS_GROUP;
+CLASS REDCAP_DATA_ACCESS_GROUP 
+rand_arm
+sdem_oat
+
+;
+KEYLABEL COLPCTN='%' ;
+TABLE (ALL
+
+  RAND_ARM  )*(N /*COLPCTN*/)
+,(
+  sdem_oat
+  ALL)
+;
+RUN;
 
 
 
