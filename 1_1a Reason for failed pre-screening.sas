@@ -69,33 +69,12 @@ sdem_wil_fol
 ;
 RUN;
 
-TITLE "FOR RANDOMIZED PTS";
-PROC TABULATE DATA=R2
-                MISSING;
-BY REDCAP_DATA_ACCESS_GROUP;
-CLASS REDCAP_DATA_ACCESS_GROUP 
-rand_arm
-sdem_oat
-
-;
-KEYLABEL COLPCTN='%' ;
-TABLE (
-
-  RAND_ARM  ALL)*(N /*COLPCTN*/)
-,(
-  sdem_oat
-  ALL)
-;
-RUN;
-
-
 
 
 /*CREATE INDICATORS FOR COUNT*/
 PROC SQL;
    CREATE TABLE R2_NORAND AS 
    SELECT t1.record_id, 
-   		  t1.sdem_oat,
           t1.redcap_event_name, 
           t1.redcap_data_access_group, 
           t1.rand_date, 
@@ -109,19 +88,13 @@ PROC SQL;
           t1.sdem_hcv, 
           t1.sdem_hcv_fail, 
           t1.sdem_wil_fol,
-/*		  PRE-SCREEN FAIL REASON*/
-		  CASE WHEN SDEM_AGE <18 OR SDEM_AGE > 64 THEN "Age " ELSE "" END AS PRE_NO_AGE,
-		  CASE WHEN vcp_inject_6mo NE 1 THEN "IDU " ELSE "" END AS PRE_NO_IDU,
-		  CASE WHEN sdem_hiv_rtst_r = 1  THEN "HIV " ELSE "" END AS PRE_IS_HIV,
-		  CASE WHEN sdem_sev_no = 0  THEN "Unwill for service" ELSE "" END AS PRE_UNWILL,
-		  CASE WHEN sdem_wil_fol = 0  THEN "Unwill to follow up" ELSE "" END AS PRE_NO_FU,
-		  CASE WHEN sdem_lang_mon = 2 OR sdem_lang_mia=2 THEN "Communication" ELSE "" END AS PRE_NO_COMMUNICATE,
-		  CASE WHEN sdem_hcv_fail = 1 THEN "HCV FAIL" ELSE "" END AS PRE_NO_HCV_CURE,
-		  CASE WHEN sdem_prg_c = 1 OR sdem_prg_c2=1 OR sdem_prg_ct18=0 THEN "PREGNANT" ELSE "" END AS PRE_PREGNANT,
-		  CASE WHEN sdem_brsf = 0 THEN "BREAST FEEDING" ELSE "" END AS PRE_FEED,
-		  CASE WHEN sdem_prp_cu = 1 THEN "CURRENTLY W PREP" ELSE "" END AS PRE_PREP,
-		  CASE WHEN sdem_hcv = 1 THEN "CURRENTLY W HCV" ELSE "" END AS PRE_HCV
-
+		  CASE WHEN SDEM_AGE <18 OR SDEM_AGE > 64 THEN "Age " END AS NO_AGE,
+		  CASE WHEN vcp_inject_6mo NE 1 THEN "IDU " END AS NO_IDU,
+		  CASE WHEN sdem_hiv_rtst_r = 1  THEN "HIV " END AS IS_HIV,
+		  CASE WHEN sdem_sev_no = 0  THEN "Unwill for service" END AS UNWILL,
+		  CASE WHEN sdem_wil_fol = 0  THEN "Unwill to follow up" END AS NO_FU,
+		  CASE WHEN sdem_prg_ct18 = 0 THEN "Unwill contraception" END AS NO_CONTRACEPTION,
+		  CASE WHEN sdem_lang_mon = 2 OR sdem_lang_mia=2 THEN "Communication" END AS NO_COMMUNICATE
       FROM WORK.R2 t1
       WHERE t1.rand_arm = .
       ORDER BY t1.redcap_data_access_group,
@@ -130,39 +103,28 @@ PROC SQL;
 QUIT;
 
 
-
-
-
 TITLE "FOR not RANDOMIZED PTS";
 PROC TABULATE DATA=R2_NORAND
                 MISSING;
 /*BY REDCAP_DATA_ACCESS_GROUP;*/
 CLASS REDCAP_DATA_ACCESS_GROUP 
-PRE_NO_COMMUNICATE
-PRE_NO_AGE
-PRE_UNWILL
-PRE_PREGNANT
-PRE_FEED
-PRE_NO_IDU
-PRE_IS_HIV
-PRE_PREP
-PRE_HCV
-PRE_NO_HCV_CURE
-PRE_NO_FU
+NO_AGE
+NO_IDU
+IS_HIV
+UNWILL
+NO_FU
+NO_CONTRACEPTION
+NO_COMMUNICATE
 ;
 KEYLABEL COLPCTN='%' ;
 TABLE (
-PRE_NO_COMMUNICATE
-PRE_NO_AGE
-PRE_UNWILL
-PRE_PREGNANT
-PRE_FEED
-PRE_NO_IDU
-PRE_IS_HIV
-PRE_PREP
-PRE_HCV
-PRE_NO_HCV_CURE
-PRE_NO_FU
+NO_AGE
+NO_IDU
+IS_HIV
+UNWILL
+NO_FU
+NO_CONTRACEPTION
+NO_COMMUNICATE
 ALL)*(N /*COLPCTN*/)
 ,(
   REDCAP_DATA_ACCESS_GROUP 
@@ -227,18 +189,7 @@ PROC SQL;
 			t4.from,
 			case when t4.from = '' then 'REDCap' 
 				 else t4.from end as site,
-		    strip(catx(', ', PRE_NO_COMMUNICATE,
-							PRE_NO_AGE,
-							PRE_UNWILL,
-							PRE_PREGNANT,
-							PRE_FEED,
-							PRE_NO_IDU,
-							PRE_IS_HIV,
-							PRE_PREP,
-							PRE_HCV,
-							PRE_NO_HCV_CURE,
-							PRE_NO_FU)) as Prescreen_Fail,
-			t4.Reason_for_screen_failure  as Screen_fail
+		    strip(catx(', ', NO_AGE, NO_IDU, IS_HIV,UNWILL,NO_FU,NO_CONTRACEPTION,NO_COMMUNICATE, t4.Reason_for_screen_failure)) as reason_fail
       FROM WORK.R2_norand t1 
 /*							 full join IDEA_log(where=(study_status='screen fail')) t2 on t1.record_id=t2.record_id*/
 /*	  						 full join Golden_log (where=(study_status='screen fail')) t3 on t1.record_id=t3.record_id*/
@@ -248,22 +199,9 @@ PROC SQL;
                t1.rand_date;
 QUIT;
 
-
-
-/****03/22/2022*******************************************************prescreen and screen failure reasons report */
-/***********************************************************prescreen and screen failure reasons report*/
-
-
-
 proc freq data=r3_norand ;
-tables sdem_oat site Prescreen_Fail screen_fail redcap_data_access_group
-
-redcap_data_access_group*(Prescreen_Fail screen_fail)*sdem_oat/nopercent norow nocol
-;
+tables site reason_fail redcap_data_access_group;
 run;
-/****03/22/2022*******************************************************prescreen and screen failure reasons report */
-/***********************************************************prescreen and screen failure reasons report*/
-/*end*/
 
 data r4_norand;
 set r3_norand;
