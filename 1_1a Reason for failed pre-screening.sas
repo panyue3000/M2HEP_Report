@@ -176,35 +176,35 @@ RUN;
 /***********************************************************import log id from IDEA and golden from left*/
 /***********************************************************import log id from IDEA and golden from left*/
 
-data full_fail;
-set 
-
-IDEA_log(where=(study_status='screen fail') keep=record_id Reason_for_screen_failure study_status in=site)
-
-Golden_log(where=(study_status='screen fail') keep=record_id Reason_for_screen_failure study_status); 
-
-if site then from='idea' ;
-   else if site = 0 then from='golden';
-
-length record_id_new $8;
-
-if record_id='2074-01' then  record_id_new='2074-1';
-	else if record_id='2074-02' then  record_id_new='2074-2';
-	else if record_id='2074-03' then  record_id_new='2074-3';
-	else if record_id='2074-04' then  record_id_new='2074-4';
-	else if record_id='2074-05' then  record_id_new='2074-5';
-	else if record_id='2074-06' then  record_id_new='2074-6';
-	else if record_id='2074-07' then  record_id_new='2074-7';
-	else if record_id='2074-08' then  record_id_new='2074-8';
-	else if record_id='2074-09' then  record_id_new='2074-9';
-else record_id_new=record_id;
-
-
-/*rename record_id_new=record_id;*/
-
-keep record_id record_id_new Reason_for_screen_failure study_status from
-;
-run;
+/*data full_fail;*/
+/*set */
+/**/
+/*IDEA_log(where=(study_status='screen fail') keep=record_id Reason_for_screen_failure study_status in=site)*/
+/**/
+/*Golden_log(where=(study_status='screen fail') keep=record_id Reason_for_screen_failure study_status); */
+/**/
+/*if site then from='idea' ;*/
+/*   else if site = 0 then from='golden';*/
+/**/
+/*length record_id_new $8;*/
+/**/
+/*if record_id='2074-01' then  record_id_new='2074-1';*/
+/*	else if record_id='2074-02' then  record_id_new='2074-2';*/
+/*	else if record_id='2074-03' then  record_id_new='2074-3';*/
+/*	else if record_id='2074-04' then  record_id_new='2074-4';*/
+/*	else if record_id='2074-05' then  record_id_new='2074-5';*/
+/*	else if record_id='2074-06' then  record_id_new='2074-6';*/
+/*	else if record_id='2074-07' then  record_id_new='2074-7';*/
+/*	else if record_id='2074-08' then  record_id_new='2074-8';*/
+/*	else if record_id='2074-09' then  record_id_new='2074-9';*/
+/*else record_id_new=record_id;*/
+/**/
+/**/
+/*/*rename record_id_new=record_id;*/*/
+/**/
+/*keep record_id record_id_new Reason_for_screen_failure study_status from*/
+/*;*/
+/*run;*/;
 
 
 PROC SQL;
