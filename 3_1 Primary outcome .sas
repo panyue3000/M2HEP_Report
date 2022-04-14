@@ -96,7 +96,7 @@ PROC SQL;
 
       FROM WORK.R2(where=(rand_date ne .))  t1 left join r1_base t2 on
 			   t1.record_id=t2.record_id left join r1_3m t3 on 
-			   t1.recore_id=t3.record_id
+			   t1.record_id=t3.record_id
 	  ORDER BY t1.redcap_data_access_group,
 	           T1.rand_date
 
