@@ -1,104 +1,88 @@
-/*Sustained PrEP outcome:*/
-/*1.	Your definition below of 8wks post-initiation through 6 months, and we are also adding 12 months post. */
-/*LG:  Dan’s feedback on Oct 5th was to use “ANY DBS in the period.” Given this, to assess availability of primary outcome data for this PrEP primary, I believe that all randomized pts are included in the denominator and the denominator value for each pt is the # of expected DBS (0, 1, 2 or 3). The numerator is number of collected/recorded DBS (0, 1, 2 or “3 or more”) and is based on the number of DBS collected during the following period:  8wks post-rand through 6mo post-rand.*/
-/*•	If a pt is not prescribed PrEP w/in 6mo post-rand, then his “score” would be 0/0. */
-/*•	If a pt is prescribed PrEP w/in 6mo post-rand, then his denominator would be set as 1, 2 or 3 according to when in that 6mo window he initiated PrEP.*/
-/*To describe availability of this outcome (as part of our “retention” reports), and based on the above, I am considering all pts with a score of 0/0 or who have a numerator value < denominator value (e.g., 0/1, 0/2, 0/3, 1/2, 1/3 or 2/3) as a 0 -- outcome data NOT available and all pts with a numerator value =/> denominator (e.g., 1/1, 2/2, 3/3, 4/3, 5/3) as a 1 – outcome data available.*/
+/*SUSTAINED PREP OUTCOME:*/
+/*1.	YOUR DEFINITION BELOW OF 8WKS POST-INITIATION THROUGH 6 MONTHS, AND WE ARE ALSO ADDING 12 MONTHS POST. */
+/*LG:  DAN’S FEEDBACK ON OCT 5TH WAS TO USE “ANY DBS IN THE PERIOD.” GIVEN THIS, TO ASSESS AVAILABILITY OF PRIMARY OUTCOME DATA FOR THIS PREP PRIMARY, I BELIEVE THAT ALL RANDOMIZED PTS ARE INCLUDED IN THE DENOMINATOR AND THE DENOMINATOR VALUE FOR EACH PT IS THE # OF EXPECTED DBS (0, 1, 2 OR 3). THE NUMERATOR IS NUMBER OF COLLECTED/RECORDED DBS (0, 1, 2 OR “3 OR MORE”) AND IS BASED ON THE NUMBER OF DBS COLLECTED DURING THE FOLLOWING PERIOD:  8WKS POST-RAND THROUGH 6MO POST-RAND.*/
+/*•	IF A PT IS NOT PRESCRIBED PREP W/IN 6MO POST-RAND, THEN HIS “SCORE” WOULD BE 0/0. */
+/*•	IF A PT IS PRESCRIBED PREP W/IN 6MO POST-RAND, THEN HIS DENOMINATOR WOULD BE SET AS 1, 2 OR 3 ACCORDING TO WHEN IN THAT 6MO WINDOW HE INITIATED PREP.*/
+/*TO DESCRIBE AVAILABILITY OF THIS OUTCOME (AS PART OF OUR “RETENTION” REPORTS), AND BASED ON THE ABOVE, I AM CONSIDERING ALL PTS WITH A SCORE OF 0/0 OR WHO HAVE A NUMERATOR VALUE < DENOMINATOR VALUE (E.G., 0/1, 0/2, 0/3, 1/2, 1/3 OR 2/3) AS A 0 -- OUTCOME DATA NOT AVAILABLE AND ALL PTS WITH A NUMERATOR VALUE =/> DENOMINATOR (E.G., 1/1, 2/2, 3/3, 4/3, 5/3) AS A 1 – OUTCOME DATA AVAILABLE.*/
 /**/
-/*What I do not know is the cutoff that Dan wants to use for “6mo post-rand.” This could be measured at the 6-mo visit “target date” (183 days post-rand) or at the close of the 6-mo window (245 days post-rand).  */
+/*WHAT I DO NOT KNOW IS THE CUTOFF THAT DAN WANTS TO USE FOR “6MO POST-RAND.” THIS COULD BE MEASURED AT THE 6-MO VISIT “TARGET DATE” (183 DAYS POST-RAND) OR AT THE CLOSE OF THE 6-MO WINDOW (245 DAYS POST-RAND).  */
 
 
 
-/********************************************DBS in baseline and follow up */
+/********************************************DBS IN BASELINE AND FOLLOW UP */
 
+
+
+/*STEP0*/
+/*IMPORT DBS EXCEL FILE FROM ONE DRIVE, FIRST NEED TO DOWNLOAD THE FILE*/
+/*HTTPS://MIAMIEDU-MY.SHAREPOINT.COM/:X:/R/PERSONAL/BXH421_MIAMI_EDU/_LAYOUTS/15/DOC.ASPX?SOURCEDOC=%7B7508281D-9040-4612-A7FA-003757D34714%7D&ACTION=DEFAULT*/
+/* USE SAS IMPORT TO IMPORT THE DATA, NEED TO 
+
+1.CHANGE DATASET NAME TO DBS, AND 
+2. CHANGE THE READING FROM A2, 
+3. CHANGE FORMAT TO DATE
+4. Ask gaby to add color indicator in the log
+
+*/
+
+
+
+
+/*STEP1*/
+/*THEN JOIN THE R2_DBS FILE*/
 
 
 
 /*CHECK FOR FOLLOW UP*/
 PROC SQL;
-   CREATE TABLE R2_fustatus AS 
+   CREATE TABLE R2_DBS AS 
    SELECT 
-		  t1.record_id, 
-          t1.redcap_event_name, 
-          t1.redcap_data_access_group, 
-		  t1.sdem_oat,
-          t1.sdem_elig, 
-          t1.sdem_visit, 
-          t1.rand_date, 
-          t1.ec_pc_yes, 
-          t1.ec_all_2, 
-          t1.ec_sign, 
-          t1.ec_comments, 
-          t1.rand_ele, 
-          t1.rand_arm, 
-          t1.rand_reason, 
-          t1.rand_why, 
-          t1.rand_other, 
+		  T1.RECORD_ID, 
+/*          T1.REDCAP_EVENT_NAME, */
+          T1.REDCAP_DATA_ACCESS_GROUP, 
+		  T1.SDEM_OAT,
+/*          T1.SDEM_ELIG, */
+          T1.SDEM_VISIT, 
+          T1.RAND_DATE, 
+/*          T1.EC_PC_YES, */
+/*          T1.EC_ALL_2, */
+/*          T1.EC_SIGN, */
+/*          T1.EC_COMMENTS, */
+          T1.RAND_ELE, 
+          T1.RAND_ARM, 
+/*          T1.RAND_REASON, */
+/*          T1.RAND_WHY, */
+/*          T1.RAND_OTHER, */
 
-/*add dbs_das from r1_base*/
-		  t2.dbs_bas,
-		  t3.dbs_bas_3m as dbs_bas_3m,
+/*ADD DBS_DAS FROM R1_BASE*/
+		  T2.DBS_BAS,
+		  T3.DBS_BAS_3M AS DBS_BAS_3M,
+		  T4.DBS_BAS_3M AS DBS_BAS_6M,
 
-          t1.FUDATE_3m, 
-          t1.FUDATE_6m, 
-          t1.FUDATE_9m, 
-          t1.FUDATE_12m, 
-
-/*follow up using at 3m*/
-		  case when -31 <= T1.fudate_3m - (t1.rand_date + 90) <= 62 then 'Completed within new window'
-		  	   when T1.fudate_3m ne . then 'completed_with visitdate'
-			   when T1.fudate_3m = . and t1.rand_date ne . then
-				    case when -31 <= today() - (t1.rand_date + 90) <= 62 then 'pending in window'  /*Target date at 3m is t1.rand_date+90*/
-			             when -31 > today() - (t1.rand_date + 90) then 'pending not in window yet'
-					     else 'lossFU' end 
-		       end as FU3m_status,	
-           case when calculated FU3m_status in ('Completed within new window' 'completed_with visitdate') then 'completed'
-		        when calculated FU3m_status in ( 'pending in window' 'pending not in window yet') then 'pending'
-				when calculated FU3m_status in ('lossFU') then 'lossFU' end as FU3m_status_calc,
+		  T5.F3	AS RAND_DATE_IDEA,
+		  T5._1_MONTH AS DBS_LOGDATE_1M,
+		  T5.MONTH_2_DBS AS DBS_LOGDATE_2M,	
+		  T5.MONTH_3_DBS AS DBS_LOGDATE_3M,		
+		  T5.MONTH_4_DBS AS DBS_LOGDATE_4M,		
+		  T5.MONTH_5_DBS AS DBS_LOGDATE_5M,		
+		  T5.MONTH_6_DBS AS DBS_LOGDATE_6M,
 
 
-/*follow up using at 6m*/
-		  case when -31 <= T1.fudate_6m - (t1.rand_date + 2*90) <= 62 then 'Completed within new window'
-		  	   when T1.fudate_6m ne . then 'completed_with visitdate'
-			   when T1.fudate_6m = . and t1.rand_date ne . then
-				    case when -31 <= today() - (t1.rand_date + 2*90) <= 62 then 'pending in window'  /*Target date at 6m is t1.rand_date+90*/
-			             when -31 > today() - (t1.rand_date + 2*90) then 'pending not in window yet'
-			             else 'lossFU' end 
-		       end as FU6m_status,	
-           case when calculated FU6m_status in ('Completed within new window' 'completed_with visitdate') then 'completed'
-		        when calculated FU6m_status in ( 'pending in window' 'pending not in window yet') then 'pending'
-				when calculated FU6m_status in ('lossFU') then 'lossFU' end as FU6m_status_calc,
 
-/*follow up using at 9m*/
-		  case when -31 <= T1.fudate_9m - (t1.rand_date + 3*90) <= 62 then 'Completed within new window'
-		  	   when T1.fudate_9m ne . then 'completed_with visitdate'
-			   when T1.fudate_9m = . and t1.rand_date ne . then
-				    case when -31 <= today() - (t1.rand_date + 3*90) <= 62 then 'pending in window'  /*Target date at 9m is t1.rand_date+90*/
-			             when -31 > today() - (t1.rand_date + 3*90) then 'pending not in window yet'
-			             else 'lossFU' end 
-		       end as FU9m_status,	
-           case when calculated FU9m_status in ('Completed within new window' 'completed_with visitdate') then 'completed'
-		        when calculated FU9m_status in ( 'pending in window' 'pending not in window yet') then 'pending'
-				when calculated FU9m_status in ('lossFU') then 'lossFU' end as FU9m_status_calc,
-
-/*follow up using at 12m*/
-		  case when -31 <= T1.fudate_12m - (t1.rand_date + 4*90) <= 62 then 'Completed within new window'
-		  	   when T1.fudate_12m ne . then 'completed_with visitdate'
-			   when T1.fudate_12m = . and t1.rand_date ne . then
-				    case when -31 <= today() - (t1.rand_date + 4*90) <= 62 then 'pending in window'  /*Target date at 12m is t1.rand_date+90*/
-			             when -31 > today() - (t1.rand_date + 4*90) then 'pending not in window yet'
-			             else 'lossFU' end 
-		       end as FU12m_status,	
-           case when calculated FU12m_status in ('Completed within new window' 'completed_with visitdate') then 'completed'
-		        when calculated FU12m_status in ( 'pending in window' 'pending not in window yet') then 'pending'
-				when calculated FU12m_status in ('lossFU') then 'lossFU' end as FU12m_status_calc
-
-
-      FROM WORK.R2(where=(rand_date ne .))  t1 left join r1_base t2 on
-			   t1.record_id=t2.record_id left join r1_3m t3 on 
-			   t1.record_id=t3.record_id
-	  ORDER BY t1.redcap_data_access_group,
-	           T1.rand_date
+      FROM WORK.R2(WHERE=(RAND_DATE NE .))  T1 LEFT JOIN R1_BASE T2 ON
+			   T1.RECORD_ID=T2.RECORD_ID LEFT JOIN R1_3M T3 ON 
+			   T1.RECORD_ID=T3.RECORD_ID LEFT JOIN R1_6M T4 ON 
+			   T1.RECORD_ID=T4.RECORD_ID LEFT JOIN dbs T5 ON 
+			   T1.RECORD_ID=T5.F1
+	  ORDER BY T1.REDCAP_DATA_ACCESS_GROUP,
+	           T1.RAND_DATE
 
 ;
  QUIT;
+
+
+PROC FREQ DATA=R2_DBS;
+TABLE DBS_BAS DBS_BAS_3M DBS_BAS_6M;
+RUN;
+
+
