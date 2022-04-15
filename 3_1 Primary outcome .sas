@@ -1,4 +1,8 @@
-/*SUSTAINED PREP OUTCOME:*/
+/******************************************SUSTAINED PREP OUTCOME:*/
+
+
+
+
 /*1.	YOUR DEFINITION BELOW OF 8WKS POST-INITIATION THROUGH 6 MONTHS, AND WE ARE ALSO ADDING 12 MONTHS POST. */
 /*LG:  DAN’S FEEDBACK ON OCT 5TH WAS TO USE “ANY DBS IN THE PERIOD.” GIVEN THIS, TO ASSESS AVAILABILITY OF PRIMARY OUTCOME DATA FOR THIS PREP PRIMARY, I BELIEVE THAT ALL RANDOMIZED PTS ARE INCLUDED IN THE DENOMINATOR AND THE DENOMINATOR VALUE FOR EACH PT IS THE # OF EXPECTED DBS (0, 1, 2 OR 3). THE NUMERATOR IS NUMBER OF COLLECTED/RECORDED DBS (0, 1, 2 OR “3 OR MORE”) AND IS BASED ON THE NUMBER OF DBS COLLECTED DURING THE FOLLOWING PERIOD:  8WKS POST-RAND THROUGH 6MO POST-RAND.*/
 /*•	IF A PT IS NOT PRESCRIBED PREP W/IN 6MO POST-RAND, THEN HIS “SCORE” WOULD BE 0/0. */
@@ -60,6 +64,8 @@ PROC SQL;
 		  T4.DBS_BAS_3M AS DBS_BAS_6M,
 
 		  T5.F3	AS RAND_DATE_IDEA,
+		  t5.Treatment_Initiation,
+		  t5.Treatment_Initiation1,
 		  T5._1_MONTH AS DBS_LOGDATE_1M,
 		  T5.MONTH_2_DBS AS DBS_LOGDATE_2M,	
 		  T5.MONTH_3_DBS AS DBS_LOGDATE_3M,		
@@ -68,12 +74,12 @@ PROC SQL;
 		  T5.MONTH_6_DBS AS DBS_LOGDATE_6M,
 
 /*		  color indicator*/
-		  t5.dbs_color_1,
-		  t5.dbs_color_2,
-		  t5.dbs_color_3,
-		  t5.dbs_color_4,
-		  t5.dbs_color_5,
-		  t5.dbs_color_6,
+		  t5.dbs_clor_1,
+		  t5.dbs_clor_2,
+		  t5.dbs_clor_3,
+		  t5.dbs_clor_4,
+		  t5.dbs_clor_5,
+		  t5.dbs_clor_6
 
 
 
@@ -90,7 +96,66 @@ PROC SQL;
 
 
 PROC FREQ DATA=R2_DBS;
-TABLE DBS_BAS DBS_BAS_3M DBS_BAS_6M;
+TABLE DBS_BAS DBS_BAS_3M DBS_BAS_6M  
+
+dbs_clor_1
+dbs_clor_2
+dbs_clor_3
+dbs_clor_4
+dbs_clor_5
+dbs_clor_6
+;
 RUN;
 
+
+
+/*1. PrEP treatment initiation among randomized pts FROM idea*/
+data r2_PREP_INIT;
+SET DBS_TEST;
+
+IF TREATMENT_INITIATION NE . THEN HCV_TX_INIT=1;
+ELSE HCV_TX_INIT=0;
+
+IF TREATMENT_INITIATION1 NE . THEN PREP_tx_INIT=1;
+ELSE PREP_tx_INIT=0;
+
+/*RECORD_ID = F1;*/
+
+%macro DBS(VAR, VAR1);
+IF &VAR IN (50) THEN &VAR1='HAS DBS';
+ELSE IF &VAR IN (3) THEN &VAR1='NO DBS';
+ELSE IF &VAR IN (6) THEN &VAR1='PENDING';
+ELSE &VAR = '';
+%mend;
+
+%DBS(DBS_clor_1, DBS_clor_1C);
+%DBS(DBS_clor_2, DBS_clor_2C);
+%DBS(DBS_clor_3, DBS_clor_3C);
+%DBS(DBS_clor_4, DBS_clor_4C);
+%DBS(DBS_clor_5, DBS_clor_5C);
+%DBS(DBS_clor_6, DBS_clor_6C);
+
+KEEP RECORD_ID Treatment_Initiation PREP_tx_INIT HCV_TX_INIT
+DBS_clor_1 DBS_clor_1C
+DBS_clor_2 DBS_clor_2C
+DBS_clor_3 DBS_clor_3C
+DBS_clor_4 DBS_clor_4C
+DBS_clor_5 DBS_clor_5C
+DBS_clor_6 DBS_clor_6C
+
+;
+RUN;
+
+PROC FREQ DATA=r2_PREP_INIT;
+TABLE PREP_tx_INIT
+hcv_tx_init
+DBS_clor_1C
+DBS_clor_2C
+DBS_clor_3C
+DBS_clor_4C
+DBS_clor_5C
+DBS_clor_6C
+
+;
+RUN;
 

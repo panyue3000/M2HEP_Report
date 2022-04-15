@@ -1,5 +1,5 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-03-14_1236.csv';
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-04-15_1532.csv';
 
 OPTIONS nofmterr;
 
@@ -4548,12 +4548,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat smi_describe $5000. ;
 	informat smi_by $500. ;
 	informat adverse_event_form_complete best32. ;
+	informat sae_describe $500. ;
 	informat sae_number $500. ;
 	informat sae_date yymmdd10. ;
 	informat sae_type___0 best32. ;
 	informat sae_type___1 best32. ;
 	informat sae_type___2 best32. ;
-	informat sae_describe $500. ;
 	informat sae_onset yymmdd10. ;
 	informat sae_criteria___0 best32. ;
 	informat sae_criteria___1 best32. ;
@@ -4618,8 +4618,8 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_add_action_hcv $500. ;
 	informat sae_med $5000. ;
 	informat sae_med_dose $5000. ;
-	informat sae_med_start $500. ;
-	informat sae_med_stop $500. ;
+	informat sae_med_start $5000. ;
+	informat sae_med_stop $5000. ;
 	informat sae_ongoing best32. ;
 	informat sae_condition $5000. ;
 	informat sae_condition_start yymmdd10. ;
@@ -6727,12 +6727,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format smi_describe $5000. ;
 	format smi_by $500. ;
 	format adverse_event_form_complete best12. ;
+	format sae_describe $500. ;
 	format sae_number $500. ;
 	format sae_date yymmdd10. ;
 	format sae_type___0 best12. ;
 	format sae_type___1 best12. ;
 	format sae_type___2 best12. ;
-	format sae_describe $500. ;
 	format sae_onset yymmdd10. ;
 	format sae_criteria___0 best12. ;
 	format sae_criteria___1 best12. ;
@@ -6797,8 +6797,8 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_add_action_hcv $500. ;
 	format sae_med $5000. ;
 	format sae_med_dose $5000. ;
-	format sae_med_start $500. ;
-	format sae_med_stop $500. ;
+	format sae_med_start $5000. ;
+	format sae_med_stop $5000. ;
 	format sae_ongoing best12. ;
 	format sae_condition $5000. ;
 	format sae_condition_start yymmdd10. ;
@@ -8907,12 +8907,12 @@ input
 	smi_describe $
 	smi_by $
 	adverse_event_form_complete
+	sae_describe $
 	sae_number $
 	sae_date
 	sae_type___0
 	sae_type___1
 	sae_type___2
-	sae_describe $
 	sae_onset
 	sae_criteria___0
 	sae_criteria___1
@@ -9279,10 +9279,10 @@ data redcap;
 	label hcv_ant_3m='HCV Antibody Test Performed ';
 	label hcv_ant_res_3m='HCV Antibody Result ';
 	label hcv_notest_reason_3m='Reason HCV Ab Test not performed';
-	label hcv_rna_quan_3m='HCV RNA Quantitative Result:';
+	label hcv_rna_quan_3m='If HCV AB reactive, RNA negative or HCV antibody result reactive, what is the HCV RNA Quantitative Result:';
 	label hcv_geno_3m='HCV Genotype:';
 	label hcv_rna_quan_12wkp_3m='HCV RNA Quantitative Test';
-	label hcv_rna_quan_12wkp_3m_q='HCV RNA Quantitative Test Result ';
+	label hcv_rna_quan_12wkp_3m_q='If HCV AB reactive, RNA positive, what is the HCV RNA Quantitative Result:';
 	label hcv_rna_quan_12wkp_why_3m='Reason why test not performed ';
 	label hiv_ab_3m='HIV Ab Test Performed';
 	label hiv_noanti_rea_3m='Reason HIV-1/HIV-2 Antibody not performed';
@@ -11050,13 +11050,13 @@ data redcap;
 	label ae_guidelines='Is this an SAE according to ICH guidelines? ';
 	label ae_severity='Severity';
 	label ae_expect='Expectedness';
-	label ae_relation_med='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy? (Please note any relationship other than unrelated is considered related for reporting purposes).  ';
-	label ae_treatment___0='Treatment (mark none or all that apply) (choice=None)';
-	label ae_treatment___1='Treatment (mark none or all that apply) (choice=Non-medication treatment)';
-	label ae_treatment___2='Treatment (mark none or all that apply) (choice=Medication)';
-	label ae_treatment___3='Treatment (mark none or all that apply) (choice=Procedure/Surgery)';
-	label ae_treatment___4='Treatment (mark none or all that apply) (choice=Hospitalization)';
-	label ae_treatment___5='Treatment (mark none or all that apply) (choice=Other)';
+	label ae_relation_med='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy?   ';
+	label ae_treatment___0='Treatment  (choice=None)';
+	label ae_treatment___1='Treatment  (choice=Non-medication treatment)';
+	label ae_treatment___2='Treatment  (choice=Medication)';
+	label ae_treatment___3='Treatment  (choice=Procedure/Surgery)';
+	label ae_treatment___4='Treatment  (choice=Hospitalization)';
+	label ae_treatment___5='Treatment  (choice=Other)';
 	label ae_other='Other: please specify ';
 	label ae_treatment2='Treatment: Describe any medical interventions, medications, and/or surgical treatments used to treat the event.';
 	label ae_outcome='Outcome/consequences of Adverse Event';
@@ -11093,12 +11093,12 @@ data redcap;
 	label smi_describe='Event Description: Description of the clinical presentation/course of the event(s), dates, times, treatment, and any other assessments which help explain the event.';
 	label smi_by='Collected by :';
 	label adverse_event_form_complete='Complete?';
+	label sae_describe='Serious Adverse Event Description:';
 	label sae_number='Serious Adverse Event Number (SAE #)';
 	label sae_date='Date of report ';
 	label sae_type___0='Type of report (choice=Initial)';
 	label sae_type___1='Type of report (choice=Follow-up)';
 	label sae_type___2='Type of report (choice=Final)';
-	label sae_describe='Serious Adverse Event Description:';
 	label sae_onset='Onset date ';
 	label sae_criteria___0='Serious Criteria  (choice=Death)';
 	label sae_criteria___1='Serious Criteria  (choice=Life-threatening)';
@@ -11112,7 +11112,7 @@ data redcap;
 	label sae_expect='Expectedness';
 	label sae_related='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy? ';
 	label sae_rationale='Please provide investigator rationale.';
-	label sae_outcome='Outcome/consequences of Adverse Event';
+	label sae_outcome='Outcome/consequences of Serious Adverse Event';
 	label sae_resolution='Resolution date ';
 	label sae_death_date_2='Date of participant''s death ';
 	label sae_death_site='Date the site became aware of the participant''s death';
