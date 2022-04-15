@@ -67,12 +67,20 @@ PROC SQL;
 		  T5.MONTH_5_DBS AS DBS_LOGDATE_5M,		
 		  T5.MONTH_6_DBS AS DBS_LOGDATE_6M,
 
+/*		  color indicator*/
+		  t5.dbs_color_1,
+		  t5.dbs_color_2,
+		  t5.dbs_color_3,
+		  t5.dbs_color_4,
+		  t5.dbs_color_5,
+		  t5.dbs_color_6,
+
 
 
       FROM WORK.R2(WHERE=(RAND_DATE NE .))  T1 LEFT JOIN R1_BASE T2 ON
 			   T1.RECORD_ID=T2.RECORD_ID LEFT JOIN R1_3M T3 ON 
 			   T1.RECORD_ID=T3.RECORD_ID LEFT JOIN R1_6M T4 ON 
-			   T1.RECORD_ID=T4.RECORD_ID LEFT JOIN dbs T5 ON 
+			   T1.RECORD_ID=T4.RECORD_ID LEFT JOIN dbs_test T5 ON 
 			   T1.RECORD_ID=T5.F1
 	  ORDER BY T1.REDCAP_DATA_ACCESS_GROUP,
 	           T1.RAND_DATE
