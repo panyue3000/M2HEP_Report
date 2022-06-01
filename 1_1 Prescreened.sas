@@ -143,6 +143,12 @@ sdem_oat
 run;
 
 
+TITLE "FOR all pre-screened PTS";
+proc freq data=r2;
+tables redcap_data_access_group*sdem_elig;
+run;
+
+
 
 /*Report for both site*/
 

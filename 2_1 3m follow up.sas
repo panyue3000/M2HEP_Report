@@ -266,3 +266,56 @@ FU21m_status_calc
 ,(redcap_data_access_group all)
 ;
 run;
+
+
+%macro FU_retention (VAR1);
+title "retention summary for &var1.";
+PROC FREQ DATA=r2_fustatus (WHERE=(&var1. IN ('completed', 'lossFU')));
+TABLE &var1.;
+run;
+%mend;
+
+%FU_retention(FU3m_status_calc);
+%FU_retention(FU6m_status_calc);
+%FU_retention(FU9m_status_calc);
+%FU_retention(FU12m_status_calc);
+%FU_retention(FU15m_status_calc);
+%FU_retention(FU18m_status_calc);
+
+
+
+
+
+
+/*ADDING CODE FOR TABLEU FOLLOW UP FIGURE*/
+
+PROC SQL;
+   CREATE TABLE R2_FUSTATUS_TABLEAU AS 
+   SELECT t1.record_id, 
+          t1.redcap_data_access_group, 
+		  T1.RAND_ARM,
+/*          t1.sdem_visit, */
+          t1.rand_date, 
+          t1.FUDATE_3m, 
+          t1.FUDATE_6m, 
+          t1.FUDATE_9m, 
+          t1.FUDATE_12m, 
+/*          t1.FUDATE_15m, */
+/*          t1.FUDATE_18m, */
+/*          t1.FUDATE_21m, */
+/*          t1.FUDATE_24m, */
+/*          t1.FUDATE_27m, */
+          t1.FU3m_status_calc, 
+          t1.FU6m_status_calc, 
+          t1.FU9m_status_calc, 
+          t1.FU12m_status_calc
+/*          t1.FU15m_status_calc, */
+/*          t1.FU18m_status_calc, */
+/*          t1.FU21m_status_calc, */
+/*          t1.FU24m_status_calc, */
+/*          t1.FU27m_status_calc*/
+      FROM WORK.R2_FUSTATUS t1
+      WHERE t1.rand_arm NOT = .
+	  ORDER BY REDCAP_DATA_ACCESS_GROUP, RAND_DATE
+	  ;
+QUIT;
