@@ -1,5 +1,5 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-04-15_1532.csv';
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-05-31_2143.csv';
 
 OPTIONS nofmterr;
 
@@ -295,6 +295,7 @@ proc format;
 	value hcv_ant_3m_ 0='Oraquick Rapid HCV Antibody Test' 1='HCV Ab blood Test' 
 		2='Test not performed';
 	value hcv_ant_res_3m_ 0='Reactive' 1='Non-reactive';
+	value hcv_treat_ 0='No' 1='Yes';
 	value hcv_rna_quan_12wkp_3m_ 0='No' 1='Yes' 
 		2='Test not performed';
 	value hiv_ab_3m_ 0='INSTI HIV-1/HIV-2 Antibody Rapid Test' 1='HIV-1/HIV-2 Antibody Bood Test' 
@@ -2039,6 +2040,20 @@ proc format;
 		2='Complete';
 	value prep_prescribe_ 0='No' 1='Yes';
 	value adh_prep_ 0='No' 1='Yes';
+	value adh_noprep_reason___1_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___2_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___3_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___4_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___5_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___6_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___7_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___8_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___9_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___10_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___11_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___12_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___13_ 0='Unchecked' 1='Checked';
+	value adh_noprep_reason___14_ 0='Unchecked' 1='Checked';
 	value stop_prep_ 0='No' 1='Yes';
 	value prep_last4week_ 0='No' 1='Yes';
 	value prep_now_ 0='No' 1='Yes';
@@ -2058,8 +2073,9 @@ proc format;
 	value adh2_noncompliance___14_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___15_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___16_ 0='Unchecked' 1='Checked';
+	value adh2_noncompliance___18_ 0='Unchecked' 1='Checked';
+	value adh2_noncompliance___19_ 0='Unchecked' 1='Checked';
 	value adh2_noncompliance___17_ 0='Unchecked' 1='Checked';
-	value adh2_prepchange_ 0='No' 1='Yes';
 	value adh_hcv_ 0='No' 1='Yes';
 	value adh4_hcvchange_ 0='No' 1='Yes';
 	value adh4_noncompliance___1_ 0='Unchecked' 1='Checked';
@@ -2079,6 +2095,20 @@ proc format;
 	value adh4_noncompliance___15_ 0='Unchecked' 1='Checked';
 	value adh4_noncompliance___16_ 0='Unchecked' 1='Checked';
 	value adh4_noncompliance___17_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___1_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___2_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___3_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___4_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___5_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___6_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___7_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___8_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___9_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___10_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___11_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___12_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___13_ 0='Unchecked' 1='Checked';
+	value adh_nohcv_reason_2___14_ 0='Unchecked' 1='Checked';
 	value followup_3m_adh2_4_complete_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value idu_cnty_6m_ 0='Canada' 1='United States';
@@ -2353,14 +2383,16 @@ proc format;
 	value ae_outcome_ 0='Resolved' 1='Ongoing' 
 		2='Ongoing at end of study participation' 3='Severity/Frequency increased' 
 		4='Death';
+	value ae_outcome_2_ 1='Resolved- recovered without sequelae' 2='Resolved- recovered with sequelae' 
+		3='Ongoing' 4='Ongoing at the end of the study' 
+		5='Recovering' 6='Resolved by agreement' 
+		7='Death';
 	value smi_txarm_ 0='On-site integrated care with adherence counseling' 1='Off-site patient referral to specialized care with patient navigation';
 	value smi_prepmed_ 0='Truvada' 1='Other PrEP medication' 
 		2='Not prescribed';
 	value prep_disp_ 0='Dispensed, not yet started' 1='Dispensed and started';
 	value smi_prep_action___0_ 0='Unchecked' 1='Checked';
 	value smi_prep_action___1_ 0='Unchecked' 1='Checked';
-	value smi_prep_action___2_ 0='Unchecked' 1='Checked';
-	value smi_prep_action___3_ 0='Unchecked' 1='Checked';
 	value smi_prep_action___4_ 0='Unchecked' 1='Checked';
 	value smi_prep_action___5_ 0='Unchecked' 1='Checked';
 	value smi_prep_action___6_ 0='Unchecked' 1='Checked';
@@ -2374,8 +2406,6 @@ proc format;
 	value hcv_disp_ 0='Dispensed, not yet started' 1='Dispensed and started';
 	value smi_action___0_ 0='Unchecked' 1='Checked';
 	value smi_action___1_ 0='Unchecked' 1='Checked';
-	value smi_action___2_ 0='Unchecked' 1='Checked';
-	value smi_action___3_ 0='Unchecked' 1='Checked';
 	value smi_action___4_ 0='Unchecked' 1='Checked';
 	value smi_action___5_ 0='Unchecked' 1='Checked';
 	value smi_action___6_ 0='Unchecked' 1='Checked';
@@ -2400,6 +2430,10 @@ proc format;
 	value sae_outcome_ 0='Recovered without sequelae' 1='Recovered with sequelae' 
 		2='Ongoing' 3='Recovering' 
 		4='Death';
+	value sae_outcome_2_ 1='Resolved- recovered without sequelae' 2='Resolved- recovered with sequelae' 
+		3='Ongoing' 4='Ongoing at the end of the study' 
+		5='Recovering' 6='Resolved by agreement' 
+		7='Death';
 	value sae_death_certificate_ 0='No' 1='Yes' 
 		2='Pending';
 	value sae_death_cause_ 0='Overdose' 1='Accident' 
@@ -2419,8 +2453,6 @@ proc format;
 	value sae_prep_disp_ 0='Dispensed, not yet started' 1='Dispended and started';
 	value sae_action___0_ 0='Unchecked' 1='Checked';
 	value sae_action___1_ 0='Unchecked' 1='Checked';
-	value sae_action___2_ 0='Unchecked' 1='Checked';
-	value sae_action___3_ 0='Unchecked' 1='Checked';
 	value sae_action___4_ 0='Unchecked' 1='Checked';
 	value sae_action___5_ 0='Unchecked' 1='Checked';
 	value sae_action___6_ 0='Unchecked' 1='Checked';
@@ -2433,20 +2465,18 @@ proc format;
 		3='Antibody positive, RNA positive';
 	value sae_hcvmed_ 0='Epclusa' 1='Other HCV medication' 
 		2='Not prescribed';
-	value hcv_med_disp_ 0='Dispensed, not started' 1='Dispensed and started';
+	value hcv_med_disp_ 0='Dispensed, not started' 1='Dispensed and started' 
+		2='Not prescribed';
 	value sae_hcv_abate_ 0='No' 1='Yes' 
 		2='Not applicable';
 	value sae_hcv_reappear_ 0='No' 1='Yes' 
 		2='Not applicable';
 	value sae_action_hcv___0_ 0='Unchecked' 1='Checked';
 	value sae_action_hcv___1_ 0='Unchecked' 1='Checked';
-	value sae_action_hcv___2_ 0='Unchecked' 1='Checked';
-	value sae_action_hcv___3_ 0='Unchecked' 1='Checked';
 	value sae_action_hcv___4_ 0='Unchecked' 1='Checked';
 	value sae_action_hcv___5_ 0='Unchecked' 1='Checked';
 	value sae_action_hcv___6_ 0='Unchecked' 1='Checked';
 	value sae_action_hcv___7_ 0='Unchecked' 1='Checked';
-	value sae_ongoing_ 1='Yes' 0='No';
 	value sae_ongoing_rmh_ 1='Yes' 0='No';
 	value serious_adverse_even_v_9_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
@@ -2736,10 +2766,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat hcv_notest_reason_3m $500. ;
 	informat hcv_rna_quan_3m $500. ;
 	informat hcv_geno_3m $500. ;
+	informat hcv_treat best32. ;
 	informat hcv_rna_quan_12wkp_3m best32. ;
 	informat hcv_rna_quan_12wkp_3m_q best32. ;
 	informat hcv_rna_quan_12wkp_why_3m $500. ;
 	informat hiv_ab_3m best32. ;
+	informat hiv_res $500. ;
 	informat hiv_noanti_rea_3m $500. ;
 	informat hbv_sur_ant_3m best32. ;
 	informat hbv_nop_rea_3m $500. ;
@@ -4293,6 +4325,21 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat adh2_visitdate yymmdd10. ;
 	informat prep_prescribe best32. ;
 	informat adh_prep best32. ;
+	informat adh_noprep_reason___1 best32. ;
+	informat adh_noprep_reason___2 best32. ;
+	informat adh_noprep_reason___3 best32. ;
+	informat adh_noprep_reason___4 best32. ;
+	informat adh_noprep_reason___5 best32. ;
+	informat adh_noprep_reason___6 best32. ;
+	informat adh_noprep_reason___7 best32. ;
+	informat adh_noprep_reason___8 best32. ;
+	informat adh_noprep_reason___9 best32. ;
+	informat adh_noprep_reason___10 best32. ;
+	informat adh_noprep_reason___11 best32. ;
+	informat adh_noprep_reason___12 best32. ;
+	informat adh_noprep_reason___13 best32. ;
+	informat adh_noprep_reason___14 best32. ;
+	informat adh2_noprep_other $500. ;
 	informat stop_prep best32. ;
 	informat prep_last4week best32. ;
 	informat prep_now best32. ;
@@ -4314,12 +4361,10 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat adh2_noncompliance___14 best32. ;
 	informat adh2_noncompliance___15 best32. ;
 	informat adh2_noncompliance___16 best32. ;
+	informat adh2_noncompliance___18 best32. ;
+	informat adh2_noncompliance___19 best32. ;
 	informat adh2_noncompliance___17 best32. ;
 	informat adh2_noncomplyspec $500. ;
-	informat adh2_prepchange best32. ;
-	informat adh2_changprepspec $500. ;
-	informat adh2_newprepdateprescr yymmdd10. ;
-	informat adh2_newprepdateingest yymmdd10. ;
 	informat adh_hcv best32. ;
 	informat adh4_hcvchange best32. ;
 	informat adh4_changhcvspec $500. ;
@@ -4343,6 +4388,20 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat adh4_noncompliance___16 best32. ;
 	informat adh4_noncompliance___17 best32. ;
 	informat adh4_noncomplyspec $500. ;
+	informat adh_nohcv_reason_2___1 best32. ;
+	informat adh_nohcv_reason_2___2 best32. ;
+	informat adh_nohcv_reason_2___3 best32. ;
+	informat adh_nohcv_reason_2___4 best32. ;
+	informat adh_nohcv_reason_2___5 best32. ;
+	informat adh_nohcv_reason_2___6 best32. ;
+	informat adh_nohcv_reason_2___7 best32. ;
+	informat adh_nohcv_reason_2___8 best32. ;
+	informat adh_nohcv_reason_2___9 best32. ;
+	informat adh_nohcv_reason_2___10 best32. ;
+	informat adh_nohcv_reason_2___11 best32. ;
+	informat adh_nohcv_reason_2___12 best32. ;
+	informat adh_nohcv_reason_2___13 best32. ;
+	informat adh_nohcv_reason_2___14 best32. ;
 	informat adh4_nopillslastpresc $500. ;
 	informat adh4_nopillsleft $500. ;
 	informat followup_3m_adh2_4_complete best32. ;
@@ -4515,17 +4574,16 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat ae_other $500. ;
 	informat ae_treatment2 $5000. ;
 	informat ae_outcome best32. ;
+	informat ae_outcome_2 best32. ;
 	informat ae_status yymmdd10. ;
 	informat smi_txarm best32. ;
 	informat smi_prepmed best32. ;
 	informat smi_specify_2 $500. ;
 	informat prep_disp best32. ;
 	informat smi_prep_start yymmdd10. ;
-	informat smi_prep_last $500. ;
+	informat smi_prep_last yymmdd10. ;
 	informat smi_prep_action___0 best32. ;
 	informat smi_prep_action___1 best32. ;
-	informat smi_prep_action___2 best32. ;
-	informat smi_prep_action___3 best32. ;
 	informat smi_prep_action___4 best32. ;
 	informat smi_prep_action___5 best32. ;
 	informat smi_prep_action___6 best32. ;
@@ -4539,8 +4597,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat smi_hcv_last $500. ;
 	informat smi_action___0 best32. ;
 	informat smi_action___1 best32. ;
-	informat smi_action___2 best32. ;
-	informat smi_action___3 best32. ;
 	informat smi_action___4 best32. ;
 	informat smi_action___5 best32. ;
 	informat smi_action___6 best32. ;
@@ -4568,6 +4624,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_related best32. ;
 	informat sae_rationale $500. ;
 	informat sae_outcome best32. ;
+	informat sae_outcome_2 best32. ;
 	informat sae_resolution yymmdd10. ;
 	informat sae_death_date_2 yymmdd10. ;
 	informat sae_death_site yymmdd10. ;
@@ -4590,8 +4647,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_prep_end yymmdd10. ;
 	informat sae_action___0 best32. ;
 	informat sae_action___1 best32. ;
-	informat sae_action___2 best32. ;
-	informat sae_action___3 best32. ;
 	informat sae_action___4 best32. ;
 	informat sae_action___5 best32. ;
 	informat sae_action___6 best32. ;
@@ -4608,8 +4663,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_hcv_reappear best32. ;
 	informat sae_action_hcv___0 best32. ;
 	informat sae_action_hcv___1 best32. ;
-	informat sae_action_hcv___2 best32. ;
-	informat sae_action_hcv___3 best32. ;
 	informat sae_action_hcv___4 best32. ;
 	informat sae_action_hcv___5 best32. ;
 	informat sae_action_hcv___6 best32. ;
@@ -4620,10 +4673,10 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat sae_med_dose $5000. ;
 	informat sae_med_start $5000. ;
 	informat sae_med_stop $5000. ;
-	informat sae_ongoing best32. ;
+	informat sae_ongoing $5000. ;
 	informat sae_condition $5000. ;
-	informat sae_condition_start yymmdd10. ;
-	informat sae_condition_stop $500. ;
+	informat sae_condition_start $5000. ;
+	informat sae_condition_stop $5000. ;
 	informat sae_ongoing_rmh best32. ;
 	informat sae_event_narrative $5000. ;
 	informat sae_initial $500. ;
@@ -4915,10 +4968,12 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format hcv_notest_reason_3m $500. ;
 	format hcv_rna_quan_3m $500. ;
 	format hcv_geno_3m $500. ;
+	format hcv_treat best12. ;
 	format hcv_rna_quan_12wkp_3m best12. ;
 	format hcv_rna_quan_12wkp_3m_q best12. ;
 	format hcv_rna_quan_12wkp_why_3m $500. ;
 	format hiv_ab_3m best12. ;
+	format hiv_res $500. ;
 	format hiv_noanti_rea_3m $500. ;
 	format hbv_sur_ant_3m best12. ;
 	format hbv_nop_rea_3m $500. ;
@@ -6472,6 +6527,21 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format adh2_visitdate yymmdd10. ;
 	format prep_prescribe best12. ;
 	format adh_prep best12. ;
+	format adh_noprep_reason___1 best12. ;
+	format adh_noprep_reason___2 best12. ;
+	format adh_noprep_reason___3 best12. ;
+	format adh_noprep_reason___4 best12. ;
+	format adh_noprep_reason___5 best12. ;
+	format adh_noprep_reason___6 best12. ;
+	format adh_noprep_reason___7 best12. ;
+	format adh_noprep_reason___8 best12. ;
+	format adh_noprep_reason___9 best12. ;
+	format adh_noprep_reason___10 best12. ;
+	format adh_noprep_reason___11 best12. ;
+	format adh_noprep_reason___12 best12. ;
+	format adh_noprep_reason___13 best12. ;
+	format adh_noprep_reason___14 best12. ;
+	format adh2_noprep_other $500. ;
 	format stop_prep best12. ;
 	format prep_last4week best12. ;
 	format prep_now best12. ;
@@ -6493,12 +6563,10 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format adh2_noncompliance___14 best12. ;
 	format adh2_noncompliance___15 best12. ;
 	format adh2_noncompliance___16 best12. ;
+	format adh2_noncompliance___18 best12. ;
+	format adh2_noncompliance___19 best12. ;
 	format adh2_noncompliance___17 best12. ;
 	format adh2_noncomplyspec $500. ;
-	format adh2_prepchange best12. ;
-	format adh2_changprepspec $500. ;
-	format adh2_newprepdateprescr yymmdd10. ;
-	format adh2_newprepdateingest yymmdd10. ;
 	format adh_hcv best12. ;
 	format adh4_hcvchange best12. ;
 	format adh4_changhcvspec $500. ;
@@ -6522,6 +6590,20 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format adh4_noncompliance___16 best12. ;
 	format adh4_noncompliance___17 best12. ;
 	format adh4_noncomplyspec $500. ;
+	format adh_nohcv_reason_2___1 best12. ;
+	format adh_nohcv_reason_2___2 best12. ;
+	format adh_nohcv_reason_2___3 best12. ;
+	format adh_nohcv_reason_2___4 best12. ;
+	format adh_nohcv_reason_2___5 best12. ;
+	format adh_nohcv_reason_2___6 best12. ;
+	format adh_nohcv_reason_2___7 best12. ;
+	format adh_nohcv_reason_2___8 best12. ;
+	format adh_nohcv_reason_2___9 best12. ;
+	format adh_nohcv_reason_2___10 best12. ;
+	format adh_nohcv_reason_2___11 best12. ;
+	format adh_nohcv_reason_2___12 best12. ;
+	format adh_nohcv_reason_2___13 best12. ;
+	format adh_nohcv_reason_2___14 best12. ;
 	format adh4_nopillslastpresc $500. ;
 	format adh4_nopillsleft $500. ;
 	format followup_3m_adh2_4_complete best12. ;
@@ -6694,17 +6776,16 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format ae_other $500. ;
 	format ae_treatment2 $5000. ;
 	format ae_outcome best12. ;
+	format ae_outcome_2 best12. ;
 	format ae_status yymmdd10. ;
 	format smi_txarm best12. ;
 	format smi_prepmed best12. ;
 	format smi_specify_2 $500. ;
 	format prep_disp best12. ;
 	format smi_prep_start yymmdd10. ;
-	format smi_prep_last $500. ;
+	format smi_prep_last yymmdd10. ;
 	format smi_prep_action___0 best12. ;
 	format smi_prep_action___1 best12. ;
-	format smi_prep_action___2 best12. ;
-	format smi_prep_action___3 best12. ;
 	format smi_prep_action___4 best12. ;
 	format smi_prep_action___5 best12. ;
 	format smi_prep_action___6 best12. ;
@@ -6718,8 +6799,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format smi_hcv_last $500. ;
 	format smi_action___0 best12. ;
 	format smi_action___1 best12. ;
-	format smi_action___2 best12. ;
-	format smi_action___3 best12. ;
 	format smi_action___4 best12. ;
 	format smi_action___5 best12. ;
 	format smi_action___6 best12. ;
@@ -6747,6 +6826,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_related best12. ;
 	format sae_rationale $500. ;
 	format sae_outcome best12. ;
+	format sae_outcome_2 best12. ;
 	format sae_resolution yymmdd10. ;
 	format sae_death_date_2 yymmdd10. ;
 	format sae_death_site yymmdd10. ;
@@ -6769,8 +6849,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_prep_end yymmdd10. ;
 	format sae_action___0 best12. ;
 	format sae_action___1 best12. ;
-	format sae_action___2 best12. ;
-	format sae_action___3 best12. ;
 	format sae_action___4 best12. ;
 	format sae_action___5 best12. ;
 	format sae_action___6 best12. ;
@@ -6787,8 +6865,6 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_hcv_reappear best12. ;
 	format sae_action_hcv___0 best12. ;
 	format sae_action_hcv___1 best12. ;
-	format sae_action_hcv___2 best12. ;
-	format sae_action_hcv___3 best12. ;
 	format sae_action_hcv___4 best12. ;
 	format sae_action_hcv___5 best12. ;
 	format sae_action_hcv___6 best12. ;
@@ -6799,10 +6875,10 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format sae_med_dose $5000. ;
 	format sae_med_start $5000. ;
 	format sae_med_stop $5000. ;
-	format sae_ongoing best12. ;
+	format sae_ongoing $5000. ;
 	format sae_condition $5000. ;
-	format sae_condition_start yymmdd10. ;
-	format sae_condition_stop $500. ;
+	format sae_condition_start $5000. ;
+	format sae_condition_stop $5000. ;
 	format sae_ongoing_rmh best12. ;
 	format sae_event_narrative $5000. ;
 	format sae_initial $500. ;
@@ -7095,10 +7171,12 @@ input
 	hcv_notest_reason_3m $
 	hcv_rna_quan_3m $
 	hcv_geno_3m $
+	hcv_treat
 	hcv_rna_quan_12wkp_3m
 	hcv_rna_quan_12wkp_3m_q
 	hcv_rna_quan_12wkp_why_3m $
 	hiv_ab_3m
+	hiv_res $
 	hiv_noanti_rea_3m $
 	hbv_sur_ant_3m
 	hbv_nop_rea_3m $
@@ -8652,6 +8730,21 @@ input
 	adh2_visitdate
 	prep_prescribe
 	adh_prep
+	adh_noprep_reason___1
+	adh_noprep_reason___2
+	adh_noprep_reason___3
+	adh_noprep_reason___4
+	adh_noprep_reason___5
+	adh_noprep_reason___6
+	adh_noprep_reason___7
+	adh_noprep_reason___8
+	adh_noprep_reason___9
+	adh_noprep_reason___10
+	adh_noprep_reason___11
+	adh_noprep_reason___12
+	adh_noprep_reason___13
+	adh_noprep_reason___14
+	adh2_noprep_other $
 	stop_prep
 	prep_last4week
 	prep_now
@@ -8673,12 +8766,10 @@ input
 	adh2_noncompliance___14
 	adh2_noncompliance___15
 	adh2_noncompliance___16
+	adh2_noncompliance___18
+	adh2_noncompliance___19
 	adh2_noncompliance___17
 	adh2_noncomplyspec $
-	adh2_prepchange
-	adh2_changprepspec $
-	adh2_newprepdateprescr
-	adh2_newprepdateingest
 	adh_hcv
 	adh4_hcvchange
 	adh4_changhcvspec $
@@ -8702,6 +8793,20 @@ input
 	adh4_noncompliance___16
 	adh4_noncompliance___17
 	adh4_noncomplyspec $
+	adh_nohcv_reason_2___1
+	adh_nohcv_reason_2___2
+	adh_nohcv_reason_2___3
+	adh_nohcv_reason_2___4
+	adh_nohcv_reason_2___5
+	adh_nohcv_reason_2___6
+	adh_nohcv_reason_2___7
+	adh_nohcv_reason_2___8
+	adh_nohcv_reason_2___9
+	adh_nohcv_reason_2___10
+	adh_nohcv_reason_2___11
+	adh_nohcv_reason_2___12
+	adh_nohcv_reason_2___13
+	adh_nohcv_reason_2___14
 	adh4_nopillslastpresc $
 	adh4_nopillsleft $
 	followup_3m_adh2_4_complete
@@ -8874,17 +8979,16 @@ input
 	ae_other $
 	ae_treatment2 $
 	ae_outcome
+	ae_outcome_2
 	ae_status
 	smi_txarm
 	smi_prepmed
 	smi_specify_2 $
 	prep_disp
 	smi_prep_start
-	smi_prep_last $
+	smi_prep_last
 	smi_prep_action___0
 	smi_prep_action___1
-	smi_prep_action___2
-	smi_prep_action___3
 	smi_prep_action___4
 	smi_prep_action___5
 	smi_prep_action___6
@@ -8898,8 +9002,6 @@ input
 	smi_hcv_last $
 	smi_action___0
 	smi_action___1
-	smi_action___2
-	smi_action___3
 	smi_action___4
 	smi_action___5
 	smi_action___6
@@ -8927,6 +9029,7 @@ input
 	sae_related
 	sae_rationale $
 	sae_outcome
+	sae_outcome_2
 	sae_resolution
 	sae_death_date_2
 	sae_death_site
@@ -8949,8 +9052,6 @@ input
 	sae_prep_end
 	sae_action___0
 	sae_action___1
-	sae_action___2
-	sae_action___3
 	sae_action___4
 	sae_action___5
 	sae_action___6
@@ -8967,8 +9068,6 @@ input
 	sae_hcv_reappear
 	sae_action_hcv___0
 	sae_action_hcv___1
-	sae_action_hcv___2
-	sae_action_hcv___3
 	sae_action_hcv___4
 	sae_action_hcv___5
 	sae_action_hcv___6
@@ -8979,9 +9078,9 @@ input
 	sae_med_dose $
 	sae_med_start $
 	sae_med_stop $
-	sae_ongoing
+	sae_ongoing $
 	sae_condition $
-	sae_condition_start
+	sae_condition_start $
 	sae_condition_stop $
 	sae_ongoing_rmh
 	sae_event_narrative $
@@ -9049,7 +9148,7 @@ data redcap;
 	label sdem_hcv='Are you currently taking HCV medications?';
 	label sdem_hcv_fail='Have you taken HCV medication in the past which did not work to treat and cure your Hepatitis C ?';
 	label sdem_wil_fol='If part of the study, would you be willing to come back for regular visits over an 18 month period? ';
-	label sdem_elig='';
+	label sdem_elig='sdem_elig';
 	label sdem_hcv_etst='Have you ever been tested for HCV? ';
 	label sdem_hcv_rtst='When was your most recent HCV test? (year/month/day)';
 	label sdem_hcv_rtst_r='What was the result of your most recent HCV test? ';
@@ -9204,17 +9303,17 @@ data redcap;
 	label vt_mmhg='Blood pressure (mmHg)';
 	label vt_minute='Respiratory rate ';
 	label vt_temp='Temperature';
-	label vt_f='';
-	label vt_c='';
+	label vt_f='vt_f';
+	label vt_c='vt_c';
 	label vt_height='Height ';
-	label vt_in='';
-	label vt_cm='';
+	label vt_in='vt_in';
+	label vt_cm='vt_cm';
 	label vt_weight='Weight ';
-	label vt_lb='';
-	label vt_kg='';
+	label vt_lb='vt_lb';
+	label vt_kg='vt_kg';
 	label vt_cir='Waist circumference';
-	label vt_cir_in='';
-	label vt_cir_cm='';
+	label vt_cir_in='vt_cir_in';
+	label vt_cir_cm='vt_cir_cm';
 	label vital_signs_complete='Complete?';
 	label ec_fem_0_ps='(i) post-menopausal (12 months of spontaneous amenorrhea and ≥45 years of age)';
 	label ec_fem_1_ps='(ii) documented surgically sterilized (i.e., tubal ligation, hysterectomy, or bilateral oophorectomy)';
@@ -9275,16 +9374,18 @@ data redcap;
 	label vir_ng_other_3m='Neisseria gonorrhoeae NG (Other)';
 	label vir_ct_other_3m='Chlamydia trachomatis CT (Other)';
 	label syphilis_3m='RPR (DX) w/refl tite and confirmatory testing';
-	label hcv_status_3m='Participant HCV Status  ';
+	label hcv_status_3m='Participant HCV Status at previous visit ';
 	label hcv_ant_3m='HCV Antibody Test Performed ';
 	label hcv_ant_res_3m='HCV Antibody Result ';
 	label hcv_notest_reason_3m='Reason HCV Ab Test not performed';
-	label hcv_rna_quan_3m='If HCV AB reactive, RNA negative or HCV antibody result reactive, what is the HCV RNA Quantitative Result:';
+	label hcv_rna_quan_3m='Current HCV RNA Quantitative Result:';
 	label hcv_geno_3m='HCV Genotype:';
+	label hcv_treat='Receiving HCV Treatment?';
 	label hcv_rna_quan_12wkp_3m='HCV RNA Quantitative Test';
-	label hcv_rna_quan_12wkp_3m_q='If HCV AB reactive, RNA positive, what is the HCV RNA Quantitative Result:';
+	label hcv_rna_quan_12wkp_3m_q=' HCV RNA Quantitative Result:';
 	label hcv_rna_quan_12wkp_why_3m='Reason why test not performed ';
 	label hiv_ab_3m='HIV Ab Test Performed';
+	label hiv_res='HIV-1/HIV-2 Result:';
 	label hiv_noanti_rea_3m='Reason HIV-1/HIV-2 Antibody not performed';
 	label hbv_sur_ant_3m='Hepatitis B Surface Antigen ';
 	label hbv_nop_rea_3m='Reason Hepatitis B Test not performed';
@@ -9821,8 +9922,8 @@ data redcap;
 	label qol_helth1='Click and drag the slider on the scale from 0-100 to indicate how your health is TODAY.';
 	label cla_1='How many days in the past 90 days have you participated in criminal activities (excluding drug use)?';
 	label cla_1a='How much money have you earned from illegal activities?';
-	label cla_1a_cad='';
-	label cla_1a_usd='';
+	label cla_1a_cad='cla_1a_cad';
+	label cla_1a_usd='cla_1a_usd';
 	label cla_2='How many days in the past 90 days were you detained or incarcerated (spent overnight in jail)?';
 	label cla_2a='What is the name of the facility (or facilities) where you were detained or incarcerated? ';
 	label cla_3a='Have you ever committed drug crimes (including drug use, not drug dealing)?';
@@ -9986,22 +10087,22 @@ data redcap;
 	label nms_mod_frq='How many visits to a medical office have you had?';
 	label nms_mod_frq_doc='At how many of these visits did you see a doctor?';
 	label nms_cost='How much have you spent out of your own pocket on healthcare (including prescriptions)?';
-	label nms_cost_cad='';
-	label nms_cost_usd='';
+	label nms_cost_cad='nms_cost_cad';
+	label nms_cost_usd='nms_cost_usd';
 	label nms_inc='What is your current personal income from all sources?';
-	label nms_inc_cad='';
-	label nms_inc_usd='';
+	label nms_inc_cad='nms_inc_cad';
+	label nms_inc_usd='nms_inc_usd';
 	label nms_emp='Are you currently employed (part-time or full-time)?';
 	label nms_ocu='What is your occupation?';
 	label nms_emp_frq='How many days per week do you typically work? ';
 	label nms_emp_inc='How much do you make per hour?';
-	label nms_emp_cad='';
-	label nms_emp_usd='';
+	label nms_emp_cad='nms_emp_cad';
+	label nms_emp_usd='nms_emp_usd';
 	label nms_emp_ben='Do you have employment benefits (e.g., healthcare, retirement, etc.)? ';
 	label nms_emp_bend='What employment benefits (e.g., healthcare, retirement, etc.) do you have?';
 	label nms_otinc='How much money have you received from non-employment sources (e.g., unemployment, pension, benefits, social security, family and friends, etc.)? ';
-	label nms_otinc_cad='';
-	label nms_otinc_usd='';
+	label nms_otinc_cad='nms_otinc_cad';
+	label nms_otinc_usd='nms_otinc_usd';
 	label nms_edu='How many years of school have you completed (Miami: GED = 12 years; Montreal: DES = 11 years)';
 	label nms_edu_cr='Are you currently attending school?';
 	label nms_edu_ful='Are you attending school full-time?';
@@ -10532,8 +10633,8 @@ data redcap;
 	label hfs_9a_3m='How often did this happen?';
 	label cla_1_3m='How many days in the past 90 days have you participated in criminal activities (excluding drug use)?';
 	label cla_1a_3m='How much money have you earned from illegal activities?';
-	label cla_1a_cad_3m='';
-	label cla_1a_usd_3m='';
+	label cla_1a_cad_3m='cla_1a_cad_3m';
+	label cla_1a_usd_3m='cla_1a_usd_3m';
 	label cla_2_3m='How many days in the past 90 days were you detained or incarcerated (spent overnight in jail)?';
 	label cla_2a_3m='What is the name of the facility (or facilities) where you were detained or incarcerated? ';
 	label cla_3c_3m='In the past 90 days, how many times have you been arrested for drug crimes (including drug use, not drug dealing)?';
@@ -10677,22 +10778,22 @@ data redcap;
 	label nms_mod_frq_3m='How many visits to a medical office have you had?';
 	label nms_mod_frq_doc_3m='At how many of these visits did you see a doctor?';
 	label nms_cost_3m='How much have you spent out of your own pocket on healthcare (including prescriptions)?';
-	label nms_cost_cad_3m='';
-	label nms_cost_usd_3m='';
+	label nms_cost_cad_3m='nms_cost_cad_3m';
+	label nms_cost_usd_3m='nms_cost_usd_3m';
 	label nms_inc_3m='What is your current personal income from all sources?';
-	label nms_inc_cad_3m='';
-	label nms_inc_usd_3m='';
+	label nms_inc_cad_3m='nms_inc_cad_3m';
+	label nms_inc_usd_3m='nms_inc_usd_3m';
 	label nms_emp_3m='Are you currently employed (part-time or full-time)?';
 	label nms_ocu_3m='What is your occupation?';
 	label nms_emp_frq_3m='How many days per week do you typically work? ';
 	label nms_emp_inc_3m='How much do you make per hour?';
-	label nms_emp_cad_3m='';
-	label nms_emp_usd_3m='';
+	label nms_emp_cad_3m='nms_emp_cad_3m';
+	label nms_emp_usd_3m='nms_emp_usd_3m';
 	label nms_emp_ben_3m='Do you have employment benefits (e.g., healthcare, retirement, etc.)? ';
 	label nms_emp_bend_3m='What employment benefits (e.g., healthcare, retirement, etc.) do you have?';
 	label nms_otinc_3m='How much money have you received from non-employment sources (e.g., unemployment, pension, benefits, social security, family and friends, etc.)? ';
-	label nms_otinc_cad_3m='';
-	label nms_otinc_usd_3m='';
+	label nms_otinc_cad_3m='nms_otinc_cad_3m';
+	label nms_otinc_usd_3m='nms_otinc_usd_3m';
 	label nms_edu_3m='How many years of school have you completed (Miami: GED = 12 years; Montreal: DES = 11 years)';
 	label nms_edu_cr_3m='Are you currently attending school?';
 	label nms_edu_ful_3m='Are you attending school full-time?';
@@ -10838,33 +10939,46 @@ data redcap;
 	label adh2_visitdate='Visit Date';
 	label prep_prescribe='Have you received a prescription for PrEP Medication since your last M2 study visit?';
 	label adh_prep='Have you started taking PrEP since your last M2 study visit?';
+	label adh_noprep_reason___1='If you did not start taking PrEP, what was the reason for this?   (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
+	label adh_noprep_reason___2='If you did not start taking PrEP, what was the reason for this?   (choice=I was experiencing pain)';
+	label adh_noprep_reason___3='If you did not start taking PrEP, what was the reason for this?   (choice=I think medication is not the best treatment)';
+	label adh_noprep_reason___4='If you did not start taking PrEP, what was the reason for this?   (choice=I believe I am not at risk)';
+	label adh_noprep_reason___5='If you did not start taking PrEP, what was the reason for this?   (choice=I have misconceptions about what the medication will or will not do)';
+	label adh_noprep_reason___6='If you did not start taking PrEP, what was the reason for this?   (choice=I forgot to take medication)';
+	label adh_noprep_reason___7='If you did not start taking PrEP, what was the reason for this?   (choice=I did not have access to medication (e.g., went on vacation and left medication at home))';
+	label adh_noprep_reason___8='If you did not start taking PrEP, what was the reason for this?   (choice=I misunderstood how often to take it)';
+	label adh_noprep_reason___9='If you did not start taking PrEP, what was the reason for this?   (choice=I felt I did not need the full prescribed dose)';
+	label adh_noprep_reason___10='If you did not start taking PrEP, what was the reason for this?   (choice=I was experiencing withdrawal symptoms)';
+	label adh_noprep_reason___11='If you did not start taking PrEP, what was the reason for this?   (choice=I lost the medication)';
+	label adh_noprep_reason___12='If you did not start taking PrEP, what was the reason for this?   (choice=I reported that medication was stolen)';
+	label adh_noprep_reason___13='If you did not start taking PrEP, what was the reason for this?   (choice=I sold or gave away medication)';
+	label adh_noprep_reason___14='If you did not start taking PrEP, what was the reason for this?   (choice=other)';
+	label adh2_noprep_other='If other please specify';
 	label stop_prep='Have you stopped taking PrEP since your last M2 study visit?';
 	label prep_last4week='Have you taken PrEP medications in the past 4 weeks?  ';
 	label prep_now='Are you currently taking PrEP medications?  ';
-	label prep_misspercent='Provide your best guess about what percentage of your prescribed PrEP medications you have taken in the past 4 weeks:   Examples:  0% means you have taken none of your PrEP medication in the past 4 weeks, 50% means you have taken half of your PrEP medication in the past 4 weeks, and 100% means you have taken every single dose of your PrEP medication in the past 4 weeks. ';
+	label prep_misspercent='Provide your best guess about what percentage of your prescribed PrEP medications you have taken in the past 4 weeks:    ';
 	label prep_missdose='How many doses/pills of your PrEP medications did you miss in the past 7 days? ';
-	label adh2_noncompliance___1='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I experienced physical side effects)';
-	label adh2_noncompliance___2='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
-	label adh2_noncompliance___3='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing pain)';
-	label adh2_noncompliance___4='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I think medication is not the best treatment)';
-	label adh2_noncompliance___5='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I believe I am cured)';
-	label adh2_noncompliance___6='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I have misconceptions about what the medication will or will not do)';
-	label adh2_noncompliance___7='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I forgot to take medication)';
-	label adh2_noncompliance___8='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I did not have access to medication (e.g. went on vacation and left medication at home))';
-	label adh2_noncompliance___9='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I ran out of medication)';
-	label adh2_noncompliance___10='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I misunderstood dosing instructions)';
-	label adh2_noncompliance___11='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I felt I did not need the full prescribed dose)';
-	label adh2_noncompliance___12='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was experiencing withdrawal symptoms)';
-	label adh2_noncompliance___13='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I was impatient waiting for the medication to work)';
-	label adh2_noncompliance___14='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I lost the medication)';
-	label adh2_noncompliance___15='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=I reported that medication was stolen)';
-	label adh2_noncompliance___16='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
-	label adh2_noncompliance___17='If you did not comply with the assigned PREP, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
+	label adh2_noncompliance___1='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I experienced physical side effects)';
+	label adh2_noncompliance___2='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
+	label adh2_noncompliance___3='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I was experiencing pain)';
+	label adh2_noncompliance___4='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I think medication is not the best treatment)';
+	label adh2_noncompliance___5='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I believe I am cured)';
+	label adh2_noncompliance___6='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I have misconceptions about what the medication will or will not do)';
+	label adh2_noncompliance___7='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I forgot to take medication)';
+	label adh2_noncompliance___8='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I did not have access to medication (e.g. went on vacation and left medication at home))';
+	label adh2_noncompliance___9='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I ran out of medication)';
+	label adh2_noncompliance___10='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I misunderstood dosing instructions)';
+	label adh2_noncompliance___11='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I felt I did not need the full prescribed dose)';
+	label adh2_noncompliance___12='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I was experiencing withdrawal symptoms)';
+	label adh2_noncompliance___13='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I was impatient waiting for the medication to work)';
+	label adh2_noncompliance___14='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I lost the medication)';
+	label adh2_noncompliance___15='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I reported that medication was stolen)';
+	label adh2_noncompliance___16='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=Sold or gave away medication)';
+	label adh2_noncompliance___18='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I increased pill-taking to make up for skipped doses and ultimately took more than prescribed)';
+	label adh2_noncompliance___19='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=I purposely took the medication only around the time of sex (e.g., shortly before sex, at the time of sex, shortly after sex)';
+	label adh2_noncompliance___17='If you did not take PrEP as prescribed (e.g., did not take it daily), what was the reason for this? (Check all that apply)  (choice=other)';
 	label adh2_noncomplyspec='If other please specify';
-	label adh2_prepchange='Was there a change from the assigned PrEP to an alternative PrEP since last study visit?';
-	label adh2_changprepspec='If yes please specify';
-	label adh2_newprepdateprescr='Date alternative PrEP was first prescribed';
-	label adh2_newprepdateingest='Date alternative PrEP was first ingested';
 	label adh_hcv='Have you started taking HCV medication';
 	label adh4_hcvchange='Was there a change from the assigned HCV medication to an alternative HCV medication since last study visit?';
 	label adh4_changhcvspec='If yes please specify';
@@ -10888,6 +11002,20 @@ data redcap;
 	label adh4_noncompliance___16='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=Sold or gave away medication)';
 	label adh4_noncompliance___17='If you did not comply with assigned HCV Medication, what was the reason for noncompliance? (e.g. missed dose or dose change from prescribed dose): (Check all that apply)  (choice=other)';
 	label adh4_noncomplyspec='If other please specify';
+	label adh_nohcv_reason_2___1='If you did not start taking HCV Medication, what is the reason for this?  (choice=I wanted to drink or use illicit drugs and was worried about mixing medications (wanted to get high))';
+	label adh_nohcv_reason_2___2='If you did not start taking HCV Medication, what is the reason for this?  (choice=I was experiencing pain)';
+	label adh_nohcv_reason_2___3='If you did not start taking HCV Medication, what is the reason for this?  (choice=I think medication is not the best treatment)';
+	label adh_nohcv_reason_2___4='If you did not start taking HCV Medication, what is the reason for this?  (choice=I believe I am cured)';
+	label adh_nohcv_reason_2___5='If you did not start taking HCV Medication, what is the reason for this?  (choice=I have misconceptions about what the medication will or will not do)';
+	label adh_nohcv_reason_2___6='If you did not start taking HCV Medication, what is the reason for this?  (choice=I forgot to take medication)';
+	label adh_nohcv_reason_2___7='If you did not start taking HCV Medication, what is the reason for this?  (choice=I did not have access to medication (e.g., went on vacation and left medication at home))';
+	label adh_nohcv_reason_2___8='If you did not start taking HCV Medication, what is the reason for this?  (choice=I misunderstood dosing instructions)';
+	label adh_nohcv_reason_2___9='If you did not start taking HCV Medication, what is the reason for this?  (choice=I felt I did not need the full prescribed dose)';
+	label adh_nohcv_reason_2___10='If you did not start taking HCV Medication, what is the reason for this?  (choice=I was experiencing withdrawal symptoms)';
+	label adh_nohcv_reason_2___11='If you did not start taking HCV Medication, what is the reason for this?  (choice=I lost the medication)';
+	label adh_nohcv_reason_2___12='If you did not start taking HCV Medication, what is the reason for this?  (choice=I reported that medication was stolen)';
+	label adh_nohcv_reason_2___13='If you did not start taking HCV Medication, what is the reason for this?  (choice=I sold or gave away medication)';
+	label adh_nohcv_reason_2___14='If you did not start taking HCV Medication, what is the reason for this?  (choice=other)';
 	label adh4_nopillslastpresc='How many pills did you receive on your last prescription? ';
 	label adh4_nopillsleft='How many pills do you have left in the package?';
 	label followup_3m_adh2_4_complete='Complete?';
@@ -11060,6 +11188,7 @@ data redcap;
 	label ae_other='Other: please specify ';
 	label ae_treatment2='Treatment: Describe any medical interventions, medications, and/or surgical treatments used to treat the event.';
 	label ae_outcome='Outcome/consequences of Adverse Event';
+	label ae_outcome_2='Outcome/consequences of Adverse Event';
 	label ae_status='Status/outcome date (leave blank if ongoing)';
 	label smi_txarm='Treatment Arm';
 	label smi_prepmed='Prescribed PrEP medication';
@@ -11069,8 +11198,6 @@ data redcap;
 	label smi_prep_last='Date of LAST PrEP dose prior to event :';
 	label smi_prep_action___0='Action taken regarding PrEP medication (choice=Dose not changed/None)';
 	label smi_prep_action___1='Action taken regarding PrEP medication (choice=Dose delayed)';
-	label smi_prep_action___2='Action taken regarding PrEP medication (choice=Dose reduced)';
-	label smi_prep_action___3='Action taken regarding PrEP medication (choice=Dose increased)';
 	label smi_prep_action___4='Action taken regarding PrEP medication (choice=Drug discontinued  temporarily)';
 	label smi_prep_action___5='Action taken regarding PrEP medication (choice=Drug discontinued permanently)';
 	label smi_prep_action___6='Action taken regarding PrEP medication (choice=Unknown)';
@@ -11084,8 +11211,6 @@ data redcap;
 	label smi_hcv_last='Date of LAST HCV medication dose ';
 	label smi_action___0='Action taken regarding HCV medication (choice=Dose not changed/None)';
 	label smi_action___1='Action taken regarding HCV medication (choice=Dose delayed)';
-	label smi_action___2='Action taken regarding HCV medication (choice=Dose reduced)';
-	label smi_action___3='Action taken regarding HCV medication (choice=Dose increased)';
 	label smi_action___4='Action taken regarding HCV medication (choice=Drug discontinued  temporarily)';
 	label smi_action___5='Action taken regarding HCV medication (choice=Drug discontinued permanently)';
 	label smi_action___6='Action taken regarding HCV medication (choice=Unknown)';
@@ -11094,7 +11219,7 @@ data redcap;
 	label smi_by='Collected by :';
 	label adverse_event_form_complete='Complete?';
 	label sae_describe='Serious Adverse Event Description:';
-	label sae_number='Serious Adverse Event Number (SAE #)';
+	label sae_number='Adverse Event Number (AE #)';
 	label sae_date='Date of report ';
 	label sae_type___0='Type of report (choice=Initial)';
 	label sae_type___1='Type of report (choice=Follow-up)';
@@ -11113,6 +11238,7 @@ data redcap;
 	label sae_related='In your medical judgment, is there a reasonable possibility that the adverse event may have been caused by the trial therapy? ';
 	label sae_rationale='Please provide investigator rationale.';
 	label sae_outcome='Outcome/consequences of Serious Adverse Event';
+	label sae_outcome_2='Outcome/consequences of Adverse Event';
 	label sae_resolution='Resolution date ';
 	label sae_death_date_2='Date of participant''s death ';
 	label sae_death_site='Date the site became aware of the participant''s death';
@@ -11135,8 +11261,6 @@ data redcap;
 	label sae_prep_end='Date of LAST PrEP dose prior to event:';
 	label sae_action___0='Action taken regarding PrEP medication (choice=Dose not changed/None)';
 	label sae_action___1='Action taken regarding PrEP medication (choice=Dose delayed)';
-	label sae_action___2='Action taken regarding PrEP medication (choice=Dose reduced)';
-	label sae_action___3='Action taken regarding PrEP medication (choice=Dose increased)';
 	label sae_action___4='Action taken regarding PrEP medication (choice=Drug discontinued temporarily)';
 	label sae_action___5='Action taken regarding PrEP medication (choice=Drug discontinued permanently)';
 	label sae_action___6='Action taken regarding PrEP medication (choice=Unknown)';
@@ -11153,8 +11277,6 @@ data redcap;
 	label sae_hcv_reappear='Did event reappear after HCV medication restarted?';
 	label sae_action_hcv___0='Action taken regarding HCV medication (choice=Dose not changed/None)';
 	label sae_action_hcv___1='Action taken regarding HCV medication (choice=Dose delayed)';
-	label sae_action_hcv___2='Action taken regarding HCV medication (choice=Dose reduced)';
-	label sae_action_hcv___3='Action taken regarding HCV medication (choice=Dose increased)';
 	label sae_action_hcv___4='Action taken regarding HCV medication (choice=Drug discontinued temporarily)';
 	label sae_action_hcv___5='Action taken regarding HCV medication (choice=Drug discontinued permanently)';
 	label sae_action_hcv___6='Action taken regarding HCV medication (choice=Unknown)';
@@ -11380,6 +11502,7 @@ data redcap;
 	format hcv_status_3m hcv_status_3m_.;
 	format hcv_ant_3m hcv_ant_3m_.;
 	format hcv_ant_res_3m hcv_ant_res_3m_.;
+	format hcv_treat hcv_treat_.;
 	format hcv_rna_quan_12wkp_3m hcv_rna_quan_12wkp_3m_.;
 	format hiv_ab_3m hiv_ab_3m_.;
 	format hbv_sur_ant_3m hbv_sur_ant_3m_.;
@@ -12386,6 +12509,20 @@ data redcap;
 	format followup_3m_eis_cpe__v_7 followup_3m_eis_cpe__v_7_.;
 	format prep_prescribe prep_prescribe_.;
 	format adh_prep adh_prep_.;
+	format adh_noprep_reason___1 adh_noprep_reason___1_.;
+	format adh_noprep_reason___2 adh_noprep_reason___2_.;
+	format adh_noprep_reason___3 adh_noprep_reason___3_.;
+	format adh_noprep_reason___4 adh_noprep_reason___4_.;
+	format adh_noprep_reason___5 adh_noprep_reason___5_.;
+	format adh_noprep_reason___6 adh_noprep_reason___6_.;
+	format adh_noprep_reason___7 adh_noprep_reason___7_.;
+	format adh_noprep_reason___8 adh_noprep_reason___8_.;
+	format adh_noprep_reason___9 adh_noprep_reason___9_.;
+	format adh_noprep_reason___10 adh_noprep_reason___10_.;
+	format adh_noprep_reason___11 adh_noprep_reason___11_.;
+	format adh_noprep_reason___12 adh_noprep_reason___12_.;
+	format adh_noprep_reason___13 adh_noprep_reason___13_.;
+	format adh_noprep_reason___14 adh_noprep_reason___14_.;
 	format stop_prep stop_prep_.;
 	format prep_last4week prep_last4week_.;
 	format prep_now prep_now_.;
@@ -12405,8 +12542,9 @@ data redcap;
 	format adh2_noncompliance___14 adh2_noncompliance___14_.;
 	format adh2_noncompliance___15 adh2_noncompliance___15_.;
 	format adh2_noncompliance___16 adh2_noncompliance___16_.;
+	format adh2_noncompliance___18 adh2_noncompliance___18_.;
+	format adh2_noncompliance___19 adh2_noncompliance___19_.;
 	format adh2_noncompliance___17 adh2_noncompliance___17_.;
-	format adh2_prepchange adh2_prepchange_.;
 	format adh_hcv adh_hcv_.;
 	format adh4_hcvchange adh4_hcvchange_.;
 	format adh4_noncompliance___1 adh4_noncompliance___1_.;
@@ -12426,6 +12564,20 @@ data redcap;
 	format adh4_noncompliance___15 adh4_noncompliance___15_.;
 	format adh4_noncompliance___16 adh4_noncompliance___16_.;
 	format adh4_noncompliance___17 adh4_noncompliance___17_.;
+	format adh_nohcv_reason_2___1 adh_nohcv_reason_2___1_.;
+	format adh_nohcv_reason_2___2 adh_nohcv_reason_2___2_.;
+	format adh_nohcv_reason_2___3 adh_nohcv_reason_2___3_.;
+	format adh_nohcv_reason_2___4 adh_nohcv_reason_2___4_.;
+	format adh_nohcv_reason_2___5 adh_nohcv_reason_2___5_.;
+	format adh_nohcv_reason_2___6 adh_nohcv_reason_2___6_.;
+	format adh_nohcv_reason_2___7 adh_nohcv_reason_2___7_.;
+	format adh_nohcv_reason_2___8 adh_nohcv_reason_2___8_.;
+	format adh_nohcv_reason_2___9 adh_nohcv_reason_2___9_.;
+	format adh_nohcv_reason_2___10 adh_nohcv_reason_2___10_.;
+	format adh_nohcv_reason_2___11 adh_nohcv_reason_2___11_.;
+	format adh_nohcv_reason_2___12 adh_nohcv_reason_2___12_.;
+	format adh_nohcv_reason_2___13 adh_nohcv_reason_2___13_.;
+	format adh_nohcv_reason_2___14 adh_nohcv_reason_2___14_.;
 	format followup_3m_adh2_4_complete followup_3m_adh2_4_complete_.;
 	format idu_cnty_6m idu_cnty_6m_.;
 	format auc_1_6m auc_1_6m_.;
@@ -12571,13 +12723,12 @@ data redcap;
 	format ae_treatment___4 ae_treatment___4_.;
 	format ae_treatment___5 ae_treatment___5_.;
 	format ae_outcome ae_outcome_.;
+	format ae_outcome_2 ae_outcome_2_.;
 	format smi_txarm smi_txarm_.;
 	format smi_prepmed smi_prepmed_.;
 	format prep_disp prep_disp_.;
 	format smi_prep_action___0 smi_prep_action___0_.;
 	format smi_prep_action___1 smi_prep_action___1_.;
-	format smi_prep_action___2 smi_prep_action___2_.;
-	format smi_prep_action___3 smi_prep_action___3_.;
 	format smi_prep_action___4 smi_prep_action___4_.;
 	format smi_prep_action___5 smi_prep_action___5_.;
 	format smi_prep_action___6 smi_prep_action___6_.;
@@ -12588,8 +12739,6 @@ data redcap;
 	format hcv_disp hcv_disp_.;
 	format smi_action___0 smi_action___0_.;
 	format smi_action___1 smi_action___1_.;
-	format smi_action___2 smi_action___2_.;
-	format smi_action___3 smi_action___3_.;
 	format smi_action___4 smi_action___4_.;
 	format smi_action___5 smi_action___5_.;
 	format smi_action___6 smi_action___6_.;
@@ -12608,6 +12757,7 @@ data redcap;
 	format sae_expect sae_expect_.;
 	format sae_related sae_related_.;
 	format sae_outcome sae_outcome_.;
+	format sae_outcome_2 sae_outcome_2_.;
 	format sae_death_certificate sae_death_certificate_.;
 	format sae_death_cause sae_death_cause_.;
 	format sae_information___0 sae_information___0_.;
@@ -12622,8 +12772,6 @@ data redcap;
 	format sae_prep_disp sae_prep_disp_.;
 	format sae_action___0 sae_action___0_.;
 	format sae_action___1 sae_action___1_.;
-	format sae_action___2 sae_action___2_.;
-	format sae_action___3 sae_action___3_.;
 	format sae_action___4 sae_action___4_.;
 	format sae_action___5 sae_action___5_.;
 	format sae_action___6 sae_action___6_.;
@@ -12637,13 +12785,10 @@ data redcap;
 	format sae_hcv_reappear sae_hcv_reappear_.;
 	format sae_action_hcv___0 sae_action_hcv___0_.;
 	format sae_action_hcv___1 sae_action_hcv___1_.;
-	format sae_action_hcv___2 sae_action_hcv___2_.;
-	format sae_action_hcv___3 sae_action_hcv___3_.;
 	format sae_action_hcv___4 sae_action_hcv___4_.;
 	format sae_action_hcv___5 sae_action_hcv___5_.;
 	format sae_action_hcv___6 sae_action_hcv___6_.;
 	format sae_action_hcv___7 sae_action_hcv___7_.;
-	format sae_ongoing sae_ongoing_.;
 	format sae_ongoing_rmh sae_ongoing_rmh_.;
 	format serious_adverse_even_v_9 serious_adverse_even_v_9_.;
 	format rmv rmv_.;
