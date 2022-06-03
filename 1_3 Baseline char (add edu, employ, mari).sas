@@ -131,6 +131,8 @@ CLASS REDCAP_DATA_ACCESS_GROUP
     vir_rapid
 	vir_rna2
 
+	scr_c_hcv_res
+
 ;
 KEYLABEL COLPCTN='%' ;
 TABLE (
@@ -151,7 +153,9 @@ TABLE (
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
 	vir_rapid
-	vir_rna2
+/*	vir_rna2*/
+
+	scr_c_hcv_res
 
     ALL)*(N COLPCTN)
 ,(REDCAP_DATA_ACCESS_GROUP ALL)
@@ -167,6 +171,119 @@ PROC MEANS DATA=R2_BL(WHERE= (RAND_ARM NE .)) ;
 /*CLASS REDCAP_DATA_ACCESS_GROUP;*/
 VAR SDEM_AGE;
 RUN;
+
+
+TITLE"BASELINE DEMOGRAPHICS (RANDOMIZED PATEINTS) SLIDE PAGE 15";
+
+DATA R2_BL_SLIDE15;
+SET R2_BL(WHERE= (RAND_ARM NE .));
+
+/*High school or more*/
+IF 2<=dem_edu<=7 THEN HIGH_SCHOOL_ORMORE=1;
+ELSE IF dem_edu IN (0,1,8) THEN HIGH_SCHOOL_ORMORE=0;
+ELSE HIGH_SCHOOL_ORMORE=.;
+
+/*Married, Common law, living w/partner*/
+IF dem_marital IN (0, 6, 5) THEN MARRY_COMMON_WPARTNER=1;
+ELSE IF dem_marital IN (1,2,3,4,7,8) THEN MARRY_COMMON_WPARTNER=0;
+ELSE MARRY_COMMON_WPARTNER=.;
+
+/*WORKING FULL TIME*/
+IF dem_employ IN (0) THEN IS_WORKFULLTIME=1;
+ELSE IF dem_employ > 0  THEN IS_WORKFULLTIME=0;
+ELSE IS_WORKFULLTIME=.;
+
+RUN;
+
+/**********************************************FOR randomized only*/
+TITLE "FOR RANDOMIZED PTS";
+PROC TABULATE DATA=R2_BL_SLIDE15  MISSING;
+/*BY REDCAP_DATA_ACCESS_GROUP;*/
+CLASS REDCAP_DATA_ACCESS_GROUP 
+      DEM_RACE_HISP
+	  DEM_ABORIG
+	  R_race
+	  SDEM_SEX
+	  SDEM_ELIG
+      EC_PC_YES 
+	  EC_ALL_2 RAND_ELE RAND_ARM
+
+	  HIGH_SCHOOL_ORMORE
+	  MARRY_COMMON_WPARTNER
+	  IS_WORKFULLTIME
+	dem_hltins
+
+	sdem_hiv_etst
+	sdem_hiv_rtst_r
+    insti
+
+	sdem_prp_cu
+	sdem_hcv_etst
+	sdem_hcv_rtst_r
+	
+    vir_rapid
+	vir_rna2
+
+	scr_c_hcv_res
+
+;
+KEYLABEL COLPCTN='%' ;
+TABLE (
+		SDEM_SEX 
+		DEM_ABORIG
+	    R_race 	
+	  HIGH_SCHOOL_ORMORE
+	  MARRY_COMMON_WPARTNER
+	  IS_WORKFULLTIME
+
+	dem_hltins
+
+	sdem_hiv_etst
+	sdem_hiv_rtst_r
+    insti
+
+	sdem_prp_cu
+	sdem_hcv_etst
+	sdem_hcv_rtst_r
+	vir_rapid
+/*	vir_rna2*/
+
+
+	scr_c_hcv_res
+
+    ALL)*(N COLPCTN)
+,(REDCAP_DATA_ACCESS_GROUP ALL)
+;
+RUN;
+
+
+title "retired RNA HCV do not use";
+PROC FREQ DATA=R2_BL_SLIDE15;
+TABLE vir_rna2;
+WHERE vir_rna2 NE .;
+RUN;
+
+title "use this instead scr_c_hcv_res";
+PROC FREQ DATA=R2_BL_SLIDE15;
+TABLE scr_c_hcv_res;
+WHERE scr_c_hcv_res NE .;
+RUN;
+
+PROC MEANS DATA=R2_BL(WHERE= (RAND_ARM NE .)) ;
+CLASS REDCAP_DATA_ACCESS_GROUP;
+VAR SDEM_AGE;
+RUN;
+
+PROC MEANS DATA=R2_BL(WHERE= (RAND_ARM NE .)) ;
+/*CLASS REDCAP_DATA_ACCESS_GROUP;*/
+VAR SDEM_AGE;
+RUN;
+
+
+
+
+
+
 
 
 /*ADD ABORIGIANAL FOR CANADIAN FOLKS*/

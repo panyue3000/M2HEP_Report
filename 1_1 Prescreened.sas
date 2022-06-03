@@ -18,7 +18,7 @@ PROC SQL;
 		  t1.sdem_prp_cu,
 		  t1.sdem_hcv_etst,
 		  t1.sdem_hcv_rtst_r,
-/*		  t1.scr_c_hcv_res,*/
+		  t1.scr_c_hcv_res,
 		  t1.vir_rapid,
 		  t1.insti,
 		  T1.sdem_int_evr,
