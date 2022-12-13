@@ -252,7 +252,7 @@ TABLE (
 /*idea_fail*/
 /*golden_fail*/
 reason_fail
-ALL)*(N /*COLPCTN*/)
+ALL)*(N COLPCTN)
 ,(
   REDCAP_DATA_ACCESS_GROUP*
   from
@@ -274,7 +274,7 @@ fail
 KEYLABEL COLPCTN='%' ;
 TABLE 
 (
-Fail ALL)*(N /*COLPCTN*/)
+Fail ALL)*(N COLPCTN)
 ,(
   REDCAP_DATA_ACCESS_GROUP*
   site

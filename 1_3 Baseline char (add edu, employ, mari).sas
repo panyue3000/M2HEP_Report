@@ -246,7 +246,7 @@ TABLE (
 	sdem_hcv_etst
 	sdem_hcv_rtst_r
 	vir_rapid
-/*	vir_rna2*/
+	vir_rna2
 
 
 	scr_c_hcv_res
@@ -257,11 +257,11 @@ TABLE (
 RUN;
 
 
-title "retired RNA HCV do not use";
-PROC FREQ DATA=R2_BL_SLIDE15;
-TABLE vir_rna2;
-WHERE vir_rna2 NE .;
-RUN;
+/*title "retired RNA HCV do not use";*/
+/*PROC FREQ DATA=R2_BL_SLIDE15;*/
+/*TABLE vir_rna2;*/
+/*WHERE vir_rna2 NE .;*/
+/*RUN;*/
 
 title "use this instead scr_c_hcv_res";
 PROC FREQ DATA=R2_BL_SLIDE15;

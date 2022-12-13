@@ -154,6 +154,33 @@ PROC SQL;
                t1.rand_date;
 QUIT;
 
+*********************************************************;
+***************remove cohort 1 from montreal*********;
+
+data R2_fustatus;
+set R2_fustatus;
+where 
+record_id not in (
+"001"
+"002"
+"003"
+"006"
+"007"
+"009"
+"010"
+"011"
+"012"
+"013"
+"014"
+"015"
+"018"
+"019"
+"020"
+"022"
+"2073-1"
+"2073-2");
+run;
+
 
 
 proc freq data=R2_fustatus;
@@ -267,11 +294,64 @@ FU21m_status_calc
 ;
 run;
 
+*check here for DSMB Report 2022-12-12
+C:\Users\panyue\Box\M2HepPrEP\M2HepPrEP – Trial Management\
+MPI Meetings and Recruitment & Retention Reports\mtg materials
+;
+
 
 %macro FU_retention (VAR1);
-title "retention summary for &var1.";
+title "overall retention summary for &var1.";
 PROC FREQ DATA=r2_fustatus (WHERE=(&var1. IN ('completed', 'lossFU')));
 TABLE &var1.;
+run;
+%mend;
+
+%FU_retention(FU3m_status_calc);
+%FU_retention(FU6m_status_calc);
+%FU_retention(FU9m_status_calc);
+%FU_retention(FU12m_status_calc);
+%FU_retention(FU15m_status_calc);
+%FU_retention(FU18m_status_calc);
+
+
+%macro FU_retention (VAR1);
+title "retention by site summary for &var1.";
+PROC FREQ DATA=r2_fustatus (WHERE=(&var1. IN ('completed', 'lossFU')));
+TABLE redcap_data_access_group*&var1./nopercent nocol;
+run;
+%mend;
+
+%FU_retention(FU3m_status_calc);
+%FU_retention(FU6m_status_calc);
+%FU_retention(FU9m_status_calc);
+%FU_retention(FU12m_status_calc);
+%FU_retention(FU15m_status_calc);
+%FU_retention(FU18m_status_calc);
+
+
+%macro FU_retention (VAR1);
+title "retention by tx group summary for &var1.";
+PROC FREQ DATA=r2_fustatus (WHERE=(&var1. IN ('completed', 'lossFU')));
+TABLE rand_arm*&var1./nopercent nocol;
+run;
+%mend;
+
+%FU_retention(FU3m_status_calc);
+%FU_retention(FU6m_status_calc);
+%FU_retention(FU9m_status_calc);
+%FU_retention(FU12m_status_calc);
+%FU_retention(FU15m_status_calc);
+%FU_retention(FU18m_status_calc);
+
+
+
+
+
+%macro FU_retention (VAR1);
+title "retention by site by tx group summary for &var1.";
+PROC FREQ DATA=r2_fustatus (WHERE=(&var1. IN ('completed', 'lossFU')));
+TABLE redcap_data_access_group*rand_arm*&var1./nopercent nocol;
 run;
 %mend;
 

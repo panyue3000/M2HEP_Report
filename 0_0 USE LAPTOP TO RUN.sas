@@ -1,5 +1,5 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-06-07_2130.csv';
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2022-12-13_1015.csv';
 
 OPTIONS nofmterr;
 
@@ -211,6 +211,7 @@ proc format;
 		3='Positive';
 	value vir_hav_ 1='Indeterminate' 2='Negative' 
 		3='Positive';
+	value scr_source_ 1='Laboratory results ordered as part of the study' 2='Medical record abstraction';
 	value screening_specific_c_v_0_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value vt_temp_ 0='Fahrenheit (°F)' 1='Celsius (°C)';
@@ -259,6 +260,7 @@ proc format;
 		2='NA';
 	value vir_ng_rec_ 0='Detected' 1='Not Detected' 
 		2='NA';
+	value bsc_source_ 1='Laboratory results ordered as part of the study' 2='Medical record abstraction';
 	value baseline_specific_co_v_1_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value ur_test_bas_3m_ 0='No' 1='Yes' 
@@ -302,6 +304,7 @@ proc format;
 		2='Test not performed';
 	value hbv_sur_ant_3m_ 0='Reactive' 1='Non-reactive' 
 		2='Test not performed';
+	value fusc_source_ 1='Laboratory results ordered as part of the study' 2='Medical record abstraction';
 	value fu_specific_collecti_v_2_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value idu_cnty_ 0='Canada' 1='United States';
@@ -1310,6 +1313,198 @@ proc format;
 		2='Moderately certain can do' 3='Probably can do' 
 		4='Certain can do';
 	value baseline_complete_ 0='Incomplete' 1='Unverified' 
+		2='Complete';
+	value ath_1_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value ath_2_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value ath_3_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value ath_4_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value ath_5_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value ath_6_12m_ 0='Very likely' 1='Likely' 
+		2='Moderately likely' 3='Unlikely' 
+		4='Very unlikely';
+	value eis_status_12m_ 0='HCV negative' 1='HCV positive';
+	value atc_1_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value atc_2_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value atc_3_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value atc_4_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value atc_5_12m_ 0='Strongly Agree' 1='Agree' 
+		2='Neither Agree nor Disagree' 3='Disagree' 
+		4='Strongly Disagree';
+	value atc_6_12m_ 0='Very likely' 1='Likely' 
+		2='Moderately likely' 3='Unlikely' 
+		4='Very unlikely';
+	value eis_1_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_2_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_3_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree or Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_4_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_5_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_6_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_7_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_8_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_9_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_10_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_11_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_12_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_13_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_14_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_15_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_16_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_17_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_18_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_19_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_20_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_21_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value eis_22_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_1_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_2_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_3_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_4_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_5_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_6_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_7_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_8_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_9_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_10_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value mmt_11_12m_ 0='Strongly Disagree' 1='Disagree' 
+		2='Neither Agree nor Disagree' 3='Agree' 
+		4='Strongly Agree' 5='Not Applicable';
+	value ssi_1_12m_ 0='One' 1='Two' 
+		2='Three' 3='Four' 
+		4='Five or more';
+	value ssi_2_12m_ 0='None of the time' 1='Some of the time' 
+		2='Half of the time' 3='Most of the time' 
+		4='All of the time';
+	value ssi_2a_12m_ 0='None' 1='One' 
+		2='Two' 3='Three' 
+		4='Four or more';
+	value ssi_3_12m_ 0='Never' 1='Rarely' 
+		2='Sometimes' 3='Often' 
+		4='Very often' 5='Not applicable';
+	value ssi_4_12m_ 0='Never' 1='Rarely' 
+		2='Sometimes' 3='Often' 
+		4='Very often' 5='Not applicable';
+	value ssi_5_12m_ 0='Never' 1='Rarely' 
+		2='Sometimes' 3='Often' 
+		4='Very often' 5='Not applicable';
+	value ssi_6_12m_ 0='None' 1='One' 
+		2='Two' 3='Three' 
+		4='Four or more';
+	value ssi_7_12m_ 0='Very unsatisfied' 1='Unsatisfied' 
+		2='Neither satisfied nor unsatisfied' 3='Satisfied' 
+		4='Very satisfied' 5='Not applicable';
+	value ssi_8_12m_ 0='Never' 1='Rarely' 
+		2='Sometimes' 3='Often' 
+		4='Very often' 5='Not applicable';
+	value ssi_9_12m_ 0='None' 1='Less than half' 
+		2='About half' 3='More than half' 
+		4='All of them' 5='Not applicable';
+	value ssi_10_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_11_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_12_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_13_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_14_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_15_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_16_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value ssi_17_12m_ 0='All of the time' 1='Most of the time' 
+		2='Some of the time' 3='A little of the time' 
+		4='None of the time';
+	value baseline_12m_complete_ 0='Incomplete' 1='Unverified' 
 		2='Complete';
 	value rphcv1_ 0='Strongly Disagree' 1='Disagree' 
 		2='Neither agree nor disagree' 3='Agree' 
@@ -2370,7 +2565,7 @@ proc format;
 	value ae_guidelines_ 1='Yes' 0='No';
 	value ae_severity_ 0='Mild' 1='Moderate' 
 		2='Severe';
-	value ae_expect_ 0='Anticipated/Expected' 1='Unanticipated/Unexpected';
+	value ae_expect_ 0='Expected' 1='Unexpected';
 	value ae_relation_med_ 0='Unrelated' 1='Unlikely' 
 		2='Possible' 3='Probably' 
 		4='Definitely' 5='Unknown (unable to judge)';
@@ -2423,7 +2618,7 @@ proc format;
 	value sae_criteria___5_ 0='Unchecked' 1='Checked';
 	value sae_severity_ 0='Mild' 1='Moderate' 
 		2='Severe';
-	value sae_expect_ 0='Anticipated/Expected' 1='Unanticipated/Unexpected';
+	value sae_expect_ 0='Expected' 1='Unexpected';
 	value sae_related_ 0='Unrelated' 1='Unlikely' 
 		2='Possible' 3='Probably' 
 		4='Definitely' 5='Unknown (unable to judge)';
@@ -2681,6 +2876,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat vir_inr $500. ;
 	informat vir_bts $500. ;
 	informat vir_ot $5000. ;
+	informat scr_source best32. ;
 	informat comment $5000. ;
 	informat screening_specific_c_v_0 best32. ;
 	informat vt_dvs yymmdd10. ;
@@ -2736,6 +2932,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat vir_ng_oral best32. ;
 	informat vir_ng_uro best32. ;
 	informat vir_ng_rec best32. ;
+	informat bsc_source best32. ;
 	informat baseline_specific_co_v_1 best32. ;
 	informat date_of_specimen_3m yymmdd10. ;
 	informat ur_test_bas_3m best32. ;
@@ -2776,6 +2973,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat hbv_sur_ant_3m best32. ;
 	informat hbv_nop_rea_3m $500. ;
 	informat serum_creatinine_3m $500. ;
+	informat fusc_source best32. ;
 	informat comments_3m $5000. ;
 	informat fu_specific_collecti_v_2 best32. ;
 	informat baseline_timestamp $500. ;
@@ -3611,6 +3809,72 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	informat cce_3 best32. ;
 	informat cce_4 best32. ;
 	informat baseline_complete best32. ;
+	informat baseline_12m_timestamp $500. ;
+	informat ath_1_12m best32. ;
+	informat ath_2_12m best32. ;
+	informat ath_3_12m best32. ;
+	informat ath_4_12m best32. ;
+	informat ath_5_12m best32. ;
+	informat ath_6_12m best32. ;
+	informat eis_status_12m best32. ;
+	informat atc_1_12m best32. ;
+	informat atc_2_12m best32. ;
+	informat atc_3_12m best32. ;
+	informat atc_4_12m best32. ;
+	informat atc_5_12m best32. ;
+	informat atc_6_12m best32. ;
+	informat eis_1_12m best32. ;
+	informat eis_2_12m best32. ;
+	informat eis_3_12m best32. ;
+	informat eis_4_12m best32. ;
+	informat eis_5_12m best32. ;
+	informat eis_6_12m best32. ;
+	informat eis_7_12m best32. ;
+	informat eis_8_12m best32. ;
+	informat eis_9_12m best32. ;
+	informat eis_10_12m best32. ;
+	informat eis_11_12m best32. ;
+	informat eis_12_12m best32. ;
+	informat eis_13_12m best32. ;
+	informat eis_14_12m best32. ;
+	informat eis_15_12m best32. ;
+	informat eis_16_12m best32. ;
+	informat eis_17_12m best32. ;
+	informat eis_18_12m best32. ;
+	informat eis_19_12m best32. ;
+	informat eis_20_12m best32. ;
+	informat eis_21_12m best32. ;
+	informat eis_22_12m best32. ;
+	informat mmt_1_12m best32. ;
+	informat mmt_2_12m best32. ;
+	informat mmt_3_12m best32. ;
+	informat mmt_4_12m best32. ;
+	informat mmt_5_12m best32. ;
+	informat mmt_6_12m best32. ;
+	informat mmt_7_12m best32. ;
+	informat mmt_8_12m best32. ;
+	informat mmt_9_12m best32. ;
+	informat mmt_10_12m best32. ;
+	informat mmt_11_12m best32. ;
+	informat ssi_1_12m best32. ;
+	informat ssi_2_12m best32. ;
+	informat ssi_2a_12m best32. ;
+	informat ssi_3_12m best32. ;
+	informat ssi_4_12m best32. ;
+	informat ssi_5_12m best32. ;
+	informat ssi_6_12m best32. ;
+	informat ssi_7_12m best32. ;
+	informat ssi_8_12m best32. ;
+	informat ssi_9_12m best32. ;
+	informat ssi_10_12m best32. ;
+	informat ssi_11_12m best32. ;
+	informat ssi_12_12m best32. ;
+	informat ssi_13_12m best32. ;
+	informat ssi_14_12m best32. ;
+	informat ssi_15_12m best32. ;
+	informat ssi_16_12m best32. ;
+	informat ssi_17_12m best32. ;
+	informat baseline_12m_complete best32. ;
 	informat relationship_with_ph_v_3 $500. ;
 	informat rphcv1 best32. ;
 	informat rphcv2 best32. ;
@@ -4883,6 +5147,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format vir_inr $500. ;
 	format vir_bts $500. ;
 	format vir_ot $5000. ;
+	format scr_source best12. ;
 	format comment $5000. ;
 	format screening_specific_c_v_0 best12. ;
 	format vt_dvs yymmdd10. ;
@@ -4938,6 +5203,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format vir_ng_oral best12. ;
 	format vir_ng_uro best12. ;
 	format vir_ng_rec best12. ;
+	format bsc_source best12. ;
 	format baseline_specific_co_v_1 best12. ;
 	format date_of_specimen_3m yymmdd10. ;
 	format ur_test_bas_3m best12. ;
@@ -4978,6 +5244,7 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format hbv_sur_ant_3m best12. ;
 	format hbv_nop_rea_3m $500. ;
 	format serum_creatinine_3m $500. ;
+	format fusc_source best12. ;
 	format comments_3m $5000. ;
 	format fu_specific_collecti_v_2 best12. ;
 	format baseline_timestamp $500. ;
@@ -5813,6 +6080,72 @@ infile &csv_file  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=1 ;
 	format cce_3 best12. ;
 	format cce_4 best12. ;
 	format baseline_complete best12. ;
+	format baseline_12m_timestamp $500. ;
+	format ath_1_12m best12. ;
+	format ath_2_12m best12. ;
+	format ath_3_12m best12. ;
+	format ath_4_12m best12. ;
+	format ath_5_12m best12. ;
+	format ath_6_12m best12. ;
+	format eis_status_12m best12. ;
+	format atc_1_12m best12. ;
+	format atc_2_12m best12. ;
+	format atc_3_12m best12. ;
+	format atc_4_12m best12. ;
+	format atc_5_12m best12. ;
+	format atc_6_12m best12. ;
+	format eis_1_12m best12. ;
+	format eis_2_12m best12. ;
+	format eis_3_12m best12. ;
+	format eis_4_12m best12. ;
+	format eis_5_12m best12. ;
+	format eis_6_12m best12. ;
+	format eis_7_12m best12. ;
+	format eis_8_12m best12. ;
+	format eis_9_12m best12. ;
+	format eis_10_12m best12. ;
+	format eis_11_12m best12. ;
+	format eis_12_12m best12. ;
+	format eis_13_12m best12. ;
+	format eis_14_12m best12. ;
+	format eis_15_12m best12. ;
+	format eis_16_12m best12. ;
+	format eis_17_12m best12. ;
+	format eis_18_12m best12. ;
+	format eis_19_12m best12. ;
+	format eis_20_12m best12. ;
+	format eis_21_12m best12. ;
+	format eis_22_12m best12. ;
+	format mmt_1_12m best12. ;
+	format mmt_2_12m best12. ;
+	format mmt_3_12m best12. ;
+	format mmt_4_12m best12. ;
+	format mmt_5_12m best12. ;
+	format mmt_6_12m best12. ;
+	format mmt_7_12m best12. ;
+	format mmt_8_12m best12. ;
+	format mmt_9_12m best12. ;
+	format mmt_10_12m best12. ;
+	format mmt_11_12m best12. ;
+	format ssi_1_12m best12. ;
+	format ssi_2_12m best12. ;
+	format ssi_2a_12m best12. ;
+	format ssi_3_12m best12. ;
+	format ssi_4_12m best12. ;
+	format ssi_5_12m best12. ;
+	format ssi_6_12m best12. ;
+	format ssi_7_12m best12. ;
+	format ssi_8_12m best12. ;
+	format ssi_9_12m best12. ;
+	format ssi_10_12m best12. ;
+	format ssi_11_12m best12. ;
+	format ssi_12_12m best12. ;
+	format ssi_13_12m best12. ;
+	format ssi_14_12m best12. ;
+	format ssi_15_12m best12. ;
+	format ssi_16_12m best12. ;
+	format ssi_17_12m best12. ;
+	format baseline_12m_complete best12. ;
 	format relationship_with_ph_v_3 $500. ;
 	format rphcv1 best12. ;
 	format rphcv2 best12. ;
@@ -7086,6 +7419,7 @@ input
 	vir_inr $
 	vir_bts $
 	vir_ot $
+	scr_source
 	comment $
 	screening_specific_c_v_0
 	vt_dvs
@@ -7141,6 +7475,7 @@ input
 	vir_ng_oral
 	vir_ng_uro
 	vir_ng_rec
+	bsc_source
 	baseline_specific_co_v_1
 	date_of_specimen_3m
 	ur_test_bas_3m
@@ -7181,6 +7516,7 @@ input
 	hbv_sur_ant_3m
 	hbv_nop_rea_3m $
 	serum_creatinine_3m $
+	fusc_source
 	comments_3m $
 	fu_specific_collecti_v_2
 	baseline_timestamp $
@@ -8016,6 +8352,72 @@ input
 	cce_3
 	cce_4
 	baseline_complete
+	baseline_12m_timestamp $
+	ath_1_12m
+	ath_2_12m
+	ath_3_12m
+	ath_4_12m
+	ath_5_12m
+	ath_6_12m
+	eis_status_12m
+	atc_1_12m
+	atc_2_12m
+	atc_3_12m
+	atc_4_12m
+	atc_5_12m
+	atc_6_12m
+	eis_1_12m
+	eis_2_12m
+	eis_3_12m
+	eis_4_12m
+	eis_5_12m
+	eis_6_12m
+	eis_7_12m
+	eis_8_12m
+	eis_9_12m
+	eis_10_12m
+	eis_11_12m
+	eis_12_12m
+	eis_13_12m
+	eis_14_12m
+	eis_15_12m
+	eis_16_12m
+	eis_17_12m
+	eis_18_12m
+	eis_19_12m
+	eis_20_12m
+	eis_21_12m
+	eis_22_12m
+	mmt_1_12m
+	mmt_2_12m
+	mmt_3_12m
+	mmt_4_12m
+	mmt_5_12m
+	mmt_6_12m
+	mmt_7_12m
+	mmt_8_12m
+	mmt_9_12m
+	mmt_10_12m
+	mmt_11_12m
+	ssi_1_12m
+	ssi_2_12m
+	ssi_2a_12m
+	ssi_3_12m
+	ssi_4_12m
+	ssi_5_12m
+	ssi_6_12m
+	ssi_7_12m
+	ssi_8_12m
+	ssi_9_12m
+	ssi_10_12m
+	ssi_11_12m
+	ssi_12_12m
+	ssi_13_12m
+	ssi_14_12m
+	ssi_15_12m
+	ssi_16_12m
+	ssi_17_12m
+	baseline_12m_complete
 	relationship_with_ph_v_3 $
 	rphcv1
 	rphcv2
@@ -9295,6 +9697,7 @@ data redcap;
 	label vir_inr='Prothrombin Time PT/INR';
 	label vir_bts='Blood test for Syphilis value:';
 	label vir_ot='Other tests:';
+	label scr_source='Please mark the source of these results:';
 	label comment='Other comments:';
 	label screening_specific_c_v_0='Complete?';
 	label vt_dvs='Date vital signs were taken ';
@@ -9350,6 +9753,7 @@ data redcap;
 	label vir_ng_oral='Neisseria gonorrhoeae NG (oral)';
 	label vir_ng_uro='Neisseria gonorrhoeae NG (urogential)';
 	label vir_ng_rec='Neisseria gonorrhoeae NG (rectal)';
+	label bsc_source='Please mark the source of these results:';
 	label baseline_specific_co_v_1='Complete?';
 	label date_of_specimen_3m='Date of specimen collection';
 	label ur_test_bas_3m='Urine pregnancy test';
@@ -9390,6 +9794,7 @@ data redcap;
 	label hbv_sur_ant_3m='Hepatitis B Surface Antigen ';
 	label hbv_nop_rea_3m='Reason Hepatitis B Test not performed';
 	label serum_creatinine_3m='Serum Creatinine Result (mg/dL)';
+	label fusc_source='Please mark the source of these results:';
 	label comments_3m='Comments or observations';
 	label fu_specific_collecti_v_2='Complete?';
 	label baseline_timestamp='Survey Timestamp';
@@ -10225,6 +10630,72 @@ data redcap;
 	label cce_3='Remember to take your pills for HCV treatment, every day, for the next 30 days?';
 	label cce_4='Keep all your HCV doctor visits without missing an appointment?';
 	label baseline_complete='Complete?';
+	label baseline_12m_timestamp='Survey Timestamp';
+	label ath_1_12m='I am preoccupied with catching HIV.';
+	label ath_2_12m='My life would be completely disorganized if I had HIV.';
+	label ath_3_12m='I will have to change some of my life habits if I get infected with HIV.';
+	label ath_4_12m='I will be very affected emotionally if I get HIV.';
+	label ath_5_12m='I will be rejected by certain people in my life if I get HIV.';
+	label ath_6_12m='Based on your present behaviour, what is your likelihood to get infected with HIV?';
+	label eis_status_12m='FOR THE INTERVIEWER What is the participant''s HCV status  ';
+	label atc_1_12m='I am preoccupied with catching HCV. ';
+	label atc_2_12m='My life would be completely disorganized if I had HCV.';
+	label atc_3_12m='I will have to change some of my life habits if I get infected with HCV.';
+	label atc_4_12m='I will be very affected emotionally if I get HCV.';
+	label atc_5_12m='I will be rejected by certain people in my life if I get HCV.';
+	label atc_6_12m='Based on your present behaviour, what is your likelihood to get infected with HCV.';
+	label eis_1_12m='My employer/co-workers have discriminated against me. ';
+	label eis_2_12m='Some people act as though I am less competent than usual.';
+	label eis_3_12m='I feel I have been treated with less respect than usual by others.';
+	label eis_4_12m='I feel others are concerned they could catch my HCV through contact like a handshake or eating food I prepare. ';
+	label eis_5_12m='I feel others avoid me because of my HCV.';
+	label eis_6_12m='I feel some family members have rejected me because of my HCV.';
+	label eis_7_12m='I feel some friends have rejected me because of my HCV.';
+	label eis_8_12m='I encounter embarrassing situations as a result of my HCV.';
+	label eis_9_12m='Due to my HCV others seem to feel awkward and tense when they are around me.';
+	label eis_10_12m='My job security has been affected by my HCV.';
+	label eis_11_12m='I have experienced financial hardship that has affected my relationship with others.';
+	label eis_12_12m='I feel others think I am to blame for my HCV.';
+	label eis_13_12m='I do not feel I can be open with others about my HCV.';
+	label eis_14_12m='I fear someone telling others about my HCV without my permission. ';
+	label eis_15_12m='I feel I need to keep my HCV a secret. ';
+	label eis_16_12m='I feel I am at least partially to blame for my HCV.';
+	label eis_17_12m='I feel set apart from others who are well.';
+	label eis_18_12m='I have a greater need than usual for reassurance that others care about me.';
+	label eis_19_12m='Due to my HCV, I have a sense of being unequal in my relationships with others.';
+	label eis_20_12m='I feel less competent than I did before I had HCV.';
+	label eis_21_12m='Due to my HCV, I sometimes feel useless.';
+	label eis_22_12m='Changes in my appearance have affected my social relationships.';
+	label mmt_1_12m='Doctors and health care workers sometimes hide information from people like me.';
+	label mmt_2_12m='Doctors have the best interests of people like me in mind.';
+	label mmt_3_12m='People like me should not confide in doctors and health care workers because it will be used against us.';
+	label mmt_4_12m='People like me should be suspicious of information from doctors and health care workers.';
+	label mmt_5_12m='People like me cannot trust doctors and health care workers.';
+	label mmt_6_12m='People like me should be suspicious of modern medicine.';
+	label mmt_7_12m='Doctors and health care workers treat people like me like guinea pigs.';
+	label mmt_8_12m='People like me receive the same medical care from doctors and health care workers as people from other groups.';
+	label mmt_9_12m='People like me are treated the same as people of other groups by doctors and health care workers.';
+	label mmt_10_12m='Doctors and health care workers do not take the medical complaints of people like me seriously.';
+	label mmt_11_12m='I personally have been treated poorly or unfairly by doctors or health care workers because of the group(s) to which I belong. ';
+	label ssi_1_12m='How many different places have you lived in over the last six months?';
+	label ssi_2_12m='How much of the time in the last six months have you been unemployed?';
+	label ssi_2a_12m='How many different full time jobs have you had in the last six months? ';
+	label ssi_3_12m='How often in the last six months have you had conflict with your relatives?';
+	label ssi_4_12m='How often in the last six months have you had conflict with your partner(s)?';
+	label ssi_5_12m='How often in the last six months have you had conflict with your friend(s)?';
+	label ssi_6_12m='About how many close friends would you estimate that you have (including a partner?)';
+	label ssi_7_12m='When you are having problems, how satisfied are you with the support your get from your friends?';
+	label ssi_8_12m='About how often do you see your friends?';
+	label ssi_9_12m='How many of the people you hang around with are users (including a partner)?';
+	label ssi_10_12m='How often have you had serious disagreements with your family about things that were important to you?';
+	label ssi_11_12m='How often have you had serious disagreements with your friends about things that were important to you?';
+	label ssi_12_12m='How often have you had serious disagreements with your partner about things that were important to you?';
+	label ssi_13_12m='Someone to love and make you feel wanted';
+	label ssi_14_12m='Someone to help with daily chores if you were sick';
+	label ssi_15_12m='Someone to help you buy medicines';
+	label ssi_16_12m='Someone to help with transportation';
+	label ssi_17_12m='Someone to give you money if you need it';
+	label baseline_12m_complete='Complete?';
 	label relationship_with_ph_v_3='Survey Timestamp';
 	label rphcv1='I can tell my health care provider anything, even things that I might not tell anyone else';
 	label rphcv2='My health care provider cares more about holding down costs than about what is needed for my health';
@@ -10456,16 +10927,16 @@ data redcap;
 	label idu_6mplc2_3m___11='In the past 90 days, did you inject in any of the following places? (choose any that apply) (choice=Other)';
 	label idu_6mplc2_ot_3m='Other, please specify: ';
 	label idu_plc_3m='Where do you inject most often? (choose one)';
-	label idu_1m_day_3m='How many days during the last month, starting from today''s date, did you inject drugs? ';
+	label idu_1m_day_3m='How many days during the last month, starting from today''s date, did you inject drugs?';
 	label idu_frq_pday_3m='In the [idu_1m_day_3m] days that you said you have injected drugs in the last month, how many  times did you inject per day?';
-	label idu_2m_day_3m='How many days in the last 60 days, starting from today''s date, did you inject drugs? ';
-	label idu_3m_day_3m='How many days in the last 90 days, starting from today''s date, did you inject drugs? ';
-	label idu_ru_6m_3m='How many times have you re-used the same syringe in the past 90 days? ';
+	label idu_2m_day_3m='How many days in the last 60 days, starting from today''s date, did you inject drugs?';
+	label idu_3m_day_3m='How many days in the last 90 days, starting from today''s date, did you inject drugs?';
+	label idu_ru_6m_3m='How many times have you re-used the same syringe in the past 90 days?';
 	label idu_hi_6m_3m='In the past 90 days, how often did you need help to inject? (choose one)';
 	label sidu_header4_3m='CALCULATION : Total number of injections in the past month based on the previous answers ';
 	label idu_frq_3m='According to your answers, you have injected a total of [sidu_header4_3m] times in the past month, does this seem correct? ';
 	label idu_frq_c_3m='If that number is incorrect, what do you think is the correct total number of times you have injected in the past month? ';
-	label idu_stp_3m_ob_3m='In the past 90 days, have you stopped injecting voluntarily or by obligation? ';
+	label idu_stp_3m_ob_3m='In the past 90 days, have you stopped injecting voluntarily or by obligation?';
 	label idu_stp_3m3_3m='Did you stop injecting during month 3 (two months ago)?';
 	label idu_stp_3m3_vb_3m___0='When you stopped injecting during month 3, was this voluntary (detox/therapy/by yourself/etc.) or by obligation (forced therapy/prison/vacation/etc.)? (choose any that apply) (choice=Voluntary)';
 	label idu_stp_3m3_vb_3m___1='When you stopped injecting during month 3, was this voluntary (detox/therapy/by yourself/etc.) or by obligation (forced therapy/prison/vacation/etc.)? (choose any that apply) (choice=By obligation)';
@@ -10600,12 +11071,12 @@ data redcap;
 	label bpi_plc_3m___10='From the diagram above, please select the areas where you feel pain.  (choice=Not applicable/no pain)';
 	label bpi_plc_3m___11='From the diagram above, please select the areas where you feel pain.  (choice=Others)';
 	label bpi_plc_ot_3m='If the pain area is different from above, please specify where you feel pain ';
-	label bpi_plc_w_3m='On a scale of 0-10, please indicate what number best describes your pain at its worst in the last 24 hours.  Please click and drag the slider to the corresponding number';
-	label bpi_plc_l_3m='On a scale of 0-10, please indicate what number best describes  your pain at its least in the last 24 hours.  Please click and drag the slider to the corresponding number';
-	label bpi_plc_m_3m='On a scale of 0-10, please indicate what number best  describes your pain on the average.  Please click and drag the slider to the corresponding number';
-	label bpi_plc_now_3m='On a scale of 0-10, please indicate what number best describes how much pain you have right now.  Please click and drag the slider to the corresponding number';
+	label bpi_plc_w_3m='On a scale of 0-10, please indicate what number best describes your pain at its worst in the last 24 hours.Please click and drag the slider to the corresponding number';
+	label bpi_plc_l_3m='On a scale of 0-10, please indicate what number best describes your pain at its least in the last 24 hours.Please click and drag the slider to the corresponding number';
+	label bpi_plc_m_3m='Sur une échelle de 0 à 10, veuillez indiquer quel chiffre décrit le mieux votre douleur en moyenne. Veuillez cliquer et faire glisser le curseur jusqu''au numéro correspondant.';
+	label bpi_plc_now_3m='On a scale of 0-10, please indicate what number best describes how much pain you have right now.Please click and drag the slider to the corresponding number';
 	label bpi_med_3m='What treatments or medications are you receiving for your pain?';
-	label bpi_med_p_3m='On a scale of 0-10, please indicate what number best describes how much relief have pain treatments or medications provided in the last 24 hours?   Please click and drag the slider to the corresponding percentage';
+	label bpi_med_p_3m='On a scale of 0-10, please indicate what number best describes how much relief have pain treatments or medications provided in the last 24 hours? Please click and drag the slider to the corresponding percentage';
 	label bpi_1_3m='General activity';
 	label bpi_2_3m='Mood';
 	label bpi_3_3m='Walking Ability';
@@ -11439,6 +11910,7 @@ data redcap;
 	format vir_hbc vir_hbc_.;
 	format vir_a vir_a_.;
 	format vir_hav vir_hav_.;
+	format scr_source scr_source_.;
 	format screening_specific_c_v_0 screening_specific_c_v_0_.;
 	format vt_temp vt_temp_.;
 	format vt_height vt_height_.;
@@ -11478,6 +11950,7 @@ data redcap;
 	format vir_ng_oral vir_ng_oral_.;
 	format vir_ng_uro vir_ng_uro_.;
 	format vir_ng_rec vir_ng_rec_.;
+	format bsc_source bsc_source_.;
 	format baseline_specific_co_v_1 baseline_specific_co_v_1_.;
 	format ur_test_bas_3m ur_test_bas_3m_.;
 	format result_upt_bas_3m result_upt_bas_3m_.;
@@ -11506,6 +11979,7 @@ data redcap;
 	format hcv_rna_quan_12wkp_3m hcv_rna_quan_12wkp_3m_.;
 	format hiv_ab_3m hiv_ab_3m_.;
 	format hbv_sur_ant_3m hbv_sur_ant_3m_.;
+	format fusc_source fusc_source_.;
 	format fu_specific_collecti_v_2 fu_specific_collecti_v_2_.;
 	format idu_cnty idu_cnty_.;
 	format dem_gender dem_gender_.;
@@ -12068,6 +12542,71 @@ data redcap;
 	format cce_3 cce_3_.;
 	format cce_4 cce_4_.;
 	format baseline_complete baseline_complete_.;
+	format ath_1_12m ath_1_12m_.;
+	format ath_2_12m ath_2_12m_.;
+	format ath_3_12m ath_3_12m_.;
+	format ath_4_12m ath_4_12m_.;
+	format ath_5_12m ath_5_12m_.;
+	format ath_6_12m ath_6_12m_.;
+	format eis_status_12m eis_status_12m_.;
+	format atc_1_12m atc_1_12m_.;
+	format atc_2_12m atc_2_12m_.;
+	format atc_3_12m atc_3_12m_.;
+	format atc_4_12m atc_4_12m_.;
+	format atc_5_12m atc_5_12m_.;
+	format atc_6_12m atc_6_12m_.;
+	format eis_1_12m eis_1_12m_.;
+	format eis_2_12m eis_2_12m_.;
+	format eis_3_12m eis_3_12m_.;
+	format eis_4_12m eis_4_12m_.;
+	format eis_5_12m eis_5_12m_.;
+	format eis_6_12m eis_6_12m_.;
+	format eis_7_12m eis_7_12m_.;
+	format eis_8_12m eis_8_12m_.;
+	format eis_9_12m eis_9_12m_.;
+	format eis_10_12m eis_10_12m_.;
+	format eis_11_12m eis_11_12m_.;
+	format eis_12_12m eis_12_12m_.;
+	format eis_13_12m eis_13_12m_.;
+	format eis_14_12m eis_14_12m_.;
+	format eis_15_12m eis_15_12m_.;
+	format eis_16_12m eis_16_12m_.;
+	format eis_17_12m eis_17_12m_.;
+	format eis_18_12m eis_18_12m_.;
+	format eis_19_12m eis_19_12m_.;
+	format eis_20_12m eis_20_12m_.;
+	format eis_21_12m eis_21_12m_.;
+	format eis_22_12m eis_22_12m_.;
+	format mmt_1_12m mmt_1_12m_.;
+	format mmt_2_12m mmt_2_12m_.;
+	format mmt_3_12m mmt_3_12m_.;
+	format mmt_4_12m mmt_4_12m_.;
+	format mmt_5_12m mmt_5_12m_.;
+	format mmt_6_12m mmt_6_12m_.;
+	format mmt_7_12m mmt_7_12m_.;
+	format mmt_8_12m mmt_8_12m_.;
+	format mmt_9_12m mmt_9_12m_.;
+	format mmt_10_12m mmt_10_12m_.;
+	format mmt_11_12m mmt_11_12m_.;
+	format ssi_1_12m ssi_1_12m_.;
+	format ssi_2_12m ssi_2_12m_.;
+	format ssi_2a_12m ssi_2a_12m_.;
+	format ssi_3_12m ssi_3_12m_.;
+	format ssi_4_12m ssi_4_12m_.;
+	format ssi_5_12m ssi_5_12m_.;
+	format ssi_6_12m ssi_6_12m_.;
+	format ssi_7_12m ssi_7_12m_.;
+	format ssi_8_12m ssi_8_12m_.;
+	format ssi_9_12m ssi_9_12m_.;
+	format ssi_10_12m ssi_10_12m_.;
+	format ssi_11_12m ssi_11_12m_.;
+	format ssi_12_12m ssi_12_12m_.;
+	format ssi_13_12m ssi_13_12m_.;
+	format ssi_14_12m ssi_14_12m_.;
+	format ssi_15_12m ssi_15_12m_.;
+	format ssi_16_12m ssi_16_12m_.;
+	format ssi_17_12m ssi_17_12m_.;
+	format baseline_12m_complete baseline_12m_complete_.;
 	format rphcv1 rphcv1_.;
 	format rphcv2 rphcv2_.;
 	format rphcv3 rphcv3_.;
