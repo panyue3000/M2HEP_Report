@@ -3,7 +3,7 @@
 
 /*CHECK FOR FOLLOW UP*/
 PROC SQL;
-   CREATE TABLE R2_fustatus AS 
+   CREATE TABLE R2_fustatus_0 AS 
    SELECT 
 		  t1.record_id, 
           t1.redcap_event_name, 
@@ -86,7 +86,7 @@ PROC SQL;
 /*CHANGE ADDITIOANL TO MACRO*/
 %macro FU_STATUS(MONTH, PARAMETER);
 PROC SQL;
-   CREATE TABLE R2_fustatus AS 
+   CREATE TABLE R2_fustatus_0 AS 
    SELECT 
 		  t1.*,
 		  t2.dem_visit_3m as FUDATE_&MONTH.,
@@ -104,7 +104,7 @@ PROC SQL;
 				when calculated FU&MONTH._status in ('lossFU') then 'lossFU' end as FU&MONTH._status_calc
 
 
-      FROM WORK.R2_fustatus t1 left join r1_&MONTH. t2 on 
+      FROM WORK.R2_fustatus_0 t1 left join r1_&MONTH. t2 on 
 		  t1.record_id=t2.record_id
 	  ORDER BY t1.redcap_data_access_group,
 	           T1.rand_date
@@ -149,7 +149,7 @@ PROC SQL;
           t1.FU15m_status_calc,
           t1.FU18m_status_calc,
           t1.FU21m_status_calc
-      FROM WORK.R2_FUSTATUS t1
+      FROM WORK.R2_FUSTATUS_0 t1
       ORDER BY t1.redcap_data_access_group,
                t1.rand_date;
 QUIT;
@@ -158,7 +158,7 @@ QUIT;
 ***************remove cohort 1 from montreal*********;
 
 data R2_fustatus;
-set R2_fustatus;
+set R2_fustatus_0;
 where 
 record_id not in (
 "001"
@@ -394,7 +394,7 @@ PROC SQL;
 /*          t1.FU21m_status_calc, */
 /*          t1.FU24m_status_calc, */
 /*          t1.FU27m_status_calc*/
-      FROM WORK.R2_FUSTATUS t1
+      FROM WORK.R2_fustatus_0 t1
       WHERE t1.rand_arm NOT = .
 	  ORDER BY REDCAP_DATA_ACCESS_GROUP, RAND_DATE
 	  ;
