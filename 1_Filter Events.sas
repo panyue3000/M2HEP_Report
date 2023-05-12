@@ -50,6 +50,13 @@ data redcap1;
 set redcap;
 if record_id not in ('0000-testid', '0000-testid2', '0000-testid3');
 /*if record_id in ('2073-2') then sdem_elig=1;*/
+
+/*We need to update pt.2074-251 HCV RNA (new) result on the REDCap screening specific collection form. 
+Can you please do this on your end? We are unable to edit this result because once the pt. 
+got randomized REDCap locked this field and we cannot change it. This participant is HCV RNA reactive . */
+
+if record_id="2074-251" and redcap_event_name='visit_1__screening_arm_1' then scr_c_hcv_res=1;
+
 run;
 
 

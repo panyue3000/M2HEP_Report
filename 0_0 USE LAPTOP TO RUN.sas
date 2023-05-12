@@ -1,6 +1,7 @@
 ﻿/* Edit the following line to reflect the full path to your CSV file */
-%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2023-01-11_1037.csv';
+%let csv_file = 'C:\Users\panyue\Box\M2HepPrEP\Report\REDCap Data Export\M2HEPV2_DATA_NOHDRS_2023-05-11_1545.csv';
 OPTIONS nofmterr;
+
 
 proc format;
 	value $redcap_event_name_ 'visit_1__screening_arm_1'='Visit 1 - Screening phase 1' 'visit_2__screening_arm_1'='Visit 2 - Screening phase 2' 
@@ -10665,17 +10666,17 @@ data redcap;
 	label eis_20_12m='I feel less competent than I did before I had HCV.';
 	label eis_21_12m='Due to my HCV, I sometimes feel useless.';
 	label eis_22_12m='Changes in my appearance have affected my social relationships.';
-	label mmt_1_12m='Doctors and health care workers sometimes hide information from people like me.';
-	label mmt_2_12m='Doctors have the best interests of people like me in mind.';
-	label mmt_3_12m='People like me should not confide in doctors and health care workers because it will be used against us.';
-	label mmt_4_12m='People like me should be suspicious of information from doctors and health care workers.';
-	label mmt_5_12m='People like me cannot trust doctors and health care workers.';
-	label mmt_6_12m='People like me should be suspicious of modern medicine.';
-	label mmt_7_12m='Doctors and health care workers treat people like me like guinea pigs.';
-	label mmt_8_12m='People like me receive the same medical care from doctors and health care workers as people from other groups.';
-	label mmt_9_12m='People like me are treated the same as people of other groups by doctors and health care workers.';
-	label mmt_10_12m='Doctors and health care workers do not take the medical complaints of people like me seriously.';
-	label mmt_11_12m='I personally have been treated poorly or unfairly by doctors or health care workers because of the group(s) to which I belong. ';
+	label mmt_1_12m='Doctors and health care workers sometimes hide information from me';
+	label mmt_2_12m='Doctors have my best interests in mind';
+	label mmt_3_12m='I should not confide in doctors and health care workers because it will be used against me ';
+	label mmt_4_12m='I should be suspicious of information from doctors and health care workers';
+	label mmt_5_12m='I cannot trust doctors and health care workers';
+	label mmt_6_12m='I should be suspicious of modern medicine';
+	label mmt_7_12m='Doctors and health care workers treat me like guinea pigs';
+	label mmt_8_12m='I receive the same medical care from doctors and health care workers as other people';
+	label mmt_9_12m='I am treated the same as other people by doctors and health care workers';
+	label mmt_10_12m='Doctors and health care workers do not take my medical complaints seriously';
+	label mmt_11_12m='I personally have been treated poorly or unfairly by doctors or health care workers';
 	label ssi_1_12m='How many different places have you lived in over the last six months?';
 	label ssi_2_12m='How much of the time in the last six months have you been unemployed?';
 	label ssi_2a_12m='How many different full time jobs have you had in the last six months? ';
